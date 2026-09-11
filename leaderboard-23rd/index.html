@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>August 23rd Leaderboard - AFIT CBT Simulator</title>
+    <title>August 23rd Leaderboard | BRYT CBT SIM</title>
     
-    <link rel="icon" type="image/svg+xml" href="../static/img/afitcbtsim-logo.svg">
+    <link rel="icon" type="image/svg+xml" href="../static/img/brytcbtsim-logo.svg">
+    <link rel="icon" type="image/png" sizes="512x512" href="../static/img/brytcbtsim-logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../static/img/brytcbtsim-logo1.png">
+    <link rel="apple-touch-icon" href="../static/img/apple-touch-icon.png">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/main.css">
     
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -19,10 +24,10 @@
         *, *::before, *::after { box-sizing: border-box !important; }
 
         body { 
-            background-color: #f8fafc;
+            background-color: #F5F8FC;
             background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
             background-size: 30px 30px;
-            color: #0f172a; font-family: 'Poppins', sans-serif; 
+            color: #0B1220; font-family: 'Sora', sans-serif; 
             min-height: 100vh;
         }
 
@@ -34,43 +39,43 @@
             position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
 
-        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.1rem; color: #0f172a; letter-spacing: -0.5px;}
-        .nav-logo img { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 4px 10px rgba(37,99,235,0.2);}
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.1rem; color: #071A3A; letter-spacing: -0.5px;}
+        .nav-logo img { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 4px 10px rgba(29, 94, 208, 0.2);}
 
         .btn-back {
             background: white; color: #475569; border: 1px solid #e2e8f0;
             padding: 0.6rem 1.2rem; border-radius: 10px; font-weight: 700; cursor: pointer;
-            transition: all 0.2s; font-family: 'Poppins', sans-serif; font-size: 0.9rem;
+            transition: all 0.2s; font-family: 'Sora', sans-serif; font-size: 0.9rem;
             display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
-        .btn-back:hover { background: #f1f5f9; color: #0f172a; transform: translateY(-2px); }
+        .btn-back:hover { background: #f1f5f9; color: #0B1220; transform: translateY(-2px); }
         .btn-back svg { width: 16px; height: 16px; }
 
         .leaderboard-container { max-width: 1000px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem 1.5rem; text-align: center; }
 
         /* 🚀 CINEMATIC HERO HEADER */
         .leaderboard-hero {
-            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+            background: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
             border-radius: 24px; padding: 3rem 2rem; margin-bottom: 3.5rem; color: white;
-            position: relative; overflow: hidden; box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.4);
+            position: relative; overflow: hidden; box-shadow: 0 20px 40px -15px rgba(7, 26, 58, 0.4);
             animation: fadeSlideUp 0.5s ease forwards;
         }
         .leaderboard-hero::after {
             content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%); border-radius: 50%; pointer-events: none;
+            background: radial-gradient(circle, rgba(21, 159, 227, 0.15) 0%, transparent 70%); border-radius: 50%; pointer-events: none;
         }
 
-        /* 🚀 KADUNA EVENT BADGE */
-        .kaduna-badge { 
-            display: inline-flex; align-items: center; gap: 8px; background: rgba(56, 189, 248, 0.1); 
-            border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8; padding: 0.5rem 1.2rem; 
+        /* 🚀 EVENT BADGE */
+        .bryt-badge { 
+            display: inline-flex; align-items: center; gap: 8px; background: rgba(21, 159, 227, 0.1); 
+            border: 1px solid rgba(21, 159, 227, 0.3); color: #159FE3; padding: 0.5rem 1.2rem; 
             border-radius: 50px; font-weight: 800; font-size: 0.85rem; margin-bottom: 1.5rem; 
             text-transform: uppercase; letter-spacing: 0.5px; position: relative; z-index: 2;
         }
-        .kaduna-badge svg { width: 16px; height: 16px; }
+        .bryt-badge svg { width: 16px; height: 16px; }
 
-        .hero-title { font-size: 2.5rem; font-weight: 900; margin: 0 0 10px 0; letter-spacing: -0.5px; position: relative; z-index: 2; }
-        .hero-subtitle { color: #93c5fd; font-size: 1.05rem; font-weight: 500; margin: 0; position: relative; z-index: 2;}
+        .hero-title { font-size: 2.5rem; font-weight: 800; margin: 0 0 10px 0; letter-spacing: -0.5px; position: relative; z-index: 2; }
+        .hero-subtitle { color: #E0E7FF; font-size: 1.05rem; font-weight: 500; margin: 0; position: relative; z-index: 2;}
 
         /* 🚀 PLUSH PODIUM */
         .podium-wrapper { 
@@ -80,7 +85,7 @@
         }
         
         .podium-step {
-            background: white; color: #0f172a; border-radius: 20px 20px 16px 16px;
+            background: white; color: #0B1220; border-radius: 20px 20px 16px 16px;
             width: 200px; padding: 2rem 1.2rem 1.5rem 1.2rem; position: relative;
             box-shadow: 0 15px 35px -10px rgba(0,0,0,0.1); border: 1px solid #e2e8f0;
             display: flex; flex-direction: column; justify-content: flex-start;
@@ -101,10 +106,10 @@
         .step-2 .p-rank { background: linear-gradient(135deg, #e2e8f0 0%, #64748b 100%); }
         .step-3 .p-rank { background: linear-gradient(135deg, #fdba74 0%, #b45309 100%); }
 
-        .p-name { font-weight: 800; font-size: 1.1rem; margin-top: 24px; line-height: 1.2; word-break: break-word; color: #0f172a; letter-spacing: -0.5px;}
+        .p-name { font-weight: 800; font-size: 1.1rem; margin-top: 24px; line-height: 1.2; word-break: break-word; color: #0B1220; letter-spacing: -0.5px;}
         .step-1 .p-name { font-size: 1.25rem; margin-top: 30px; }
         .p-course { font-size: 0.75rem; color: #64748b; font-weight: 700; margin-top: 6px; text-transform: uppercase; line-height: 1.3; }
-        .p-score { font-size: 1.8rem; font-weight: 900; color: #2563eb; margin-top: auto; padding-top: 10px; line-height: 1;}
+        .p-score { font-size: 1.8rem; font-weight: 900; color: #1D5ED0; margin-top: auto; padding-top: 10px; line-height: 1;}
         .p-putme { font-size: 0.75rem; color: #64748b; font-weight: 700; margin-top: 4px; }
 
         /* 🚀 DATA TABLE CARD */
@@ -117,17 +122,17 @@
         .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         .rank-table { width: 100%; border-collapse: collapse; text-align: left; min-width: 450px; margin: 0;}
         .rank-table th { 
-            background: #f8fafc; color: #475569; font-weight: 800; text-transform: uppercase; 
+            background: #F5F8FC; color: #475569; font-weight: 800; text-transform: uppercase; 
             font-size: 0.8rem; padding: 1.2rem 1.5rem; border-bottom: 2px solid #e2e8f0; white-space: nowrap; letter-spacing: 0.5px;
         }
-        .rank-table td { padding: 1.2rem 1.5rem; border-bottom: 1px solid #f1f5f9; color: #1e293b; font-size: 0.95rem; font-weight: 600; vertical-align: middle; white-space: nowrap; }
-        .rank-table tr:hover td { background: #f8fafc; }
+        .rank-table td { padding: 1.2rem 1.5rem; border-bottom: 1px solid #f1f5f9; color: #0B1220; font-size: 0.95rem; font-weight: 600; vertical-align: middle; white-space: nowrap; }
+        .rank-table tr:hover td { background: #F5F8FC; }
         
         .rank-badge { background: #f1f5f9; color: #64748b; padding: 6px 12px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; display: inline-block; border: 1px solid #e2e8f0;}
-        .score-highlight { color: #2563eb; font-weight: 900; font-size: 1.15rem; background: #eff6ff; padding: 6px 12px; border-radius: 8px;}
+        .score-highlight { color: #1D5ED0; font-weight: 900; font-size: 1.15rem; background: #F5F8FC; padding: 6px 12px; border-radius: 8px;}
 
         .empty-state { padding: 4rem 1.5rem; text-align: center; color: #64748b; }
-        #loading-spinner { display: flex; flex-direction: column; align-items: center; padding: 4rem 0; color: #0f172a; }
+        #loading-spinner { display: flex; flex-direction: column; align-items: center; padding: 4rem 0; color: #0B1220; }
 
         @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -168,8 +173,8 @@
 
     <nav class="nav-header">
         <div class="nav-logo">
-            <img src="../static/img/afitcbtsim-logo.png" alt="Logo">
-            AFIT CBT SIM
+            <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo">
+            BRYT CBT SIM
         </div>
         <button onclick="window.history.back()" class="btn-back">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
@@ -180,7 +185,7 @@
     <div class="leaderboard-container">
         
         <div class="leaderboard-hero">
-            <div class="kaduna-badge">
+            <div class="bryt-badge">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                 Kaduna Post-UTME: Aug 24, 2026
             </div>
@@ -189,11 +194,11 @@
         </div>
 
         <div id="loading-spinner">
-            <svg class="animate-spin" style="width: 45px; height: 45px; color: #2563eb; margin-bottom: 15px;" fill="none" viewBox="0 0 24 24">
+            <svg class="animate-spin" style="width: 45px; height: 45px; color: #1D5ED0; margin-bottom: 15px;" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            <h3 style="font-weight: 700; margin: 0; color: #1e293b;">Compiling Live Rankings...</h3>
+            <h3 style="font-weight: 700; margin: 0; color: #0B1220;">Compiling Live Rankings...</h3>
         </div>
 
         <div id="leaderboard-content" style="display: none;">
@@ -237,7 +242,7 @@
                 if (!data || data.length === 0) {
                     document.getElementById('loading-spinner').innerHTML = `
                         <div class="empty-state">
-                            <h2 style="color: #0f172a; margin: 0 0 10px 0; font-weight: 800;">Waiting for submissions...</h2>
+                            <h2 style="color: #0B1220; margin: 0 0 10px 0; font-weight: 800;">Waiting for submissions...</h2>
                             <p style="color: #64748b; margin: 0; font-weight: 500;">No aspirants have submitted the mock exam yet.</p>
                         </div>
                     `;
@@ -283,7 +288,7 @@
 
             if (top3.length > 0) {
                 setTimeout(() => {
-                    confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, colors: ['#fbbf24', '#cbd5e1', '#d97706', '#2563eb'] });
+                    confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, colors: ['#fbbf24', '#cbd5e1', '#d97706', '#1D5ED0'] });
                 }, 600);
             }
 
@@ -303,7 +308,7 @@
                     tableHtml += `
                         <tr>
                             <td style="text-align: center;"><span class="rank-badge">#${rank}</span></td>
-                            <td style="font-weight: 800; color: #0f172a;">${name}</td>
+                            <td style="font-weight: 800; color: #0B1220;">${name}</td>
                             <td class="hide-mobile" style="color: #64748b; font-size: 0.8rem; text-transform: uppercase;">${cleanCourse}</td>
                             <td style="text-align: center; color: #64748b;">${putme}</td>
                             <td style="text-align: right;"><span class="score-highlight">${aggregate}</span></td>
@@ -316,7 +321,7 @@
 
         function createPodiumStep(user, rank, stepClass) {
             const firstName = user.full_name ? user.full_name.trim().split(/\s+/)[0] : 'Aspirant';
-            const rawCourse = user.breakdown?.course || 'AFIT Aspirant';
+            const rawCourse = user.breakdown?.course || 'BRYT Aspirant';
             const cleanCourse = rawCourse.replace(/\[.*?\]/g, '').trim();
             const aggregate = (user.breakdown?.calculated_aggregate || 0).toFixed(1) + '%';
             const putme = (user.total_score || 0) + '/50';
