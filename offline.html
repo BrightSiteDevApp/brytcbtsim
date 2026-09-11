@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline | BRYT CBT SIM</title>
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/img/brytcbtsim-logo1.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F5F8FC;
+            color: #0B1220;
+            font-family: 'Sora', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1.5rem;
+            box-sizing: border-box;
+        }
+        .offline-card {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            max-width: 440px;
+            width: 100%;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 15px 35px -10px rgba(0,0,0,0.05);
+        }
+        .offline-card img {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            margin-bottom: 1.5rem;
+        }
+        h1 { font-size: 1.6rem; margin: 0 0 10px 0; color: #071A3A; font-weight: 800; }
+        p { color: #64748b; font-size: 0.95rem; line-height: 1.6; margin: 0 0 2rem 0; font-weight: 500; }
+        .btn-retry {
+            background: #1D5ED0;
+            color: white;
+            border: none;
+            padding: 1rem 1.8rem;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Sora', sans-serif;
+            font-size: 0.95rem;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-card">
+        <img src="/static/img/brytcbtsim-logo.png" alt="BRYT Logo">
+        <h1>You are Offline</h1>
+        <p>It looks like your internet connection dropped. Reconnect to access live exams, telemetry, and practice banks.</p>
+        <button onclick="window.location.reload()" class="btn-retry">Check Connection & Retry</button>
+    </div>
+</body>
+</html>
