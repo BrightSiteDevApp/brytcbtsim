@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Exam Results - AFIT CBT Simulator</title>
+    <title>Exam Results | BRYT CBT SIM</title>
 
-    <link rel="icon" type="image/svg+xml" href="../static/img/afitcbtsim-logo.svg">
-    <link rel="icon" type="image/png" sizes="512x512" href="../static/img/afitcbtsim-logo.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="../static/img/afitcbtsim-logo1.png">
+    <link rel="icon" type="image/svg+xml" href="../static/img/brytcbtsim-logo.svg">
+    <link rel="icon" type="image/png" sizes="512x512" href="../static/img/brytcbtsim-logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../static/img/brytcbtsim-logo1.png">
     <link rel="apple-touch-icon" href="../static/img/apple-touch-icon.png">
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/main.css">
     
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -25,42 +25,44 @@
         *, *::before, *::after { box-sizing: border-box !important; }
 
         body.dashboard-body { 
-            background-color: #f8fafc;
+            background-color: #F5F8FC;
             background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
             background-size: 30px 30px;
+            font-family: 'Sora', sans-serif;
         }
 
         .btn-action-main {
-            padding: 1rem 1.5rem; border-radius: 12px; font-weight: 800; border: none; 
+            padding: 1rem 1.5rem; border-radius: 12px; font-weight: 700; border: none; 
             cursor: pointer; font-size: 0.95rem; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+            font-family: 'Sora', sans-serif;
         }
         .btn-action-main svg { width: 18px; height: 18px; }
         .btn-action-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -10px rgba(0,0,0,0.3); }
         
-        .btn-blue { background: #2563eb; color: white; box-shadow: 0 8px 16px -4px rgba(37, 99, 235, 0.3); }
-        .btn-outline-blue { background: white; color: #2563eb; border: 2px solid #2563eb; }
-        .btn-outline-blue:hover { background: #eff6ff; }
+        .btn-blue { background: #1D5ED0; color: white; box-shadow: 0 8px 16px -4px rgba(29, 94, 208, 0.3); }
+        .btn-outline-blue { background: white; color: #1D5ED0; border: 2px solid #1D5ED0; }
+        .btn-outline-blue:hover { background: #F5F8FC; }
         .btn-outline-gray { background: white; color: #475569; border: 2px solid #cbd5e1; }
-        .btn-outline-gray:hover { background: #f8fafc; color: #0f172a; border-color: #94a3b8; }
+        .btn-outline-gray:hover { background: #f8fafc; color: #0B1220; border-color: #94a3b8; }
 
         /* 🚀 RESULT SPECIFIC STYLES */
         .result-banner {
-            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+            background: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
             border-radius: 24px; padding: 2.5rem 3rem; margin-bottom: 2.5rem; color: white;
             display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.4); position: relative; overflow: hidden;
+            box-shadow: 0 20px 40px -15px rgba(7, 26, 58, 0.4); position: relative; overflow: hidden;
             animation: fadeSlideUp 0.4s ease forwards;
         }
         .result-banner::after {
             content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(56,189,248,0.15) 0%, transparent 70%); border-radius: 50%;
+            background: radial-gradient(circle, rgba(21,159,227,0.15) 0%, transparent 70%); border-radius: 50%;
             pointer-events: none;
         }
         .rb-text { position: relative; z-index: 2; }
-        .rb-text h1 { margin: 0 0 8px 0; font-size: 2.2rem; font-weight: 900; letter-spacing: -0.5px; display: flex; align-items: center; gap: 12px;}
+        .rb-text h1 { margin: 0 0 8px 0; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; display: flex; align-items: center; gap: 12px;}
         .rb-text h1 svg { width: 32px; height: 32px; color: #34d399; }
-        .rb-text p { margin: 0; color: #93c5fd; font-size: 1.05rem; font-weight: 500; }
+        .rb-text p { margin: 0; color: #E0E7FF; font-size: 1.05rem; font-weight: 500; }
         
         .status-pill {
             position: relative; z-index: 2; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
@@ -78,17 +80,17 @@
             box-shadow: 0 10px 30px -10px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; transition: transform 0.2s;
         }
         .stat-card:hover { transform: translateY(-3px); border-color: #cbd5e1; box-shadow: 0 15px 35px -10px rgba(0,0,0,0.08); }
-        .stat-card.highlight { border: 2px solid #3b82f6; box-shadow: 0 15px 35px -10px rgba(59, 130, 246, 0.2); }
+        .stat-card.highlight { border: 2px solid #1D5ED0; box-shadow: 0 15px 35px -10px rgba(29, 94, 208, 0.2); }
         
         .stat-icon { width: 60px; height: 60px; border-radius: 16px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
         .stat-icon svg { width: 28px; height: 28px; }
-        .stat-icon.blue { background: #eff6ff; color: #2563eb; }
+        .stat-icon.blue { background: #F5F8FC; color: #1D5ED0; }
         .stat-icon.green { background: #ecfdf5; color: #10b981; }
         .stat-icon.orange { background: #fff7ed; color: #ea580c; }
         .stat-icon.purple { background: #f5f3ff; color: #8b5cf6; }
 
         .stat-info h4 { margin: 0 0 5px 0; font-size: 0.8rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-        .stat-val { font-size: 2rem; font-weight: 900; color: #0f172a; line-height: 1; }
+        .stat-val { font-size: 2rem; font-weight: 800; color: #0B1220; line-height: 1; }
         .stat-val span { font-size: 1.2rem; color: #94a3b8; font-weight: 600; margin-left: 2px;}
 
         /* 🚀 TWO COLUMN LAYOUT */
@@ -102,7 +104,7 @@
             border: 1px solid transparent; box-shadow: 0 10px 40px -10px rgba(0,0,0,0.04);
         }
         .dash-card h3 { 
-            margin: 0 0 1.5rem 0; font-size: 1.3rem; font-weight: 800; color: #0f172a; 
+            margin: 0 0 1.5rem 0; font-size: 1.3rem; font-weight: 800; color: #0B1220; 
             display: flex; align-items: center; gap: 10px;
         }
         .dash-card h3 svg { width: 24px; height: 24px; }
@@ -111,13 +113,13 @@
             display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px;
         }
         .subject-pill {
-            background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px;
+            background: #F5F8FC; border: 1px solid #e2e8f0; border-radius: 16px;
             padding: 1.5rem; text-align: center; transition: all 0.2s;
             opacity: 0; transform: translateY(15px);
         }
         .subject-pill:hover { border-color: #cbd5e1; transform: translateY(-3px); box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05); }
         .subject-pill h4 { margin: 0 0 8px 0; color: #64748b; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-        .subject-pill p { margin: 0; font-size: 1.8rem; font-weight: 900; color: #0f172a; font-family: 'Poppins', sans-serif; line-height: 1;}
+        .subject-pill p { margin: 0; font-size: 1.8rem; font-weight: 800; color: #071A3A; font-family: 'Sora', sans-serif; line-height: 1;}
 
         .action-grid { display: flex; flex-direction: column; gap: 15px; }
 
@@ -127,9 +129,9 @@
         /* HIDDEN CAPTURE CARD DESIGN */
         #capture-area {
             position: absolute; left: -9999px; top: 0; width: 700px;
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            background: linear-gradient(135deg, #0B1220 0%, #071A3A 100%);
             color: white; padding: 50px; border-radius: 24px;
-            font-family: 'Poppins', sans-serif; box-sizing: border-box; z-index: -100;
+            font-family: 'Sora', sans-serif; box-sizing: border-box; z-index: -100;
         }
 
         /* 🚀 MOBILE FIXES */
@@ -161,14 +163,10 @@
     <div id="capture-area">
         <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(255,255,255,0.1); padding-bottom: 25px; margin-bottom: 30px;">
             <div style="display: flex; align-items: center;">
-                <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);">
-                    <rect width="100" height="100" rx="22" fill="#2563eb"/>
-                    <path d="M50 20 L22 75 H36 L43 60 H57 L64 75 H78 L50 20 Z" fill="#ffffff"/>
-                    <path d="M32 54 L45 67 L75 32" stroke="#bae6fd" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo" style="width: 60px; height: 60px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);">
                 <div style="margin-left: 20px;">
-                    <h2 style="margin: 0; font-size: 2rem; font-weight: 800; letter-spacing: -0.5px;">AFIT CBT Simulator</h2>
-                    <p style="margin: 0; color: #93c5fd; font-size: 1.1rem; font-weight: 500;">Mock Result</p>
+                    <h2 style="margin: 0; font-size: 2rem; font-weight: 800; letter-spacing: -0.5px;">BRYT CBT SIM</h2>
+                    <p style="margin: 0; color: #159FE3; font-size: 1.1rem; font-weight: 500;">Mock Result</p>
                 </div>
             </div>
             
@@ -185,17 +183,17 @@
 
         <div style="display: flex; gap: 20px;">
             <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 20px; flex: 1; text-align: center;">
-                <p style="margin: 0; color: #93c5fd; font-weight: 600; font-size: 1.1rem;">Post-UTME Score</p>
+                <p style="margin: 0; color: #159FE3; font-weight: 600; font-size: 1.1rem;">Post-UTME Score</p>
                 <h1 style="margin: 10px 0 0 0; font-size: 3.5rem; font-weight: 800;" id="card-score">--/50</h1>
             </div>
-            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 20px; flex: 1; text-align: center; border: 3px solid #3b82f6; box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);">
-                <p style="margin: 0; color: #93c5fd; font-weight: 600; font-size: 1.1rem;">Aggregate</p>
-                <h1 style="margin: 10px 0 0 0; font-size: 3.5rem; font-weight: 800; color: #60a5fa;" id="card-agg">--%</h1>
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 20px; flex: 1; text-align: center; border: 3px solid #1D5ED0; box-shadow: 0 0 30px rgba(29, 94, 208, 0.2);">
+                <p style="margin: 0; color: #159FE3; font-weight: 600; font-size: 1.1rem;">Aggregate</p>
+                <h1 style="margin: 10px 0 0 0; font-size: 3.5rem; font-weight: 800; color: #38bdf8;" id="card-agg">--%</h1>
             </div>
         </div>
 
         <div style="margin-top: 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
-            <p style="margin: 0; font-size: 0.9rem; color: #64748b; font-weight: 500;">Engineered for Excellence by Brightsitedev</p>
+            <p style="margin: 0; font-size: 0.9rem; color: #64748b; font-weight: 500;">Engineered for Excellence by BRYT Technologies</p>
         </div>
     </div>
 
@@ -203,19 +201,14 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header" style="display: flex; align-items: center; gap: 12px; padding: 1rem 0;">
-            <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius: 10px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(37,99,235,0.3);">
-                <rect width="100" height="100" rx="22" fill="url(#logo-grad-dash)"/>
-                <path d="M50 20 L22 75 H36 L43 60 H57 L64 75 H78 L50 20 Z" fill="#ffffff"/>
-                <path d="M32 54 L45 67 L75 32" stroke="#38bdf8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-                <defs><linearGradient id="logo-grad-dash" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop stop-color="#0f172a"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs>
-            </svg>
-            <span style="font-weight: 800; font-size: 1.15rem; color: #1e293b; letter-spacing: -0.5px; white-space: nowrap;">AFIT CBT SIM</span>
+            <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo" style="width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(29, 94, 208, 0.3);">
+            <span style="font-weight: 800; font-size: 1.15rem; color: #0B1220; letter-spacing: -0.5px; white-space: nowrap;">BRYT CBT SIM</span>
         </div>
         
         <ul class="sidebar-nav">
             <li><a href="../dashboard/index.html"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg> Dashboard</a></li>
             <li><a href="../exams/index.html"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg> Exams</a></li>
-            <li><a href="../view-results/index.html"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg> My Results</a></li>
+            <li class="active"><a href="#"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg> My Results</a></li>
             <li><a href="../profile/index.html"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg> Profile</a></li>
         </ul>
 
@@ -251,8 +244,8 @@
                 <div class="stat-card highlight">
                     <div class="stat-icon blue"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg></div>
                     <div class="stat-info">
-                        <h4 style="color: #2563eb;">Final Aggregate</h4>
-                        <div class="stat-val" style="color: #1e40af;"><span id="ui-aggregate" style="font-size: 2rem; color: #1e40af; margin:0;">0.0</span> <span>%</span></div>
+                        <h4 style="color: #1D5ED0;">Final Aggregate</h4>
+                        <div class="stat-val" style="color: #071A3A;"><span id="ui-aggregate" style="font-size: 2rem; color: #071A3A; margin:0;">0.0</span> <span>%</span></div>
                     </div>
                 </div>
 
@@ -260,7 +253,7 @@
                     <div class="stat-icon green"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg></div>
                     <div class="stat-info">
                         <h4>Post-UTME Score</h4>
-                        <div class="stat-val"><span id="ui-putme-score" style="font-size: 2rem; color: #0f172a; margin:0;">0.0</span> <span>/ 50</span></div>
+                        <div class="stat-val"><span id="ui-putme-score" style="font-size: 2rem; color: #0B1220; margin:0;">0.0</span> <span>/ 50</span></div>
                     </div>
                 </div>
 
@@ -276,7 +269,7 @@
                     <div class="stat-icon purple"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg></div>
                     <div class="stat-info">
                         <h4>JAMB Points (÷8)</h4>
-                        <div class="stat-val"><span id="ui-jamb-weight" style="font-size: 2rem; color: #0f172a; margin:0;">0.0</span> <span>pts</span></div>
+                        <div class="stat-val"><span id="ui-jamb-weight" style="font-size: 2rem; color: #0B1220; margin:0;">0.0</span> <span>pts</span></div>
                     </div>
                 </div>
             </div>
@@ -296,7 +289,7 @@
 
                 <div class="dash-card">
                     <h3>
-                        <svg style="color: #2563eb;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        <svg style="color: #1D5ED0;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                         Next Steps
                     </h3>
                     <div class="action-grid">
@@ -356,7 +349,7 @@
             const end = Date.now() + duration;
 
             (function frame() {
-                confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#2563eb', '#38bdf8', '#ffffff'] });
+                confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#1D5ED0', '#159FE3', '#ffffff'] });
                 confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#10b981', '#f59e0b', '#ffffff'] });
                 if (Date.now() < end) requestAnimationFrame(frame);
             }());
@@ -501,7 +494,7 @@
             
             html2canvas(captureArea, { scale: 2, backgroundColor: null }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = 'AFIT_Mock_Result.png';
+                link.download = 'BRYT_Mock_Result.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
                 captureArea.style.left = '-9999px';

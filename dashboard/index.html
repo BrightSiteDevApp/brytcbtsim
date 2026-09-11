@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Dashboard - AFIT CBT Simulator</title>
+    <title>Dashboard | BRYT CBT SIM</title>
     
-    <link rel="icon" type="image/svg+xml" href="../static/img/afitcbtsim-logo.svg">
+    <link rel="icon" type="image/svg+xml" href="../static/img/brytcbtsim-logo.svg">
+    <link rel="icon" type="image/png" sizes="512x512" href="../static/img/brytcbtsim-logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../static/img/brytcbtsim-logo1.png">
+    <link rel="apple-touch-icon" href="../static/img/apple-touch-icon.png">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/main.css">
     
     <script src="https://js.paystack.co/v1/inline.js"></script>
@@ -16,7 +21,7 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
-        html, body { max-width: 100vw !important; overflow-x: hidden !important; margin: 0; padding: 0; background-color: #f8fafc; }
+        html, body { max-width: 100vw !important; overflow-x: hidden !important; margin: 0; padding: 0; background-color: #F5F8FC; font-family: 'Sora', sans-serif; }
         *, *::before, *::after { box-sizing: border-box !important; }
 
         .data-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
@@ -35,41 +40,43 @@
         .btn-action-main {
             padding: 0.8rem 1.5rem; border-radius: 12px; font-weight: 700; border: none; 
             cursor: pointer; font-size: 0.95rem; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: 'Sora', sans-serif;
         }
         .btn-action-main svg { width: 18px; height: 18px; }
         .btn-action-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -10px rgba(0,0,0,0.3); }
         .btn-green { background: #10b981; color: white; box-shadow: 0 8px 16px -4px rgba(16, 185, 129, 0.3); }
-        .btn-blue { background: #2563eb; color: white; box-shadow: 0 8px 16px -4px rgba(37, 99, 235, 0.3); }
+        .btn-blue { background: #1D5ED0; color: white; box-shadow: 0 8px 16px -4px rgba(29, 94, 208, 0.3); }
         .btn-orange { background: #f97316; color: white; box-shadow: 0 8px 16px -4px rgba(249, 115, 22, 0.3); }
         .btn-outline-orange { background: white; color: #f97316; border: 2px solid #f97316; }
         .btn-purple { background: #8b5cf6; color: white; box-shadow: 0 8px 16px -4px rgba(139, 92, 246, 0.3); }
         .btn-outline-purple { background: white; color: #8b5cf6; border: 2px solid #8b5cf6; }
 
-        /* 🚀 MILLION-DOLLAR WELCOME BANNER */
+        /* 🚀 BRYT WELCOME BANNER */
         .welcome-banner {
-            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+            background: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
             border-radius: 24px; padding: 2.5rem 3rem; margin-bottom: 2rem;
-            position: relative; overflow: hidden; box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.4);
+            position: relative; overflow: hidden; box-shadow: 0 20px 40px -15px rgba(7, 26, 58, 0.4);
+            color: white;
         }
         .welcome-banner::after {
             content: ''; position: absolute; top: -50%; right: -20%; width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(21, 159, 227, 0.15) 0%, transparent 70%);
             border-radius: 50%; pointer-events: none;
         }
-        .welcome-text h1 { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.5px; }
+        .welcome-text h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 0.5rem; }
+        .welcome-text p { color: #E0E7FF; font-size: 1.05rem; margin-bottom: 1.5rem; }
 
         /* 🚀 ULTRA-SLIM NOTIFICATION TICKER */
         .countdown-banner {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            border: 1px solid #334155; border-radius: 8px;
+            background: linear-gradient(135deg, #0B1220 0%, #071A3A 100%);
+            border: 1px solid #1D5ED0; border-radius: 8px;
             padding: 5px 14px; margin: 0 auto 1.5rem auto; display: inline-flex; justify-content: space-between;
             align-items: center; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); color: white;
             width: fit-content; gap: 12px;
         }
         .cd-left { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.8rem;}
-        .cd-right { font-weight: 700; font-size: 0.75rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 3px 8px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.3);}
-        .venue-link { font-size: 0.75rem; color: #38bdf8; text-decoration: none; cursor: pointer; border-bottom: 1px dashed #38bdf8; font-weight: 600; transition: all 0.2s;}
+        .cd-right { font-weight: 700; font-size: 0.75rem; background: rgba(21, 159, 227, 0.15); color: #159FE3; padding: 3px 8px; border-radius: 6px; border: 1px solid rgba(21, 159, 227, 0.3);}
+        .venue-link { font-size: 0.75rem; color: #159FE3; text-decoration: none; cursor: pointer; border-bottom: 1px dashed #159FE3; font-weight: 600; transition: all 0.2s;}
         .venue-link:hover { color: #bae6fd; border-color: #bae6fd; }
 
         /* 🚀 VIP PROMO INLINE BANNER */
@@ -84,7 +91,7 @@
         .promo-desc { font-size: 0.9rem; color: #166534; line-height: 1.5; margin: 0; font-weight: 500; }
         .promo-btn {
             background: #10b981; color: white; padding: 0.9rem 1.5rem; border-radius: 12px;
-            font-weight: 800; font-size: 0.95rem; border: none; cursor: pointer;
+            font-weight: 700; font-size: 0.95rem; border: none; cursor: pointer; font-family: 'Sora', sans-serif;
             box-shadow: 0 8px 15px -4px rgba(16, 185, 129, 0.3); transition: all 0.2s;
             white-space: nowrap; display: flex; align-items: center; gap: 8px;
         }
@@ -110,14 +117,14 @@
         .qa-icon { width: 50px; height: 50px; border-radius: 16px; display: flex; justify-content: center; align-items: center; transition: transform 0.3s;}
         .quick-action-card:hover .qa-icon { transform: scale(1.1); }
         .qa-icon svg { width: 24px; height: 24px; }
-        .qa-text { font-size: 0.85rem; font-weight: 700; color: #1e293b; line-height: 1.2;}
+        .qa-text { font-size: 0.85rem; font-weight: 700; color: #0B1220; line-height: 1.2;}
         
         .qa-icon.red { background: #fef2f2; color: #ef4444; }
-        .qa-icon.blue { background: #eff6ff; color: #3b82f6; }
+        .qa-icon.blue { background: #F5F8FC; color: #1D5ED0; }
         .qa-icon.yellow { background: #fffbeb; color: #f59e0b; }
         .qa-icon.pink { background: #fdf2f8; color: #db2777; }
         .qa-icon.green { background: #dcfce7; color: #10b981; }
-        .qa-icon.light { background: #f8fafc; color: #1e293b; }
+        .qa-icon.light { background: #F5F8FC; color: #0B1220; }
 
         /* LEADERBOARD PROFESSIONAL BADGES */
         .rank-1 { background: #fef3c7; color: #d97706; padding: 4px 10px; border-radius: 6px; font-weight: 800; font-size: 0.8rem; border: 1px solid #fde68a; }
@@ -130,13 +137,13 @@
             box-shadow: 0 10px 30px -10px rgba(0,0,0,0.04); border: none;
         }
         .stat-icon { width: 54px; height: 54px; border-radius: 16px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; font-size: 1.5rem; }
-        .stat-icon.green { background: #ecfdf5; color: #10b981; } .stat-icon.blue { background: #eff6ff; color: #3b82f6; } .stat-icon.purple { background: #f5f3ff; color: #8b5cf6; }
+        .stat-icon.green { background: #ecfdf5; color: #10b981; } .stat-icon.blue { background: #F5F8FC; color: #1D5ED0; } .stat-icon.purple { background: #f5f3ff; color: #8b5cf6; }
         .stat-info h4 { margin: 0 0 5px 0; font-size: 0.8rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-        .stat-val { font-size: 1.6rem; font-weight: 900; color: #0f172a; }
+        .stat-val { font-size: 1.6rem; font-weight: 800; color: #0B1220; }
 
         .analytics-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 2rem; }
         .dash-card { background: white; padding: 2rem; border-radius: 24px; box-shadow: 0 10px 40px -10px rgba(0,0,0,0.03); border: none; }
-        .dash-card h3 { font-size: 1.1rem; font-weight: 800; color: #0f172a; margin-top: 0; margin-bottom: 1.5rem; display: flex; align-items: center; }
+        .dash-card h3 { font-size: 1.1rem; font-weight: 700; color: #0B1220; margin-top: 0; margin-bottom: 1.5rem; display: flex; align-items: center; }
         .chart-container { position: relative; height: 260px; width: 100%; }
 
         @keyframes pulse-flame {
@@ -148,7 +155,7 @@
 
         /* MODALS */
         .premium-modal-overlay {
-            position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); z-index: 10000; 
+            position: fixed; inset: 0; background: rgba(11, 18, 32, 0.85); z-index: 10000; 
             display: none; justify-content: center; align-items: center; backdrop-filter: blur(10px); padding: 1rem;
         }
         .premium-modal {
@@ -160,13 +167,13 @@
             height: 36px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; 
             align-items: center; color: #64748b; font-weight: bold; transition: 0.2s;
         }
-        .close-modal-btn:hover { background: #e2e8f0; color: #0f172a; }
+        .close-modal-btn:hover { background: #e2e8f0; color: #0B1220; }
 
         .modal-icon-header { width: 60px; height: 60px; border-radius: 20px; display: flex; justify-content: center; align-items: center; margin: 0 auto 20px auto; }
         .modal-icon-header svg { width: 30px; height: 30px; }
 
-        .upsell-block { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 1.5rem; margin-bottom: 1rem; text-align: left;}
-        .upsell-block h4 { margin: 0 0 5px 0; color: #0f172a; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;}
+        .upsell-block { background: #F5F8FC; border: 1px solid #e2e8f0; border-radius: 16px; padding: 1.5rem; margin-bottom: 1rem; text-align: left;}
+        .upsell-block h4 { margin: 0 0 5px 0; color: #0B1220; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;}
         .upsell-block h4 svg { width: 18px; height: 18px; color: #64748b; }
         .upsell-block p { margin: 0 0 15px 0; color: #64748b; font-size: 0.85rem; line-height: 1.5; }
 
@@ -219,11 +226,11 @@
             <button class="close-modal-btn" onclick="closeVenueModal()">
                 <svg style="width:16px;height:16px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
-            <div class="modal-icon-header" style="background: #eff6ff; color: #3b82f6;">
+            <div class="modal-icon-header" style="background: #F5F8FC; color: #1D5ED0;">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
             </div>
-            <h2 id="vm-title" style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 5px; text-align: center;">Centre Name</h2>
-            <p id="vm-date" style="color: #3b82f6; font-size: 0.9rem; font-weight: 700; margin-bottom: 15px; text-align: center;">Date & Time</p>
+            <h2 id="vm-title" style="font-size: 1.4rem; font-weight: 800; color: #0B1220; margin-bottom: 5px; text-align: center;">Centre Name</h2>
+            <p id="vm-date" style="color: #1D5ED0; font-size: 0.9rem; font-weight: 700; margin-bottom: 15px; text-align: center;">Date & Time</p>
             
             <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px;">
                 <span style="display: block; font-size: 0.75rem; text-transform: uppercase; color: #94a3b8; font-weight: 700; margin-bottom: 5px; letter-spacing: 1px;">Full Address</span>
@@ -231,7 +238,7 @@
                     Loading address details...
                 </p>
             </div>
-            <button onclick="closeVenueModal()" style="width: 100%; padding: 0.9rem; border-radius: 12px; font-weight: 700; border: none; cursor: pointer; background: #f1f5f9; color: #475569; font-size: 0.95rem; margin-top: 20px; transition: 0.2s;">Close Details</button>
+            <button onclick="closeVenueModal()" style="width: 100%; padding: 0.9rem; border-radius: 12px; font-weight: 700; border: none; cursor: pointer; background: #f1f5f9; color: #475569; font-size: 0.95rem; margin-top: 20px; transition: 0.2s; font-family: 'Sora', sans-serif;">Close Details</button>
         </div>
     </div>
 
@@ -241,8 +248,8 @@
             <button class="close-modal-btn" onclick="closeDailyUpsell()">
                 <svg style="width:16px;height:16px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
-            <h2 style="font-size: 1.6rem; font-weight: 800; color: #0f172a; margin-bottom: 5px;">Unlock Your Potential</h2>
-            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 20px;">Secure your admission by mastering the Post-UTME. Upgrade your account today.</p>
+            <h2 style="font-size: 1.6rem; font-weight: 800; color: #0B1220; margin-bottom: 5px;">Unlock Your Potential</h2>
+            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 20px;">Secure your admission by mastering the CBT exams. Upgrade your account today.</p>
 
             <div class="upsell-block" id="daily-premium-block">
                 <h4>
@@ -250,7 +257,7 @@
                     Premium Simulator
                 </h4>
                 <p>Take unlimited timed mock exams. Get detailed score evaluations and conquer exam anxiety.</p>
-                <button id="upsell-premium-btn" style="width: 100%; padding: 0.9rem; border-radius: 12px; font-weight: 800; border: none; font-size: 1rem; transition: 0.2s; cursor: pointer;"></button>
+                <button id="upsell-premium-btn" style="width: 100%; padding: 0.9rem; border-radius: 12px; font-weight: 700; border: none; font-size: 1rem; transition: 0.2s; cursor: pointer; font-family: 'Sora', sans-serif;"></button>
             </div>
 
             <div class="upsell-block" id="daily-qbank-block">
@@ -259,9 +266,9 @@
                     Question Bank Vault
                 </h4>
                 <p>Bypass the timer. Get direct, relaxed access to study over 5,500+ past questions and view instant answers.</p>
-                <button id="upsell-qbank-btn" style="width: 100%; padding: 0.9rem; border-radius: 12px; font-weight: 800; border: none; font-size: 1rem; transition: 0.2s; cursor: pointer;"></button>
+                <button id="upsell-qbank-btn" style="width: 100%; padding: 0.9rem; border-radius: 12px; font-weight: 700; border: none; font-size: 1rem; transition: 0.2s; cursor: pointer; font-family: 'Sora', sans-serif;"></button>
             </div>
-            <button onclick="closeDailyUpsell()" style="background: none; border: none; color: #94a3b8; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif; margin-top: 10px; text-decoration: underline;">Maybe later</button>
+            <button onclick="closeDailyUpsell()" style="background: none; border: none; color: #94a3b8; font-weight: 600; cursor: pointer; font-family: 'Sora', sans-serif; margin-top: 10px; text-decoration: underline;">Maybe later</button>
         </div>
     </div>
 
@@ -273,9 +280,9 @@
             <div class="modal-icon-header" style="background: #fff7ed; color: #ea580c;">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.898 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg>
             </div>
-            <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 8px;">Premium Access</h2>
+            <h2 style="font-size: 1.4rem; font-weight: 800; color: #0B1220; margin-bottom: 8px;">Premium Access</h2>
             <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.5rem;">Unlock unlimited timed tests and advanced real-time performance analytics.</p>
-            <button id="modal-proceed-btn" style="width: 100%; padding: 1rem; border-radius: 10px; font-weight: 800; border: none; cursor: pointer; background: #ea580c; color: white; font-size: 1rem; box-shadow: 0 8px 15px rgba(234, 88, 12, 0.2); transition: transform 0.2s;">
+            <button id="modal-proceed-btn" style="width: 100%; padding: 1rem; border-radius: 10px; font-weight: 700; border: none; cursor: pointer; background: #ea580c; color: white; font-size: 1rem; box-shadow: 0 8px 15px rgba(234, 88, 12, 0.2); transition: transform 0.2s; font-family: 'Sora', sans-serif;">
                 Upgrade ₦1,050
             </button>
         </div>
@@ -289,9 +296,9 @@
             <div class="modal-icon-header" style="background: #f5f3ff; color: #8b5cf6;">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
             </div>
-            <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 8px;">Unlock Question Bank</h2>
+            <h2 style="font-size: 1.4rem; font-weight: 800; color: #0B1220; margin-bottom: 8px;">Unlock Question Bank</h2>
             <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.5rem;">Study without pressure. Get direct access to 5,500+ questions, practice without a timer, and view instant answers.</p>
-            <button id="qbank-proceed-btn" style="width: 100%; padding: 1rem; border-radius: 10px; font-weight: 800; border: none; cursor: pointer; background: #8b5cf6; color: white; font-size: 1rem; box-shadow: 0 8px 15px rgba(139, 92, 246, 0.2); transition: transform 0.2s;">
+            <button id="qbank-proceed-btn" style="width: 100%; padding: 1rem; border-radius: 10px; font-weight: 700; border: none; cursor: pointer; background: #8b5cf6; color: white; font-size: 1rem; box-shadow: 0 8px 15px rgba(139, 92, 246, 0.2); transition: transform 0.2s; font-family: 'Sora', sans-serif;">
                 Unlock Vault ₦1,050
             </button>
         </div>
@@ -301,20 +308,16 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header" style="display: flex; align-items: center; gap: 12px; padding: 1rem 0;">
-            <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius: 10px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(37,99,235,0.3);">
-                <rect width="100" height="100" rx="22" fill="url(#logo-grad-dash)"/>
-                <path d="M50 20 L22 75 H36 L43 60 H57 L64 75 H78 L50 20 Z" fill="#ffffff"/>
-                <path d="M32 54 L45 67 L75 32" stroke="#38bdf8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-                <defs><linearGradient id="logo-grad-dash" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop stop-color="#0f172a"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs>
-            </svg>
-            <span style="font-weight: 800; font-size: 1.15rem; color: #1e293b; letter-spacing: -0.5px; white-space: nowrap;">AFIT CBT SIM</span>
+            <!-- 🚀 REPLACED INLINE SVG LOGO WITH BRYT PNG -->
+            <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo" style="width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(29, 94, 208, 0.3);">
+            <span style="font-weight: 800; font-size: 1.15rem; color: #0B1220; letter-spacing: -0.5px; white-space: nowrap;">BRYT CBT SIM</span>
         </div>
         
         <ul class="sidebar-nav">
             <li class="active"><a href="#"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg> Dashboard</a></li>
             <li><a href="../exams/"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>Exams</a></li>
             <li><a href="../view-results/"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg> My Results</a></li>
-            <li><a href="../profile/"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg> Profile</a></li>
+            <li><a href="../profile/"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /></svg> Profile</a></li>
         </ul>
 
         <div class="sidebar-footer">
@@ -338,7 +341,7 @@
             <div class="welcome-banner">
                 <div class="welcome-text">
                     <h1><span id="time-greeting">Welcome</span>, <span id="welcome-name">Aspirant</span>.</h1>
-                    <p>Track your progress, challenge the leaderboard, and master the AFIT CBT exam.</p>
+                    <p>Track your progress, challenge the leaderboard, and master the CBT exam.</p>
                     <div id="action-buttons-container"></div>
                 </div>
             </div>
@@ -432,7 +435,7 @@
             <div class="analytics-grid">
                 <div class="dash-card">
                     <h3>
-                        <svg style="width: 20px; color: #3b82f6; vertical-align: middle; margin-right: 5px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                        <svg style="width: 20px; color: #1D5ED0; vertical-align: middle; margin-right: 5px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
                         Performance Trend (Last 10 Exams)
                     </h3>
                     <div class="chart-container">
@@ -453,7 +456,7 @@
             <div class="dashboard-grid">
                 <div class="dash-card">
                     <h3>
-                        <svg style="width: 20px; color: var(--brand-blue);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                        <svg style="width: 20px; color: #1D5ED0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                         Recent History (Last 5)
                     </h3>
                     <div style="overflow-x: hidden;">
@@ -695,7 +698,7 @@
                 email: email, 
                 amount: 1050 * 100, 
                 currency: 'NGN',
-                ref: 'AFIT_' + Math.floor((Math.random() * 1000000000) + 1),
+                ref: 'BRYT_' + Math.floor((Math.random() * 1000000000) + 1), // REBRANDED PAYMENT REFERENCE
                 metadata: { custom_fields: [{ display_name: "Student ID", variable_name: "student_id", value: userId }, { display_name: "Payment Type", variable_name: "payment_type", value: paymentType }] },
                 callback: function(response) { alert('Payment successful! Verifying account upgrade.'); setTimeout(() => { window.location.reload(); }, 3000); },
                 onClose: function() { alert('Payment process was cancelled.'); }
@@ -720,7 +723,7 @@
                         <svg style="width: 48px; height: 48px; margin-bottom: 10px; color: #cbd5e1;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                         <p style="margin: 0; font-size: 0.95rem; font-weight: 600; color: #475569;">No Analytics Yet</p>
                         <p style="margin: 5px 0 15px 0; font-size: 0.8rem; line-height: 1.5;">Take your first mock exam to generate this chart.</p>
-                        <button onclick="window.location.href='../exams/index.html'" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.8rem; transition: background 0.2s;">Take an Exam</button>
+                        <button onclick="window.location.href='../exams/index.html'" style="background: #F5F8FC; color: #1D5ED0; border: 1px solid #bfdbfe; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.8rem; transition: background 0.2s; font-family: 'Sora', sans-serif;">Take an Exam</button>
                     </div>
                 `;
                 trendContainer.innerHTML = emptyStateHtml;
@@ -805,8 +808,8 @@
                     labels: labels,
                     datasets: [{
                         label: 'Total Score', data: scores,
-                        borderColor: '#3b82f6', backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                        borderWidth: 3, pointBackgroundColor: '#ffffff', pointBorderColor: '#3b82f6', pointRadius: 5, fill: true, tension: 0.3
+                        borderColor: '#1D5ED0', backgroundColor: 'rgba(29, 94, 208, 0.1)',
+                        borderWidth: 3, pointBackgroundColor: '#ffffff', pointBorderColor: '#1D5ED0', pointRadius: 5, fill: true, tension: 0.3
                     }]
                 },
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, max: 50 } } }

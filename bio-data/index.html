@@ -2,22 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="../static/img/afitcbtsim-logo.svg">
-    <link rel="icon" type="image/png" sizes="512x512" href="../static/img/afitcbtsim-logo.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="../static/img/afitcbtsim-logo1.png">
+    <link rel="icon" type="image/svg+xml" href="../static/img/brytcbtsim-logo.svg">
+    <link rel="icon" type="image/png" sizes="512x512" href="../static/img/brytcbtsim-logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../static/img/brytcbtsim-logo1.png">
     <link rel="apple-touch-icon" href="../static/img/apple-touch-icon.png">
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Profile - AFIT CBT Simulator</title>
+    <title>Complete Profile | BRYT CBT SIM</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="../static/main.css">
     <style>
         .bio-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .auth-page { overflow-y: auto; background-color: var(--bg-gray); }
+        .auth-page { overflow-y: auto; background-color: var(--bg-gray); font-family: 'Sora', sans-serif; }
         .auth-form-container { overflow-y: auto; align-items: flex-start; padding: 3rem 1.5rem; }
         .auth-form-wrapper { margin: auto; padding: 3rem 2.5rem; background: var(--white); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.06); width: 100%; }
         .dynamic-elective { display: none; animation: fadeIn 0.3s ease; }
@@ -25,7 +25,7 @@
         
         /* Loading Overlay while checking security */
         #security-loader {
-            position: fixed; inset: 0; background: #0f172a; z-index: 9999;
+            position: fixed; inset: 0; background: #0B1220; z-index: 9999;
             display: flex; flex-direction: column; justify-content: center; align-items: center; color: white;
         }
 
@@ -41,16 +41,16 @@
 
     <!-- 🚀 SECURITY LOADER (Covers screen until Auth is verified) -->
     <div id="security-loader">
-        <svg class="animate-spin" style="width: 40px; height: 40px; color: #38bdf8; margin-bottom: 15px;" fill="none" viewBox="0 0 24 24">
+        <svg class="animate-spin" style="width: 40px; height: 40px; color: #159FE3; margin-bottom: 15px;" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
-        <h3 style="margin:0; font-size: 1.1rem; font-family: 'Poppins', sans-serif;">Verifying Session...</h3>
+        <h3 style="margin:0; font-size: 1.1rem; font-family: 'Sora', sans-serif;">Verifying Session...</h3>
     </div>
 
     <div class="auth-split-layout" id="main-content" style="display: none;">
         
-        <div class="auth-banner" style="background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);">
+        <div class="auth-banner" style="background: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);">
             <div class="banner-content">
                 <h2>Personalize Your Journey.</h2>
                 <p>We use this information to tailor your dashboard and serve you the exact Post-UTME subject combination for your chosen course.</p>
@@ -65,14 +65,10 @@
         <div class="auth-form-container">
             <div class="auth-form-wrapper" style="max-width: 520px;">
                 
-                 <div class="logo" style="display: flex; align-items: center; margin-bottom: 2rem;">
-                    <svg width="42" height="42" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius: 10px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4); flex-shrink: 0;">
-                        <rect width="100" height="100" rx="22" fill="url(#logo-grad)"/>
-                        <path d="M50 20 L22 75 H36 L43 60 H57 L64 75 H78 L50 20 Z" fill="#ffffff"/>
-                        <path d="M32 54 L45 67 L75 32" stroke="#38bdf8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-                        <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop stop-color="#0f172a"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs>
-                    </svg>
-                    <span style="font-weight: 800; color: #1e293b; margin-left: 12px; font-size: 1.2rem; letter-spacing: -0.5px;">AFIT CBT SIM</span>
+                 <div class="logo" style="display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                    <!-- 🚀 REPLACED SVG LOGO WITH BRYT PNG -->
+                    <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo" style="width: 48px; height: 48px; border-radius: 14px; box-shadow: 0 4px 12px rgba(29, 94, 208, 0.3); flex-shrink: 0;">
+                    <span style="font-weight: 800; color: #0B1220; margin-left: 12px; font-size: 1.5rem; letter-spacing: -0.5px;">BRYT CBT SIM</span>
                 </div>
                 
                 <h2 class="auth-title" style="font-size: 1.8rem;">Almost There!</h2>

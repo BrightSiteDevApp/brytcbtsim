@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>My Profile - AFIT CBT Simulator</title>
+    <title>My Profile | BRYT CBT SIM</title>
     
-     <link rel="icon" type="image/svg+xml" href="../static/img/afitcbtsim-logo.svg">
-    <link rel="icon" type="image/png" sizes="512x512" href="../static/img/afitcbtsim-logo.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="../static/img/afitcbtsim-logo1.png">
+    <link rel="icon" type="image/svg+xml" href="../static/img/brytcbtsim-logo.svg">
+    <link rel="icon" type="image/png" sizes="512x512" href="../static/img/brytcbtsim-logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../static/img/brytcbtsim-logo1.png">
     <link rel="apple-touch-icon" href="../static/img/apple-touch-icon.png">
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/main.css">
     
     <style>
@@ -22,14 +22,15 @@
         *, *::before, *::after { box-sizing: border-box !important; }
 
         body.dashboard-body { 
-            background-color: #f8fafc;
+            background-color: #F5F8FC;
             background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
             background-size: 30px 30px;
+            font-family: 'Sora', sans-serif;
         }
 
         /* 🚀 PAGE HEADER */
         .page-title-section { margin-bottom: 2.5rem; animation: fadeSlideUp 0.4s ease forwards; }
-        .page-title-section h1 { font-size: 2.2rem; font-weight: 900; color: #0f172a; letter-spacing: -0.5px; margin: 0 0 5px 0; }
+        .page-title-section h1 { font-size: 2.2rem; font-weight: 800; color: #071A3A; letter-spacing: -0.5px; margin: 0 0 5px 0; }
         .page-title-section p { color: #64748b; font-size: 1rem; margin: 0; font-weight: 500; }
 
         /* 🚀 PREMIUM PROFILE CARD */
@@ -42,7 +43,7 @@
         /* Decorative Top Bar */
         .profile-card::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 8px;
-            background: linear-gradient(90deg, #2563eb, #38bdf8);
+            background: linear-gradient(90deg, #1D5ED0, #159FE3);
         }
 
         .profile-header-card {
@@ -52,17 +53,17 @@
         
         .profile-avatar-large {
             width: 90px; height: 90px; border-radius: 22px; flex-shrink: 0;
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            background: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
             color: white; display: flex; justify-content: center; align-items: center;
-            font-weight: 800; font-size: 2.5rem; box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
-            border: 4px solid white;
+            font-weight: 800; font-size: 2.5rem; box-shadow: 0 10px 25px -5px rgba(29, 94, 208, 0.4);
+            border: 4px solid white; font-family: 'Sora', sans-serif;
         }
 
-        .profile-info h2 { font-size: 1.8rem; font-weight: 900; color: #0f172a; margin: 0 0 4px 0; line-height: 1.2; letter-spacing: -0.5px;}
+        .profile-info h2 { font-size: 1.8rem; font-weight: 800; color: #0B1220; margin: 0 0 4px 0; line-height: 1.2; letter-spacing: -0.5px;}
         .profile-info p { color: #64748b; font-size: 0.95rem; font-weight: 500; margin: 0 0 12px 0; }
 
         .score-badge { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;}
-        .badge-blue { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+        .badge-blue { background: #F5F8FC; color: #1D5ED0; border: 1px solid #bfdbfe; }
         .badge-purple { background: #f5f3ff; color: #7c3aed; border: 1px solid #ddd6fe; }
 
         /* 🚀 DATA GRID & INPUTS */
@@ -71,21 +72,21 @@
         .input-group { display: flex; flex-direction: column; }
         .input-label-wrap { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
         .input-label-wrap svg { width: 16px; height: 16px; color: #94a3b8; }
-        .input-group label { font-size: 0.8rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+        .input-group label { font-size: 0.8rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
         
         .readonly-input {
             width: 100%; padding: 1.1rem 1.2rem; border: 1px solid #e2e8f0; border-radius: 12px;
-            font-size: 1rem; font-family: 'Poppins', sans-serif; background-color: #f8fafc;
+            font-size: 1rem; font-family: 'Sora', sans-serif; background-color: #F5F8FC;
             color: #1e293b; font-weight: 600; cursor: not-allowed; transition: all 0.2s; box-sizing: border-box;
         }
         .readonly-input:hover { background-color: #f1f5f9; border-color: #cbd5e1; }
 
         /* 🚀 ADMIN CONTROLS */
         .admin-controls-section {
-            background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 16px;
+            background: #F5F8FC; border: 2px dashed #cbd5e1; border-radius: 16px;
             padding: 1.8rem; display: none; margin-bottom: 2.5rem;
         }
-        .admin-controls-section h4 { margin: 0 0 15px 0; color: #0f172a; font-size: 1.1rem; font-weight: 800; display: flex; align-items: center; gap: 8px;}
+        .admin-controls-section h4 { margin: 0 0 15px 0; color: #0B1220; font-size: 1.1rem; font-weight: 800; display: flex; align-items: center; gap: 8px;}
         .admin-controls-section h4 svg { width: 20px; height: 20px; color: #64748b; }
         
         .admin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
@@ -93,13 +94,13 @@
         .btn-admin {
             padding: 0.9rem 1.2rem; border-radius: 10px; font-weight: 700; cursor: pointer; 
             border: none; font-size: 0.9rem; transition: all 0.2s ease;
-            font-family: 'Poppins', sans-serif; text-align: center; display: none;
+            font-family: 'Sora', sans-serif; text-align: center; display: none;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
-        .btn-admin.primary { background: #1e293b; color: white; }
-        .btn-admin.primary:hover { background: #0f172a; transform: translateY(-2px); box-shadow: 0 8px 15px rgba(15,23,42,0.2); }
-        .btn-admin.secondary { background: #3b82f6; color: white; }
-        .btn-admin.secondary:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 8px 15px rgba(37,99,235,0.2); }
+        .btn-admin.primary { background: #071A3A; color: white; }
+        .btn-admin.primary:hover { background: #0B1220; transform: translateY(-2px); box-shadow: 0 8px 15px rgba(7,26,58,0.2); }
+        .btn-admin.secondary { background: #1D5ED0; color: white; }
+        .btn-admin.secondary:hover { background: #159FE3; transform: translateY(-2px); box-shadow: 0 8px 15px rgba(29,94,208,0.2); }
         .btn-admin.success { background: #10b981; color: white; }
         .btn-admin.success:hover { background: #059669; transform: translateY(-2px); box-shadow: 0 8px 15px rgba(16,185,129,0.2); }
 
@@ -110,13 +111,13 @@
             background: #ecfdf5; border: 1px solid #bbf7d0; border-radius: 16px;
             padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
         }
-        .contact-text h4 { margin: 0 0 5px 0; color: #166534; font-size: 1.05rem; font-weight: 800; }
+        .contact-text h4 { margin: 0 0 5px 0; color: #166534; font-size: 1.05rem; font-weight: 700; }
         .contact-text p { margin: 0; color: #15803d; font-size: 0.85rem; font-weight: 500; line-height: 1.5;}
         
         .btn-whatsapp {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             background: #25D366; color: white; padding: 0.9rem 1.5rem; border-radius: 12px;
-            font-weight: 800; text-decoration: none; transition: all 0.2s ease; font-size: 0.95rem;
+            font-weight: 700; text-decoration: none; transition: all 0.2s ease; font-size: 0.95rem; font-family: 'Sora', sans-serif;
             box-shadow: 0 8px 15px -5px rgba(37, 211, 102, 0.4); border: none; white-space: nowrap; flex-shrink: 0;
         }
         .btn-whatsapp svg { width: 20px; height: 20px; }
@@ -124,8 +125,8 @@
 
         .btn-danger-outline {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            background: white; color: #ef4444; padding: 1.2rem; border: 2px solid #fecaca;
-            border-radius: 16px; font-size: 1rem; font-weight: 800; cursor: pointer;
+            background: white; color: #ef4444; padding: 1.2rem; border: 2px solid #fecaca; font-family: 'Sora', sans-serif;
+            border-radius: 16px; font-size: 1rem; font-weight: 700; cursor: pointer;
             transition: all 0.2s ease; width: 100%; height: 100%; box-sizing: border-box;
         }
         .btn-danger-outline svg { width: 20px; height: 20px; }
@@ -154,18 +155,9 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header" style="display: flex; align-items: center; gap: 12px; padding: 1rem 0;">
-            <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius: 10px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(37,99,235,0.3);">
-                <rect width="100" height="100" rx="22" fill="url(#logo-grad-profile)"/>
-                <path d="M50 20 L22 75 H36 L43 60 H57 L64 75 H78 L50 20 Z" fill="#ffffff"/>
-                <path d="M32 54 L45 67 L75 32" stroke="#38bdf8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-                <defs>
-                    <linearGradient id="logo-grad-profile" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#0f172a"/>
-                        <stop offset="1" stop-color="#1d4ed8"/>
-                    </linearGradient>
-                </defs>
-            </svg>
-            <span style="font-weight: 800; font-size: 1.15rem; color: #1e293b; letter-spacing: -0.5px; white-space: nowrap;">AFIT CBT SIM</span>
+            <!-- 🚀 UPDATED: Replaced inline SVG with proper BRYT PNG Logo -->
+            <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo" style="width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(29, 94, 208, 0.3);">
+            <span style="font-weight: 800; font-size: 1.15rem; color: #0B1220; letter-spacing: -0.5px; white-space: nowrap;">BRYT CBT SIM</span>
         </div>
         
         <ul class="sidebar-nav">
@@ -210,7 +202,7 @@
                     <div class="profile-info">
                         <h2 id="display-name">Loading...</h2>
                         <p id="display-email">Loading email...</p>
-                        <span class="score-badge badge-blue" id="account-type-badge">Aspirant Account</span>
+                        <span class="score-badge badge-blue" id="account-type-badge">Student Account</span>
                     </div>
                 </div>
 
@@ -272,7 +264,7 @@
                     </h4>
                     <div class="admin-grid">
                         <button id="btn-admin-panel" class="btn-admin primary" onclick="window.location.href='../admin/index.html'">Main Command Center</button>
-                        <button id="btn-admin-staging" class="btn-admin secondary" onclick="window.location.href='../admin-staging/index.html'">ALOC Question Staging</button>
+                        <button id="btn-admin-staging" class="btn-admin secondary" onclick="window.location.href='../admin-staging/index.html'">Question Staging</button>
                         <button id="btn-admin-wgroup" class="btn-admin success" onclick="window.location.href='../wgroup-admin/index.html'">Premium Group Admin</button>
                     </div>
                 </div>
@@ -284,7 +276,7 @@
                             <h4>Need to update your details?</h4>
                             <p>For security reasons, profile updates or payment issues must be verified by the system administrator.</p>
                         </div>
-                        <a href="https://wa.me/2349153375488?text=Hello%20Admin,%20I%20am%20reaching%20out%20from%20my%20AFIT%20CBT%20Simulator%20Profile%20regarding..." target="_blank" class="btn-whatsapp">
+                        <a href="https://wa.me/2349153375488?text=Hello%20Admin,%20I%20am%20reaching%20out%20from%20my%20BRYT%20CBT%20SIM%20Profile%20regarding..." target="_blank" class="btn-whatsapp">
                             <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
                             Message Admin
                         </a>

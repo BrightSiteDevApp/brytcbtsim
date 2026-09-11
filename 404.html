@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found - AFIT CBT Simulator</title>
+    <title>Page Not Found | BRYT CBT SIM</title>
     
-    <link rel="icon" type="image/svg+xml" href="/static/img/afitcbtsim-logo.svg">
-    <link rel="icon" type="image/png" sizes="512x512" href="/static/img/afitcbtsim-logo.png">
+    <link rel="icon" type="image/svg+xml" href="/static/img/brytcbtsim-logo.svg">
+    <link rel="icon" type="image/png" sizes="512x512" href="/static/img/brytcbtsim-logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/img/brytcbtsim-logo1.png">
+    <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         body {
-            background-color: #f1f5f9;
-            color: #0f172a;
-            font-family: 'Poppins', sans-serif;
+            background-color: #F5F8FC;
+            color: #0B1220;
+            font-family: 'Sora', sans-serif;
             margin: 0;
             display: flex;
             justify-content: center;
@@ -40,11 +44,18 @@
             justify-content: center;
             margin-bottom: 2rem;
         }
+        
+        .logo img {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(29, 94, 208, 0.4);
+        }
 
         h1 {
             font-size: 6rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%);
+            background: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
@@ -55,7 +66,8 @@
             font-size: 1.5rem;
             font-weight: 700;
             margin-top: 10px;
-            color: #1e293b;
+            color: #0B1220;
+            letter-spacing: -0.5px;
         }
 
         p {
@@ -63,12 +75,13 @@
             font-size: 1rem;
             margin-bottom: 2rem;
             line-height: 1.6;
+            font-weight: 500;
         }
 
         .countdown-badge {
             display: inline-block;
-            background: #eff6ff;
-            color: #1e40af;
+            background: #F5F8FC;
+            color: #1D5ED0;
             padding: 0.6rem 1.2rem;
             border-radius: 8px;
             font-weight: 700;
@@ -82,7 +95,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            background-color: #2563eb;
+            background-color: #1D5ED0;
             color: white;
             padding: 1rem 2rem;
             border-radius: 12px;
@@ -93,13 +106,14 @@
             cursor: pointer;
             width: 100%;
             font-size: 1rem;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+            box-shadow: 0 4px 10px rgba(29, 94, 208, 0.2);
+            font-family: 'Sora', sans-serif;
         }
 
         .btn:hover {
             transform: translateY(-2px);
-            background-color: #1d4ed8;
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+            background-color: #159FE3;
+            box-shadow: 0 10px 20px rgba(29, 94, 208, 0.3);
         }
     </style>
 </head>
@@ -107,13 +121,9 @@
 
     <div class="error-container">
         <div class="logo">
-            <svg width="42" height="42" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius: 10px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);">
-                <rect width="100" height="100" rx="22" fill="url(#logo-grad)"/>
-                <path d="M50 20 L22 75 H36 L43 60 H57 L64 75 H78 L50 20 Z" fill="#ffffff"/>
-                <path d="M32 54 L45 67 L75 32" stroke="#38bdf8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-                <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop stop-color="#0f172a"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs>
-            </svg>
-            <span style="font-weight: 800; color: #1e293b; margin-left: 12px; font-size: 1.2rem; letter-spacing: -0.5px;">AFIT CBT SIM</span>
+            <!-- 🚀 REPLACED SVG WITH BRYT PNG -->
+            <img src="/static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo">
+            <span style="font-weight: 800; color: #0B1220; margin-left: 12px; font-size: 1.2rem; letter-spacing: -0.5px;">BRYT CBT SIM</span>
         </div>
         
         <h1>404</h1>

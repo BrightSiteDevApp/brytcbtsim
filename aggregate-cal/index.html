@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Aggregate Calculator - AFIT CBT Simulator</title>
+    <title>Aggregate Calculator | BRYT CBT SIM</title>
     
-    <link rel="icon" type="image/svg+xml" href="../static/img/afitcbtsim-logo.svg">
+    <!-- 🚀 FULL BRYT FAVICON SUITE -->
+    <link rel="icon" type="image/svg+xml" href="../static/img/brytcbtsim-logo.svg">
+    <link rel="icon" type="image/png" sizes="512x512" href="../static/img/brytcbtsim-logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../static/img/brytcbtsim-logo1.png">
+    <link rel="apple-touch-icon" href="../static/img/apple-touch-icon.png">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/main.css">
     
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -17,10 +23,10 @@
         html, body { max-width: 100vw; overflow-x: hidden; margin: 0; padding: 0; }
         *, *::before, *::after { box-sizing: border-box; }
 
-        /* 🚀 HIGH-END CLEAN BACKGROUND */
+        /* 🚀 HIGH-END CLEAN BACKGROUND (BRYT COLORS) */
         body { 
-            background-color: #f8fafc;
-            color: #0f172a; font-family: 'Poppins', sans-serif; 
+            background-color: #F5F8FC;
+            color: #0B1220; font-family: 'Sora', sans-serif; 
             min-height: 100vh; position: relative;
             background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
             background-size: 30px 30px;
@@ -33,20 +39,20 @@
             position: sticky; top: 0; z-index: 100;
         }
 
-        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.1rem; color: #0f172a; }
-        .nav-logo img { width: 32px; height: 32px; border-radius: 8px; }
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.1rem; color: #071A3A; letter-spacing: -0.5px;}
+        .nav-logo img { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 4px 10px rgba(29, 94, 208, 0.2); }
 
         .btn-back {
             background: white; color: #475569; border: 1px solid #e2e8f0;
             padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; cursor: pointer;
-            transition: all 0.2s; font-family: 'Poppins', sans-serif; font-size: 0.85rem;
+            transition: all 0.2s; font-family: 'Sora', sans-serif; font-size: 0.85rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
-        .btn-back:hover { background: #f1f5f9; color: #0f172a; transform: translateY(-1px); }
+        .btn-back:hover { background: #f1f5f9; color: #071A3A; transform: translateY(-1px); }
 
         .main-container { max-width: 800px; margin: 0 auto; padding: 4rem 1.5rem; text-align: center; position: relative; z-index: 1; }
 
-        .hero-title { font-size: 2.2rem; font-weight: 900; margin: 0 0 10px 0; letter-spacing: -0.5px; color: #0f172a; }
+        .hero-title { font-size: 2.2rem; font-weight: 800; margin: 0 0 10px 0; letter-spacing: -0.5px; color: #071A3A; }
         .hero-subtitle { color: #64748b; font-size: 1rem; font-weight: 500; margin: 0 0 3rem 0; line-height: 1.6; }
 
         /* 🚀 SMOOTH ANIMATIONS */
@@ -59,7 +65,7 @@
         /* 🚀 PREMIUM SELECTION SCREEN */
         .option-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 2rem; text-align: left; }
         .opt-card {
-            background: white; border-radius: 20px; padding: 2rem; color: #0f172a;
+            background: white; border-radius: 20px; padding: 2rem; color: #0B1220;
             cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             border: 1px solid #e2e8f0; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
             display: flex; flex-direction: column; align-items: flex-start;
@@ -73,16 +79,16 @@
         }
         .opt-icon-wrap svg { width: 24px; height: 24px; }
         
-        .opt-card.personal .opt-icon-wrap { background: #eff6ff; color: #2563eb; }
-        .opt-card.custom .opt-icon-wrap { background: #f5f3ff; color: #8b5cf6; }
+        .opt-card.personal .opt-icon-wrap { background: #F5F8FC; color: #1D5ED0; }
+        .opt-card.custom .opt-icon-wrap { background: #F5F8FC; color: #071A3A; }
         .opt-card:hover .opt-icon-wrap { transform: scale(1.1); }
 
-        .opt-card h2 { margin: 0 0 10px 0; font-weight: 800; font-size: 1.2rem; }
+        .opt-card h2 { margin: 0 0 10px 0; font-weight: 700; font-size: 1.2rem; }
         .opt-card p { margin: 0; color: #64748b; font-size: 0.85rem; line-height: 1.6; font-weight: 500;}
 
         /* 🚀 SLEEK CALCULATOR SCREEN */
         .calc-card {
-            background: white; border-radius: 24px; padding: 2.5rem; color: #0f172a;
+            background: white; border-radius: 24px; padding: 2.5rem; color: #0B1220;
             box-shadow: 0 15px 35px -5px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;
             text-align: left; max-width: 480px; margin: 0 auto;
         }
@@ -92,11 +98,11 @@
         
         .modern-input {
             width: 100%; padding: 1rem 1.2rem; border-radius: 12px; border: 1px solid #cbd5e1;
-            font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 700;
-            color: #0f172a; background: white; transition: all 0.2s ease; box-sizing: border-box;
+            font-family: 'Sora', sans-serif; font-size: 1.2rem; font-weight: 700;
+            color: #0B1220; background: white; transition: all 0.2s ease; box-sizing: border-box;
         }
-        .modern-input:focus { border-color: #2563eb; outline: none; box-shadow: 0 0 0 4px rgba(37,99,235,0.1); }
-        .modern-input:read-only { background: #f8fafc; color: #94a3b8; border-color: #e2e8f0; cursor: not-allowed; }
+        .modern-input:focus { border-color: #1D5ED0; outline: none; box-shadow: 0 0 0 4px rgba(29, 94, 208, 0.1); }
+        .modern-input:read-only { background: #F5F8FC; color: #94a3b8; border-color: #e2e8f0; cursor: not-allowed; }
 
         .warning-box {
             background: #fef2f2; border-left: 4px solid #ef4444; padding: 1rem; border-radius: 8px;
@@ -107,20 +113,20 @@
 
         .btn-calc {
             width: 100%; padding: 1rem; border-radius: 12px; 
-            background: #2563eb; color: white;
-            font-weight: 700; font-size: 1rem; border: none; cursor: pointer;
-            transition: all 0.2s; box-shadow: 0 8px 15px -5px rgba(37, 99, 235, 0.4);
+            background: #1D5ED0; color: white;
+            font-weight: 700; font-size: 1rem; border: none; cursor: pointer; font-family: 'Sora', sans-serif;
+            transition: all 0.2s; box-shadow: 0 8px 15px -5px rgba(29, 94, 208, 0.4);
             display: flex; justify-content: center; align-items: center; gap: 8px;
         }
         .btn-calc svg { width: 18px; height: 18px; }
-        .btn-calc:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 12px 20px -5px rgba(37, 99, 235, 0.5); }
+        .btn-calc:hover { background: #159FE3; transform: translateY(-2px); box-shadow: 0 12px 20px -5px rgba(21, 159, 227, 0.5); }
 
         .btn-link {
             width: 100%; background: none; border: none; color: #64748b; font-weight: 600; 
-            margin-top: 15px; cursor: pointer; text-decoration: underline; font-family: 'Poppins', sans-serif;
+            margin-top: 15px; cursor: pointer; text-decoration: underline; font-family: 'Sora', sans-serif;
             font-size: 0.85rem; transition: color 0.2s;
         }
-        .btn-link:hover { color: #0f172a; }
+        .btn-link:hover { color: #0B1220; }
 
         /* 🚀 ANALYTICS-STYLE RESULTS SCREEN */
         .breakdown-container { margin-top: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
@@ -141,14 +147,14 @@
         .data-icon svg { width: 16px; height: 16px; }
 
         .data-math { font-size: 0.85rem; color: #94a3b8; font-weight: 500; margin-bottom: 5px; }
-        .data-math strong { color: #1e293b; font-weight: 700; }
-        .data-value { font-size: 1.8rem; font-weight: 900; color: #0f172a; line-height: 1; }
+        .data-math strong { color: #0B1220; font-weight: 700; }
+        .data-value { font-size: 1.8rem; font-weight: 800; color: #071A3A; line-height: 1; }
         .data-value span { font-size: 1rem; color: #64748b; font-weight: 600; }
 
         .final-agg-card {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white;
+            background: linear-gradient(135deg, #1D5ED0 0%, #159FE3 100%); color: white;
             border-radius: 20px; padding: 2.5rem; text-align: center;
-            box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 20px 40px -10px rgba(29, 94, 208, 0.4);
             position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
         .final-agg-card::after {
@@ -158,8 +164,8 @@
         }
         @keyframes rotateGlow { 100% { transform: rotate(360deg); } }
 
-        .final-agg-card h4 { margin: 0 0 10px 0; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #bfdbfe; position: relative; z-index: 2;}
-        .final-agg-card h1 { margin: 0; font-size: 4.5rem; font-weight: 900; line-height: 1; position: relative; z-index: 2;}
+        .final-agg-card h4 { margin: 0 0 10px 0; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #E0E7FF; position: relative; z-index: 2;}
+        .final-agg-card h1 { margin: 0; font-size: 4.5rem; font-weight: 800; line-height: 1; position: relative; z-index: 2;}
 
         .hidden { display: none !important; }
 
@@ -186,8 +192,8 @@
 
     <nav class="nav-header">
         <div class="nav-logo">
-            <img src="../static/img/afitcbtsim-logo.png" alt="Logo">
-            AFIT CBT SIM
+            <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo">
+            BRYT CBT SIM
         </div>
         <button onclick="window.location.href='../dashboard/index.html'" class="btn-back">← Dashboard</button>
     </nav>
@@ -195,7 +201,7 @@
     <div class="main-container">
         
         <div id="loading-spinner">
-            <svg class="animate-spin" style="width: 40px; height: 40px; color: #38bdf8; margin: 0 auto 15px auto; display: block;" fill="none" viewBox="0 0 24 24">
+            <svg class="animate-spin" style="width: 40px; height: 40px; color: #1D5ED0; margin: 0 auto 15px auto; display: block;" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
@@ -299,7 +305,7 @@
                         <h1><span id="res-total">0.0</span>%</h1>
                     </div>
 
-                    <button class="btn-calc" style="background: white; color: #0f172a; margin-top: 2rem; max-width: 300px; margin-left: auto; margin-right: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;" onclick="resetToSelection()">Calculate Another</button>
+                    <button class="btn-calc" style="background: white; color: #0B1220; margin-top: 2rem; max-width: 300px; margin-left: auto; margin-right: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;" onclick="resetToSelection()">Calculate Another</button>
                 </div>
             </div>
         </div>

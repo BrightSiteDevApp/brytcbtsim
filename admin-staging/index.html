@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Question Bank Manager - AFIT CBT</title>
+    <title>Question Bank Manager | BRYT CBT SIM</title>
     
-    <link rel="icon" type="image/svg+xml" href="../static/img/afitcbtsim-logo.svg">
+    <link rel="icon" type="image/svg+xml" href="../static/img/brytcbtsim-logo.svg">
+    <link rel="icon" type="image/png" sizes="512x512" href="../static/img/brytcbtsim-logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../static/img/brytcbtsim-logo1.png">
+    <link rel="apple-touch-icon" href="../static/img/apple-touch-icon.png">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/main.css">
     
     <script>
@@ -23,15 +28,18 @@
         /* 🚀 CLEAN & SIMPLE RESPONSIVENESS */
         *, *::before, *::after { box-sizing: border-box; }
         body { 
-            background-color: #f8fafc; color: #0f172a; 
-            font-family: 'Poppins', sans-serif; margin: 0; padding: 0; 
+            background-color: #F5F8FC; color: #0B1220; 
+            font-family: 'Sora', sans-serif; margin: 0; padding: 0; 
             overflow-x: hidden; width: 100%; min-height: 100vh;
         }
         
         .admin-nav {
-            height: 70px; background: #0f172a; color: white; display: flex; justify-content: space-between; align-items: center;
+            height: 70px; background: #071A3A; color: white; display: flex; justify-content: space-between; align-items: center;
             padding: 0 5%; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 100%;
         }
+        
+        .admin-nav-title { font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+        .admin-nav-title img { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
         
         /* 🚀 GLOBAL STATS BAR */
         .global-stats-bar {
@@ -45,17 +53,17 @@
             text-align: center; min-width: 120px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); flex-shrink: 0;
         }
         .stat-box span { display: block; font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 1px; }
-        .stat-box strong { font-size: 1.6rem; color: #0f172a; }
+        .stat-box strong { font-size: 1.6rem; color: #0B1220; }
 
         /* 🚀 TABS */
         .tab-wrapper { padding: 1.5rem 5% 0 5%; display: flex; gap: 10px; flex-wrap: wrap; width: 100%; }
         .tab-btn {
             padding: 1rem 2rem; border-radius: 12px; font-weight: 700; border: none; cursor: pointer; 
             background: white; color: #64748b; transition: all 0.2s; flex-grow: 1; text-align: center; font-size: 1rem;
-            border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); font-family: 'Sora', sans-serif;
         }
-        .tab-btn:hover { background: #f1f5f9; color: #0f172a; }
-        .tab-btn.active { background: #2563eb; color: white; border-color: #2563eb; box-shadow: 0 4px 12px rgba(37,99,235,0.2); }
+        .tab-btn:hover { background: #f1f5f9; color: #0B1220; }
+        .tab-btn.active { background: #1D5ED0; color: white; border-color: #1D5ED0; box-shadow: 0 4px 12px rgba(29, 94, 208, 0.2); }
 
         /* 🚀 LAYOUT CONTAINERS */
         .staging-layout { display: grid; grid-template-columns: 350px 1fr; max-width: 1400px; margin: 1.5rem auto; gap: 1.5rem; padding: 0 5%; width: 100%; align-items: start; }
@@ -65,31 +73,35 @@
         
         /* INPUTS & BUTTONS */
         .input-group label { display: block; font-size: 0.85rem; font-weight: 700; color: #64748b; margin-bottom: 8px; text-transform: uppercase; }
-        .input-group select, .input-group input { width: 100%; padding: 0.8rem 1rem; border-radius: 10px; border: 2px solid #e2e8f0; font-family: 'Poppins', sans-serif; margin-bottom: 1rem; font-size: 1rem; box-sizing: border-box; outline: none; transition: border-color 0.2s;}
-        .input-group select:focus, .input-group input:focus { border-color: #2563eb; }
+        .input-group select, .input-group input { width: 100%; padding: 0.8rem 1rem; border-radius: 10px; border: 2px solid #e2e8f0; font-family: 'Sora', sans-serif; margin-bottom: 1rem; font-size: 1rem; box-sizing: border-box; outline: none; transition: border-color 0.2s; color: #0B1220;}
+        .input-group select:focus, .input-group input:focus { border-color: #1D5ED0; }
         
         .search-flex { display: flex; gap: 10px; width: 100%; align-items: stretch; margin-bottom: 1.5rem; flex-wrap: wrap; }
         .search-flex input { margin-bottom: 0; flex-grow: 1; min-width: 0; }
         .search-flex button { flex-shrink: 0; margin-bottom: 0; white-space: nowrap; }
 
-        .btn { width: 100%; padding: 1rem; border-radius: 10px; font-weight: 700; border: none; cursor: pointer; font-size: 1rem; transition: transform 0.2s; display: flex; justify-content: center; align-items: center; gap: 8px; font-family: 'Poppins', sans-serif;}
+        .btn { width: 100%; padding: 1rem; border-radius: 10px; font-weight: 700; border: none; cursor: pointer; font-size: 1rem; transition: all 0.2s; display: flex; justify-content: center; align-items: center; gap: 8px; font-family: 'Sora', sans-serif;}
         .btn:hover { transform: translateY(-2px); }
-        .btn-blue { background: #2563eb; color: white; }
-        .btn-green { background: #16a34a; color: white; }
+        .btn-blue { background: #1D5ED0; color: white; }
+        .btn-blue:hover { background: #159FE3; }
+        .btn-green { background: #10b981; color: white; }
+        .btn-green:hover { background: #059669; }
         .btn-red { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+        .btn-red:hover { background: #fee2e2; }
         .btn-orange { background: #ea580c; color: white; }
+        .btn-orange:hover { background: #c2410c; }
         
         /* QUESTION PREVIEW */
-        .question-card { border: 2px solid #e2e8f0; border-radius: 16px; padding: 1.5rem; background: #f8fafc; width: 100%; overflow-x: auto; }
+        .question-card { border: 2px solid #e2e8f0; border-radius: 16px; padding: 1.5rem; background: #F5F8FC; width: 100%; overflow-x: auto; }
         .q-meta { display: flex; justify-content: space-between; font-weight: 700; color: #64748b; border-bottom: 2px solid #e2e8f0; padding-bottom: 1rem; margin-bottom: 1.5rem; text-transform: uppercase; flex-wrap: wrap; gap: 10px; font-size: 0.85rem;}
-        .q-text { font-size: 1.15rem; font-weight: 500; margin-bottom: 2rem; line-height: 1.6; word-wrap: break-word; overflow-wrap: break-word; color: #1e293b;}
+        .q-text { font-size: 1.15rem; font-weight: 500; margin-bottom: 2rem; line-height: 1.6; word-wrap: break-word; overflow-wrap: break-word; color: #0B1220;}
         
         .option-box { display: flex; align-items: center; padding: 1rem 1.2rem; background: white; border: 2px solid #e2e8f0; border-radius: 12px; margin-bottom: 1rem; word-wrap: break-word; }
         .option-box.correct-ans { background: #dcfce7; border-color: #16a34a; }
         .opt-letter { width: 30px; height: 30px; border-radius: 50%; background: #e2e8f0; display: flex; justify-content: center; align-items: center; font-weight: 800; margin-right: 15px; color: #475569; flex-shrink: 0;}
         .option-box.correct-ans .opt-letter { background: #16a34a; color: white; }
 
-        .instruction-box { background: #eff6ff; padding: 1rem 1.5rem; border-radius: 12px; border-left: 4px solid #2563eb; margin-bottom: 1.5rem; color: #1e40af; }
+        .instruction-box { background: #F5F8FC; padding: 1rem 1.5rem; border-radius: 12px; border-left: 4px solid #1D5ED0; margin-bottom: 1.5rem; color: #071A3A; }
 
         @media (max-width: 900px) {
             .admin-nav { flex-direction: column; height: auto; padding: 1rem; gap: 10px; text-align: center; }
@@ -107,8 +119,11 @@
 <body>
 
     <nav class="admin-nav">
-        <div style="font-weight: 800; font-size: 1.2rem;">AFIT Admin | Question Bank Manager</div>
-        <button onclick="window.location.href='../profile/index.html'" style="background: #334155; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; font-weight: bold; cursor: pointer;">Back to Profile</button>
+        <div class="admin-nav-title">
+            <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo">
+            BRYT Admin | Question Bank Manager
+        </div>
+        <button onclick="window.location.href='../profile/index.html'" style="background: #0B1220; color: white; border: 1px solid #1e293b; padding: 0.6rem 1.2rem; border-radius: 8px; font-weight: bold; font-family: 'Sora', sans-serif; cursor: pointer; transition: 0.2s;">Back to Profile</button>
     </nav>
 
     <div class="global-stats-bar" id="stats-bar">
@@ -123,7 +138,7 @@
     <div class="staging-layout" id="section-staging">
         
         <div class="panel-card">
-            <h3 style="margin-top:0; color: #0f172a; font-size: 1.3rem;">1. Pull from ALOC</h3>
+            <h3 style="margin-top:0; color: #0B1220; font-size: 1.3rem;">1. Pull from ALOC</h3>
             <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem;">Fetch 40 new questions to the holding queue.</p>
             
             <div class="input-group">
@@ -154,8 +169,8 @@
 
         <div class="panel-card">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 10px;">
-                <h3 style="margin:0; color: #0f172a; font-size: 1.3rem;">2. Review & Approve</h3>
-                <div style="background: #eff6ff; color: #2563eb; padding: 5px 12px; border-radius: 8px; font-weight: 700; font-size: 0.9rem;">
+                <h3 style="margin:0; color: #0B1220; font-size: 1.3rem;">2. Review & Approve</h3>
+                <div style="background: #F5F8FC; color: #1D5ED0; padding: 5px 12px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; border: 1px solid #bfdbfe;">
                     <span id="staging-count">0</span> In Queue
                 </div>
             </div>
@@ -177,11 +192,11 @@
 
     <div class="editor-layout" id="section-editor">
         <div class="panel-card">
-            <h3 style="margin-top:0; color: #0f172a; font-size: 1.3rem;">Search & Edit Main Question Bank</h3>
+            <h3 style="margin-top:0; color: #0B1220; font-size: 1.3rem;">Search & Edit Main Question Bank</h3>
             <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem;">Enter the 4-character ID (e.g. X8B2) to find and modify a live question.</p>
             
             <div class="search-flex">
-                <input type="text" id="search-id" placeholder="Enter Short ID..." maxlength="5" style="text-transform: uppercase;">
+                <input type="text" id="search-id" placeholder="Enter Short ID..." maxlength="5" style="text-transform: uppercase;" class="modern-input">
                 <button class="btn btn-blue" onclick="searchMainDatabase()" id="search-btn" style="width: auto;">🔍 Search Bank</button>
             </div>
             
@@ -311,7 +326,7 @@
             localStorage.setItem('aloc_key', apiKey); 
 
             btn.innerText = "Connecting..."; btn.disabled = true;
-            status.style.color = "#2563eb"; status.innerText = "Scanning database for existing questions...";
+            status.style.color = "#1D5ED0"; status.innerText = "Scanning database for existing questions...";
 
             try {
                 // 🚀 Changed dbSubject assignment to strictly use 'GNS' (uppercase)
@@ -356,7 +371,7 @@
                     if ((dbSubject === 'english' || dbSubject === 'literature') && q.section) {
                         finalQuestionText = `
                             <div class="instruction-box">
-                                <strong style="color: #1e40af; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">Instruction / Passage</strong><br>
+                                <strong style="color: #071A3A; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">Instruction / Passage</strong><br>
                                 <em style="font-size: 1.05rem;">${q.section}</em>
                             </div>
                             ${finalQuestionText}

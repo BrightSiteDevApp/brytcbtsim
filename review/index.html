@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leave a Review - AFIT CBT Simulator</title>
+    <title>Leave a Review | BRYT CBT SIM</title>
     
-    <link rel="icon" type="image/svg+xml" href="../static/img/afitcbtsim-logo.svg">
+    <link rel="icon" type="image/svg+xml" href="../static/img/brytcbtsim-logo.svg">
+    <link rel="icon" type="image/png" sizes="512x512" href="../static/img/brytcbtsim-logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../static/img/brytcbtsim-logo1.png">
+    <link rel="apple-touch-icon" href="../static/img/apple-touch-icon.png">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/main.css">
 
     <style>
@@ -16,10 +21,10 @@
         *, *::before, *::after { box-sizing: border-box; }
 
         body { 
-            background-color: #f8fafc;
+            background-color: #F5F8FC;
             background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
             background-size: 30px 30px;
-            color: #0f172a; font-family: 'Poppins', sans-serif; 
+            color: #0B1220; font-family: 'Sora', sans-serif; 
             min-height: 100vh;
         }
 
@@ -30,43 +35,43 @@
             position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
 
-        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.1rem; color: #0f172a; letter-spacing: -0.5px;}
-        .nav-logo img { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 4px 10px rgba(37,99,235,0.2);}
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.1rem; color: #071A3A; letter-spacing: -0.5px;}
+        .nav-logo img { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 4px 10px rgba(29, 94, 208, 0.2);}
 
         .btn-back {
             background: white; color: #475569; border: 1px solid #e2e8f0;
             padding: 0.6rem 1.2rem; border-radius: 10px; font-weight: 700; cursor: pointer;
-            transition: all 0.2s; font-family: 'Poppins', sans-serif; font-size: 0.9rem;
+            transition: all 0.2s; font-family: 'Sora', sans-serif; font-size: 0.9rem;
             display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
-        .btn-back:hover { background: #f1f5f9; color: #0f172a; transform: translateY(-2px); }
+        .btn-back:hover { background: #f1f5f9; color: #0B1220; transform: translateY(-2px); }
         .btn-back svg { width: 16px; height: 16px; }
 
         .main-container { max-width: 600px; margin: 0 auto; padding: 4rem 1.5rem; text-align: center; animation: fadeSlideUp 0.5s ease forwards; }
 
-        .hero-title { font-size: 2.2rem; font-weight: 900; margin: 0 0 10px 0; letter-spacing: -0.5px; color: #0f172a; }
+        .hero-title { font-size: 2.2rem; font-weight: 800; margin: 0 0 10px 0; letter-spacing: -0.5px; color: #071A3A; }
         .hero-subtitle { color: #64748b; font-size: 1rem; font-weight: 500; margin: 0 0 2.5rem 0; line-height: 1.6; }
 
         .review-card {
-            background: white; border-radius: 24px; padding: 3rem 2.5rem; color: #0f172a;
+            background: white; border-radius: 24px; padding: 3rem 2.5rem; color: #0B1220;
             box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08); border: 1px solid #e2e8f0;
             text-align: left; position: relative; overflow: hidden;
         }
         .review-card::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
-            background: linear-gradient(90deg, #2563eb, #38bdf8);
+            background: linear-gradient(90deg, #1D5ED0, #159FE3);
         }
 
         .input-group { margin-bottom: 1.5rem; }
-        .input-group label { display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 800; color: #475569; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;}
+        .input-group label { display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; color: #475569; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;}
         .optional-tag { color: #94a3b8; font-weight: 600; text-transform: none; letter-spacing: 0;}
         
         .modern-input, .modern-textarea {
             width: 100%; padding: 1.1rem 1.2rem; border-radius: 12px; border: 2px solid #e2e8f0; 
-            font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 500;
-            color: #1e293b; background: #f8fafc; transition: all 0.2s ease; box-sizing: border-box;
+            font-family: 'Sora', sans-serif; font-size: 1rem; font-weight: 500;
+            color: #0B1220; background: #F5F8FC; transition: all 0.2s ease; box-sizing: border-box;
         }
-        .modern-input:focus, .modern-textarea:focus { border-color: #2563eb; background: white; outline: none; box-shadow: 0 0 0 4px rgba(37,99,235,0.1); }
+        .modern-input:focus, .modern-textarea:focus { border-color: #1D5ED0; background: white; outline: none; box-shadow: 0 0 0 4px rgba(29, 94, 208, 0.1); }
         .modern-textarea { resize: vertical; min-height: 120px; }
         .readonly-input { background: #f1f5f9; color: #64748b; cursor: not-allowed; border-color: #e2e8f0; }
 
@@ -79,31 +84,32 @@
 
         .btn-submit {
             width: 100%; padding: 1.2rem; border-radius: 12px; 
-            background: #2563eb; color: white; display: flex; align-items: center; justify-content: center; gap: 8px;
-            font-weight: 800; font-size: 1.05rem; border: none; cursor: pointer; text-transform: uppercase;
-            transition: all 0.2s; box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4); letter-spacing: 0.5px;
+            background: #1D5ED0; color: white; display: flex; align-items: center; justify-content: center; gap: 8px;
+            font-weight: 700; font-size: 1.05rem; border: none; cursor: pointer; text-transform: uppercase;
+            transition: all 0.2s; box-shadow: 0 10px 20px -5px rgba(29, 94, 208, 0.4); letter-spacing: 0.5px;
+            font-family: 'Sora', sans-serif;
         }
         .btn-submit svg { width: 20px; height: 20px; }
-        .btn-submit:hover { transform: translateY(-2px); background: #1d4ed8; box-shadow: 0 15px 25px -5px rgba(37, 99, 235, 0.5); }
+        .btn-submit:hover { transform: translateY(-2px); background: #159FE3; box-shadow: 0 15px 25px -5px rgba(21, 159, 227, 0.5); }
         .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; transform: none; box-shadow: none; }
 
         /* 🚀 EXISTING REVIEW STYLES */
         .my-review-box {
-            background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 2rem;
+            background: #F5F8FC; border: 1px solid #e2e8f0; border-radius: 16px; padding: 2rem;
             margin-bottom: 2rem; position: relative; text-align: left;
         }
         .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
         .student-info { display: flex; align-items: center; gap: 12px; }
         .avatar-circle {
-            width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #2563eb, #38bdf8);
+            width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #1D5ED0, #159FE3);
             color: white; display: flex; justify-content: center; align-items: center;
-            font-weight: 800; font-size: 1.1rem; flex-shrink: 0; box-shadow: 0 4px 10px rgba(37,99,235,0.2);
+            font-weight: 800; font-size: 1.1rem; flex-shrink: 0; box-shadow: 0 4px 10px rgba(29, 94, 208, 0.2);
         }
-        .s-name { font-weight: 800; font-size: 1.05rem; margin: 0 0 2px 0; color: #1e293b;}
+        .s-name { font-weight: 700; font-size: 1.05rem; margin: 0 0 2px 0; color: #0B1220;}
         .s-course { font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin: 0;}
         .score-pill {
             background: #f0fdf4; border: 1px solid #bbf7d0; color: #16a34a; padding: 4px 10px;
-            border-radius: 8px; font-weight: 800; font-size: 0.8rem; white-space: nowrap; display: none;
+            border-radius: 8px; font-weight: 700; font-size: 0.8rem; white-space: nowrap; display: none;
         }
         .star-row { display: flex; gap: 2px; color: #fbbf24; margin-bottom: 1rem; }
         .star-row svg { width: 18px; height: 18px; fill: currentColor; }
@@ -127,8 +133,8 @@
 
     <nav class="nav-header">
         <div class="nav-logo">
-            <img src="../static/img/afitcbtsim-logo.png" alt="Logo">
-            AFIT CBT SIM
+            <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo">
+            BRYT CBT SIM
         </div>
         <button onclick="window.location.href='../dashboard/index.html'" class="btn-back">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
@@ -139,7 +145,7 @@
     <div class="main-container">
         
         <div id="loading-spinner" style="padding: 4rem 0;">
-            <svg class="animate-spin" style="width: 45px; height: 45px; color: #2563eb; margin: 0 auto 15px auto; display: block;" fill="none" viewBox="0 0 24 24">
+            <svg class="animate-spin" style="width: 45px; height: 45px; color: #1D5ED0; margin: 0 auto 15px auto; display: block;" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
@@ -148,7 +154,7 @@
 
         <div id="review-content" style="display: none;">
             <h1 class="hero-title" id="page-title">How did we do?</h1>
-            <p class="hero-subtitle" id="page-subtitle">Your success is our priority. Let future aspirants know if the AFIT CBT Simulator helped you prepare for your Post-UTME.</p>
+            <p class="hero-subtitle" id="page-subtitle">Your success is our priority. Let future students know if the BRYT CBT Simulator helped you prepare for your exams.</p>
 
             <div class="review-card">
                 
@@ -197,8 +203,8 @@
                     <div style="background: #dcfce7; color: #16a34a; width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 15px auto;">
                         <svg style="width: 36px; height: 36px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
                     </div>
-                    <h2 style="margin: 0 0 10px 0; color: #0f172a; font-weight: 800;">Review Submitted!</h2>
-                    <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 25px;">Thank you for your feedback! You are helping the next batch of aspirants succeed.</p>
+                    <h2 style="margin: 0 0 10px 0; color: #0B1220; font-weight: 800;">Review Submitted!</h2>
+                    <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 25px;">Thank you for your feedback! You are helping the next batch of students succeed.</p>
                     <button onclick="window.location.href='../reviews/index.html'" class="btn-submit" style="background: #10b981; box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.4);">
                         View All Reviews
                     </button>

@@ -3,21 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AFIT CBT Simulator | Secure Your Admission</title>
+    <title>BRYT CBT SIM | CBT Practice & Exam Preparation</title>
     
-    <link rel="icon" type="image/svg+xml" href="static/img/afitcbtsim-logo.svg">
-    <link rel="icon" type="image/png" sizes="512x512" href="static/img/afitcbtsim-logo.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="static/img/afitcbtsim-logo1.png">
+    <!-- BRAND ICONS (ensure these files are updated in your directory) -->
+    <link rel="icon" type="image/svg+xml" href="static/img/brytcbtsim-logo.svg">
+    <link rel="icon" type="image/png" sizes="512x512" href="static/img/brytcbtsim-logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="static/img/brytcbtsim-logo1.png">
     <link rel="apple-touch-icon" href="static/img/apple-touch-icon.png">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     
-    <meta name="description" content="The ultimate Post-UTME mock examination platform for Air Force Institute of Technology (AFIT) aspirants. Practice with meticulously modeled questions tailored to the official syllabus and secure your admission today.">
-    <meta name="keywords" content="AFIT, CBT Simulator, Post-UTME, Air Force Institute of Technology, Mock Exam, Syllabus Aligned, Brightsitedev, afitcbtsim">
-    <meta name="author" content="BrightSideDev">
+    <!-- NEW SEO & META -->
+    <meta name="description" content="BRYT CBT SIM is an educational technology platform designed to help students prepare, practice and improve their performance through realistic computer-based tests.">
+    <meta name="keywords" content="BRYT CBT SIM, CBT Simulator, Post-UTME, AFIT Post-UTME, Mock Exam, BRYT Technologies, Syllabus Aligned">
+    <meta name="author" content="BRYT Technologies">
+    
+    <!-- OPEN GRAPH DATA -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://brytcbtsim.name.ng/">
+    <meta property="og:title" content="BRYT CBT SIM | CBT Practice & Exam Preparation">
+    <meta property="og:description" content="Practice. Prepare. Succeed. A digital CBT practice platform built by BRYT Technologies.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/main.css">
 
     <style>
@@ -26,10 +34,10 @@
         *, *::before, *::after { box-sizing: border-box !important; }
 
         body.landing-body { 
-            background-color: #f8fafc;
+            background-color: #F5F8FC;
             background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
             background-size: 30px 30px;
-            color: #0f172a; font-family: 'Poppins', sans-serif; 
+            color: #0B1220; font-family: 'Sora', sans-serif; 
         }
 
         /* 🚀 GLASSMORPHISM NAV */
@@ -40,25 +48,25 @@
             position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
 
-        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.2rem; color: #0f172a; letter-spacing: -0.5px;}
-        .nav-logo svg { width: 36px; height: 36px; border-radius: 8px; box-shadow: 0 4px 10px rgba(37,99,235,0.2);}
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.2rem; color: #071A3A; letter-spacing: -0.5px;}
+        .nav-logo svg { width: 36px; height: 36px; border-radius: 8px; box-shadow: 0 4px 10px rgba(29,94,208,0.2);}
 
         .nav-buttons { display: flex; gap: 10px; align-items: center; }
 
         /* 🚀 BUTTONS */
         .btn-primary { 
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; 
-            padding: 0.8rem 1.8rem; border-radius: 12px; font-weight: 800; text-decoration: none; 
+            background: linear-gradient(135deg, #1D5ED0 0%, #159FE3 100%); color: white; 
+            padding: 0.8rem 1.8rem; border-radius: 12px; font-weight: 700; text-decoration: none; 
             display: inline-flex; align-items: center; justify-content: center; gap: 8px; 
-            box-shadow: 0 8px 16px -4px rgba(37, 99, 235, 0.4); transition: all 0.2s;
+            box-shadow: 0 8px 16px -4px rgba(29, 94, 208, 0.4); transition: all 0.2s;
             font-size: 0.95rem; white-space: nowrap;
         }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 20px -4px rgba(37, 99, 235, 0.5); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 20px -4px rgba(29, 94, 208, 0.5); }
         .btn-primary svg { width: 18px; height: 18px; }
 
         .btn-secondary { 
-            background: white; color: #1e293b; padding: 0.8rem 1.8rem; border-radius: 12px; 
-            font-weight: 700; text-decoration: none; border: 1px solid #cbd5e1; transition: all 0.2s; 
+            background: white; color: #071A3A; padding: 0.8rem 1.8rem; border-radius: 12px; 
+            font-weight: 600; text-decoration: none; border: 1px solid #cbd5e1; transition: all 0.2s; 
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); font-size: 0.95rem; 
             display: inline-flex; align-items: center; justify-content: center; white-space: nowrap;
         }
@@ -71,16 +79,16 @@
         }
         
         .kaduna-badge { 
-            display: inline-flex; align-items: center; gap: 8px; background: #eff6ff; border: 1px solid #bfdbfe; 
-            color: #2563eb; padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: 800; font-size: 0.85rem; 
+            display: inline-flex; align-items: center; gap: 8px; background: #F5F8FC; border: 1px solid #bfdbfe; 
+            color: #1D5ED0; padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: 700; font-size: 0.85rem; 
             margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.5px;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 4px 10px rgba(29, 94, 208, 0.1);
         }
         .kaduna-badge svg { width: 16px; height: 16px; }
 
-        .hero-section h1 { font-size: 3.8rem; font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; color: #0f172a; margin: 0 0 1.5rem 0; }
+        .hero-section h1 { font-size: 3.8rem; font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; color: #071A3A; margin: 0 0 1.5rem 0; }
         .hero-section h1 span { 
-            background: linear-gradient(135deg, #2563eb, #38bdf8); 
+            background: linear-gradient(135deg, #1D5ED0, #159FE3); 
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
         }
         .hero-section p { font-size: 1.15rem; color: #475569; line-height: 1.6; font-weight: 500; margin-bottom: 2.5rem; max-width: 750px; margin-left: auto; margin-right: auto;}
@@ -92,14 +100,14 @@
         .avatars { display: flex; }
         .mini-avatar-img { 
             width: 32px; height: 32px; border-radius: 50%; color: white; display: flex; justify-content: center; align-items: center; 
-            font-weight: 800; font-size: 0.8rem; border: 2px solid white; margin-left: -10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-weight: 700; font-size: 0.8rem; border: 2px solid white; margin-left: -10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .mini-avatar-img:first-child { margin-left: 0; }
 
         /* 🚀 FEATURES SECTION */
         .features-section { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; text-align: center;}
         .features-header { margin-bottom: 3.5rem; }
-        .features-header h2 { font-size: 2.2rem; font-weight: 900; color: #0f172a; margin: 0 0 10px 0; letter-spacing: -0.5px;}
+        .features-header h2 { font-size: 2.2rem; font-weight: 800; color: #071A3A; margin: 0 0 10px 0; letter-spacing: -0.5px;}
         .features-header p { font-size: 1.05rem; color: #64748b; font-weight: 500; margin: 0;}
 
         .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
@@ -111,30 +119,30 @@
         
         .feature-icon { width: 65px; height: 65px; border-radius: 18px; display: flex; justify-content: center; align-items: center; margin-bottom: 1.8rem; }
         .feature-icon svg { width: 32px; height: 32px; }
-        .feature-icon.blue { background: #eff6ff; color: #2563eb; }
+        .feature-icon.blue { background: #F5F8FC; color: #1D5ED0; }
         .feature-icon.purple { background: #f5f3ff; color: #8b5cf6; }
         .feature-icon.green { background: #ecfdf5; color: #10b981; }
 
-        .feature-card h3 { font-size: 1.3rem; font-weight: 800; margin: 0 0 12px 0; color: #0f172a; letter-spacing: -0.5px;}
+        .feature-card h3 { font-size: 1.3rem; font-weight: 700; margin: 0 0 12px 0; color: #071A3A; letter-spacing: -0.5px;}
         .feature-card p { font-size: 0.95rem; color: #64748b; line-height: 1.6; margin: 0; font-weight: 500; }
 
         /* 🚀 TESTIMONIAL CAROUSEL SECTION */
         .testimonials-section { padding: 4rem 0; text-align: center; background: white; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; overflow: hidden; }
-        .testimonials-header h2 { font-size: 2rem; font-weight: 900; color: #0f172a; margin: 0 0 10px 0; letter-spacing: -0.5px;}
+        .testimonials-header h2 { font-size: 2rem; font-weight: 800; color: #071A3A; margin: 0 0 10px 0; letter-spacing: -0.5px;}
         .testimonials-header p { font-size: 1rem; color: #64748b; font-weight: 500; margin: 0 0 2.5rem 0;}
 
         .carousel-wrapper { width: 100%; overflow: hidden; padding: 10px 0; }
         .carousel-track { display: flex; gap: 20px; padding: 0 5vw; width: max-content; transition: transform 0.5s ease-in-out; }
         
         .t-card { 
-            background: #f8fafc; border-radius: 20px; padding: 1.8rem; width: 350px; text-align: left; 
+            background: #F5F8FC; border-radius: 20px; padding: 1.8rem; width: 350px; text-align: left; 
             border: 1px solid #e2e8f0; box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05); flex-shrink: 0;
             display: flex; flex-direction: column;
         }
         .t-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-        .t-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #2563eb, #38bdf8); color: white; display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1rem; }
+        .t-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #1D5ED0, #159FE3); color: white; display: flex; justify-content: center; align-items: center; font-weight: 700; font-size: 1rem; }
         .t-info { flex-grow: 1; }
-        .t-name { font-weight: 800; font-size: 1rem; margin: 0; color: #0f172a; }
+        .t-name { font-weight: 700; font-size: 1rem; margin: 0; color: #0B1220; }
         .t-course { font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase; }
         .t-stars { display: flex; gap: 2px; color: #fbbf24; margin-bottom: 10px; }
         .t-stars svg { width: 16px; height: 16px; fill: currentColor; }
@@ -142,7 +150,7 @@
 
         .btn-view-reviews {
             display: inline-flex; align-items: center; gap: 8px; background: white; border: 1px solid #cbd5e1;
-            color: #1e293b; padding: 0.8rem 1.5rem; border-radius: 12px; font-weight: 700; font-size: 0.95rem;
+            color: #071A3A; padding: 0.8rem 1.5rem; border-radius: 12px; font-weight: 600; font-size: 0.95rem;
             text-decoration: none; margin-top: 2.5rem; transition: all 0.2s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
         .btn-view-reviews:hover { background: #f1f5f9; border-color: #94a3b8; transform: translateY(-2px); }
@@ -150,33 +158,33 @@
         /* 🚀 CTA SECTION */
         .cta-section { padding: 5rem 5% 6rem 5%; max-width: 1000px; margin: 0 auto; }
         .cta-card { 
-            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); border-radius: 32px; 
+            background: linear-gradient(135deg, #071A3A 0%, #0B1220 100%); border-radius: 32px; 
             padding: 5rem 2rem; text-align: center; color: white; position: relative; overflow: hidden; 
             box-shadow: 0 25px 50px -15px rgba(15, 23, 42, 0.5); 
         }
         .cta-card::after { 
             content: ''; position: absolute; top: -50%; left: -10%; width: 500px; height: 500px; 
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%); border-radius: 50%; pointer-events: none; 
+            background: radial-gradient(circle, rgba(21, 159, 227, 0.15) 0%, transparent 70%); border-radius: 50%; pointer-events: none; 
         }
-        .cta-card h2 { position: relative; z-index: 2; font-size: 2.5rem; font-weight: 900; margin: 0 0 15px 0; letter-spacing: -0.5px;}
+        .cta-card h2 { position: relative; z-index: 2; font-size: 2.5rem; font-weight: 800; margin: 0 0 15px 0; letter-spacing: -0.5px;}
         .cta-card p { position: relative; z-index: 2; font-size: 1.1rem; color: #93c5fd; max-width: 600px; margin: 0 auto 2.5rem auto; line-height: 1.6; font-weight: 500;}
         .btn-cta { position: relative; z-index: 2; font-size: 1.1rem; padding: 1.2rem 2.5rem; border-radius: 14px;}
         
         /* 🚀 FOOTER */
-        .footer { text-align: center; padding: 2rem 5% 4rem 5%; color: #64748b; font-size: 0.9rem; font-weight: 500; }
+        .footer { text-align: center; padding: 2rem 5% 4rem 5%; color: #64748b; font-size: 0.9rem; font-weight: 500; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
         .footer-logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;}
         .footer-logo svg { width: 28px; height: 28px; border-radius: 6px; }
         
         .built-by { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; font-size: 0.85rem;}
-        .built-by svg { width: 16px; color: #10b981; }
-        .built-by a { color: #38bdf8; text-decoration: none; font-weight: 700; transition: color 0.2s;}
-        .built-by a:hover { color: #bae6fd; text-decoration: underline;}
+        .built-by svg { width: 16px; color: #159FE3; }
+        .built-by a { color: #1D5ED0; text-decoration: none; font-weight: 700; transition: color 0.2s;}
+        .built-by a:hover { color: #071A3A; text-decoration: underline;}
 
         @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
         /* 🚀 MOBILE RESPONSIVENESS */
         @media (max-width: 900px) {
-            .nav-buttons .btn-secondary { display: none; } /* Hide login on mobile nav to save space */
+            .nav-buttons .btn-secondary { display: none; } 
             .hero-section { padding: 4rem 1.5rem 3rem 1.5rem; }
             .hero-section h1 { font-size: 2.5rem; }
             .hero-section p { font-size: 1rem; }
@@ -203,15 +211,20 @@
 </head>
 <body class="landing-body">
 
+    <!-- 🚀 TEMPORARY BRAND TRANSITION BANNER -->
+    <div class="bryt-transition-banner" style="background: linear-gradient(135deg, #1D5ED0, #159FE3); color: white; padding: 12px; text-align: center; font-family: 'Sora', sans-serif; font-size: 0.9rem;">
+        <strong>Welcome to BRYT CBT SIM!</strong> Formerly known as AFIT CBT SIM, we have rebranded as part of the BRYT Technologies ecosystem. Same platform, same purpose, new identity.
+    </div>
+
     <nav class="public-nav">
         <div class="nav-logo">
             <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="100" height="100" rx="22" fill="url(#logo-grad)"/>
                 <path d="M50 20 L22 75 H36 L43 60 H57 L64 75 H78 L50 20 Z" fill="#ffffff"/>
-                <path d="M32 54 L45 67 L75 32" stroke="#38bdf8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-                <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop stop-color="#0f172a"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs>
+                <path d="M32 54 L45 67 L75 32" stroke="#159FE3" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop stop-color="#071A3A"/><stop offset="1" stop-color="#1D5ED0"/></linearGradient></defs>
             </svg>
-            AFIT CBT SIM
+            BRYT CBT SIM
         </div>
         <div class="nav-buttons" id="nav-btn-container">
             <a href="login/index.html" class="btn-secondary" id="nav-login-btn">Log In</a>
@@ -224,11 +237,11 @@
             
             <div class="kaduna-badge">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                Kaduna Post-UTME: Aug 24, 2026
+                AFIT Post-UTME Practice
             </div>
             
-            <h1>Secure Your AFIT Admission with <span>Absolute Certainty.</span></h1>
-            <p>Don't leave your future to chance. Master the exact Post-UTME CBT environment, practice with meticulously structured questions tailored to the official syllabus, and track your readiness with advanced analytics.</p>
+            <h1>Prepare for your Exams with <span>Absolute Certainty.</span></h1>
+            <p>Don't leave your future to chance. Master the exact CBT environment, practice with meticulously structured questions tailored to the official syllabus, and track your readiness with advanced analytics.</p>
             
             <div class="hero-actions">
                 <a href="login/index.html" class="btn-primary" id="hero-main-btn">
@@ -240,19 +253,19 @@
 
             <div class="social-proof">
                 <div class="avatars">
-                    <div class="mini-avatar-img" style="background: #2563eb;">S</div>
+                    <div class="mini-avatar-img" style="background: #1D5ED0;">S</div>
                     <div class="mini-avatar-img" style="background: #10b981;">A</div>
                     <div class="mini-avatar-img" style="background: #f59e0b;">J</div>
                     <div class="mini-avatar-img" style="background: #8b5cf6;">E</div>
                 </div>
-                <span>Join <strong>2,000+</strong> smart aspirants practicing today.</span>
+                <span>Join <strong>2,000+</strong> smart students practicing today.</span>
             </div>
         </section>
 
         <section class="features-section">
             <div class="features-header">
                 <h2>Why Top Scorers Choose Us</h2>
-                <p>We built the ultimate driller to eliminate exam anxiety and boost your speed.</p>
+                <p>We built the ultimate digital platform to eliminate exam anxiety and boost your speed.</p>
             </div>
 
             <div class="features-grid">
@@ -277,7 +290,7 @@
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                     </div>
                     <h3>Advanced Analytics</h3>
-                    <p>Instantly identify your weak subjects. Our system calculates your final admission aggregate instantly and breaks down your scores so you know what to study.</p>
+                    <p>Instantly identify your weak subjects. Our system calculates your overall performance instantly and breaks down your scores so you know exactly what to study.</p>
                 </div>
             </div>
         </section>
@@ -318,16 +331,16 @@
             <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="100" height="100" rx="22" fill="url(#logo-grad-footer)"/>
                 <path d="M50 20 L22 75 H36 L43 60 H57 L64 75 H78 L50 20 Z" fill="#ffffff"/>
-                <path d="M32 54 L45 67 L75 32" stroke="#38bdf8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-                <defs><linearGradient id="logo-grad-footer" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop stop-color="#0f172a"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs>
+                <path d="M32 54 L45 67 L75 32" stroke="#159FE3" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs><linearGradient id="logo-grad-footer" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop stop-color="#071A3A"/><stop offset="1" stop-color="#1D5ED0"/></linearGradient></defs>
             </svg>
-            <span style="font-weight: 800; color: #1e293b;">AFIT CBT SIM</span>
+            <span style="font-weight: 800; color: #0B1220;">BRYT CBT SIM</span>
         </div>
-        <p>&copy; 2026 AFIT CBT Simulator. Engineered for Excellence.</p>
+        <p>&copy; 2026 BRYT CBT SIM. A BRYT Technologies product.</p>
         
         <div class="built-by">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
-            Proudly built & powered by <a href="https://brightsitedev.tech" target="_blank">Brightsitedev</a>
+            Powered by <a href="https://brytcbtsim.name.ng" target="_blank">BRYT Technologies</a>
         </div>
     </footer>
 

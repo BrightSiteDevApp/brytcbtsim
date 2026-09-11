@@ -3,31 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Premium Group Admin - AFIT CBT Simulator</title>
+    <title>Premium Group Admin | BRYT CBT SIM</title>
     
-    <link rel="icon" type="image/svg+xml" href="../static/img/afitcbtsim-logo.svg">
+    <link rel="icon" type="image/svg+xml" href="../static/img/brytcbtsim-logo.svg">
+    <link rel="icon" type="image/png" sizes="512x512" href="../static/img/brytcbtsim-logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../static/img/brytcbtsim-logo1.png">
+    <link rel="apple-touch-icon" href="../static/img/apple-touch-icon.png">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/main.css">
 
     <style>
-        body { background-color: #f1f5f9; color: #0f172a; font-family: 'Poppins', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        body { background-color: #F5F8FC; color: #0B1220; font-family: 'Sora', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
         
         #auth-loader {
-            position: fixed; inset: 0; background: #0f172a; z-index: 9999;
+            position: fixed; inset: 0; background: #071A3A; z-index: 9999;
             display: flex; flex-direction: column; justify-content: center; align-items: center; color: white;
         }
 
         #admin-dashboard { display: none; }
         
         .admin-nav {
-            height: 70px; background: #0f172a; display: flex; justify-content: space-between; align-items: center;
-            padding: 0 5%; border-bottom: 1px solid #1e293b; position: sticky; top: 0; z-index: 100;
+            height: 70px; background: #071A3A; display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; border-bottom: 1px solid #0B1220; position: sticky; top: 0; z-index: 100;
             color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         
         .admin-nav-title { font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+        .admin-nav-title img { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
         
         .admin-wrapper { max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; }
 
@@ -40,27 +46,27 @@
             background: white; padding: 2rem; border-radius: 24px; border: 1px solid #e2e8f0;
             box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05); margin-bottom: 2.5rem; width: 100%; box-sizing: border-box;
         }
-        .verify-card h2 { margin: 0 0 5px 0; font-size: 1.4rem; font-weight: 800; color: #0f172a; letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px;}
-        .verify-card h2 svg { width: 22px; height: 22px; color: #2563eb; }
+        .verify-card h2 { margin: 0 0 5px 0; font-size: 1.4rem; font-weight: 800; color: #0B1220; letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px;}
+        .verify-card h2 svg { width: 22px; height: 22px; color: #1D5ED0; }
         .verify-card p { margin: 0 0 1.5rem 0; color: #64748b; font-size: 0.9rem; font-weight: 500; }
         
         .verify-controls { display: grid; grid-template-columns: 2fr 1.2fr auto; gap: 12px; }
         
         .modern-input { 
             width: 100%; padding: 1rem 1.2rem; border-radius: 12px; border: 2px solid #e2e8f0; 
-            background: #f8fafc; font-family: 'Poppins', sans-serif; font-size: 0.95rem; 
-            transition: all 0.3s ease; color: #1e293b; font-weight: 600; box-sizing: border-box;
+            background: #F5F8FC; font-family: 'Sora', sans-serif; font-size: 0.95rem; 
+            transition: all 0.3s ease; color: #0B1220; font-weight: 600; box-sizing: border-box;
         }
-        .modern-input:focus { border-color: #2563eb; background: #ffffff; outline: none; box-shadow: 0 0 0 4px rgba(37,99,235,0.1); }
+        .modern-input:focus { border-color: #1D5ED0; background: #ffffff; outline: none; box-shadow: 0 0 0 4px rgba(29,94,208,0.1); }
         .modern-input::placeholder { color: #94a3b8; font-weight: 500; }
         select.modern-input { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23475569%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 1rem top 50%; background-size: 0.65rem auto; padding-right: 2.5rem; }
 
         .btn-main {
-            background: #2563eb; color: white; border: none; padding: 1rem 2rem; border-radius: 12px;
-            font-weight: 800; cursor: pointer; transition: all 0.2s; font-family: 'Poppins', sans-serif; font-size: 1rem;
-            box-shadow: 0 4px 10px rgba(37,99,235,0.3); white-space: nowrap; display: inline-flex; align-items: center; justify-content: center;
+            background: #1D5ED0; color: white; border: none; padding: 1rem 2rem; border-radius: 12px;
+            font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Sora', sans-serif; font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(29,94,208,0.3); white-space: nowrap; display: inline-flex; align-items: center; justify-content: center;
         }
-        .btn-main:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(37,99,235,0.4); }
+        .btn-main:hover { background: #159FE3; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(21,159,227,0.4); }
         .btn-main:disabled { background: #94a3b8; cursor: not-allowed; transform: none; box-shadow: none; }
 
         /* DATA PANEL & TABLES */
@@ -74,23 +80,23 @@
         .admin-table { width: 100%; border-collapse: collapse; text-align: left; min-width: 700px; }
         .admin-table th { 
             color: #475569; font-size: 0.8rem; text-transform: uppercase; padding: 1.2rem 1rem; 
-            border-bottom: 2px solid #e2e8f0; position: sticky; top: 0; background: #f8fafc; z-index: 10;
+            border-bottom: 2px solid #e2e8f0; position: sticky; top: 0; background: #F5F8FC; z-index: 10;
             font-weight: 800; white-space: nowrap; letter-spacing: 0.5px;
         }
         .admin-table td { padding: 1.2rem 1rem; border-bottom: 1px solid #f1f5f9; font-weight: 500; color: #334155; font-size: 0.9rem; white-space: nowrap;}
-        .admin-table tr:hover td { background: #f8fafc; }
+        .admin-table tr:hover td { background: #F5F8FC; }
 
         /* BUTTONS */
         .btn-action {
             background: white; border: 1px solid #cbd5e1; padding: 0.6rem 1rem; border-radius: 8px; 
-            font-weight: 700; cursor: pointer; color: #1e293b; transition: all 0.2s; font-family: 'Poppins', sans-serif; font-size: 0.85rem;
+            font-weight: 700; cursor: pointer; color: #0B1220; transition: all 0.2s; font-family: 'Sora', sans-serif; font-size: 0.85rem;
             display: inline-flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.02);
             white-space: nowrap;
         }
         .btn-action:hover { background: #f1f5f9; transform: translateY(-1px); }
         .btn-green { background: #10b981; color: white; border: none; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3); }
         .btn-green:hover { background: #059669; color: white; }
-        .btn-blue { background: #eff6ff; color: #2563eb; border-color: #bfdbfe; }
+        .btn-blue { background: #F5F8FC; color: #1D5ED0; border-color: #bfdbfe; }
         .btn-blue:hover { background: #dbeafe; }
 
         /* STATUS BADGES */
@@ -99,7 +105,7 @@
         
         /* TOAST */
         #toast {
-            visibility: hidden; min-width: 250px; background-color: #10b981; color: #fff; text-align: center;
+            visibility: hidden; min-width: 250px; background-color: #1D5ED0; color: #fff; text-align: center;
             border-radius: 8px; padding: 12px; position: fixed; z-index: 1000; left: 50%; bottom: 30px; 
             transform: translateX(-50%); font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
@@ -111,6 +117,7 @@
         @media (max-width: 768px) {
             .admin-nav { padding: 0 1rem; height: 60px; }
             .admin-nav-title { font-size: 1rem; }
+            .admin-nav-title img { width: 28px; height: 28px; }
             .admin-wrapper { padding: 0 1rem; margin: 1rem auto; }
             
             .header-actions { flex-direction: column; align-items: flex-start; gap: 12px; }
@@ -131,11 +138,11 @@
 <body>
 
     <div id="auth-loader">
-        <svg class="animate-spin" style="width: 40px; height: 40px; color: #38bdf8; margin-bottom: 15px;" fill="none" viewBox="0 0 24 24">
+        <svg class="animate-spin" style="width: 40px; height: 40px; color: #159FE3; margin-bottom: 15px;" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
-        <h3 style="margin:0; font-size: 1.1rem; font-family: 'Poppins', sans-serif;">Verifying Clearance...</h3>
+        <h3 style="margin:0; font-size: 1.1rem; font-family: 'Sora', sans-serif;">Verifying Clearance...</h3>
     </div>
 
     <div id="toast">Copied to clipboard!</div>
@@ -143,13 +150,11 @@
     <div id="admin-dashboard">
         <nav class="admin-nav">
             <div class="admin-nav-title">
-                <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="100" height="100" rx="22" fill="#10b981"/>
-                    <path d="M50 20 L22 75 H36 L43 60 H57 L64 75 H78 L50 20 Z" fill="#ffffff"/>
-                </svg>
+                <!-- 🚀 REPLACED INLINE SVG WITH THE REQUESTED PNG LOGO -->
+                <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo">
                 PREMIUM GROUP ADMIN
             </div>
-            <button onclick="window.location.href='../profile/index.html'" class="btn-action" style="padding: 0.5rem 1rem; font-size: 0.85rem; background: #334155; color: white; border: none;">← Back to Profile</button>
+            <button onclick="window.location.href='../profile/index.html'" class="btn-action" style="padding: 0.5rem 1rem; font-size: 0.85rem; background: #0B1220; color: white; border: none;">← Back to Profile</button>
         </nav>
 
         <div class="admin-wrapper">
@@ -178,7 +183,7 @@
 
             <div class="header-actions">
                 <div>
-                    <h1 style="margin: 0; font-size: 1.8rem; font-weight: 800; color: #0f172a; letter-spacing: -0.5px;">Pending Approvals</h1>
+                    <h1 style="margin: 0; font-size: 1.8rem; font-weight: 800; color: #0B1220; letter-spacing: -0.5px;">Pending Approvals</h1>
                     <p style="margin: 5px 0 0 0; color: #64748b; font-weight: 500;">Aspirants waiting to be added to the Premium WhatsApp Group.</p>
                 </div>
                 <div>
@@ -192,7 +197,7 @@
                         <thead>
                             <tr>
                                 <th>Status</th>
-                                <th>Aspirant Name</th>
+                                <th>Student Name</th>
                                 <th>WhatsApp Number</th>
                                 <th>Course Applied</th>
                                 <th style="text-align: right;">Actions</th>
@@ -273,7 +278,7 @@
                 if (!student) {
                     resultBox.style.background = '#fef2f2';
                     resultBox.style.border = '1px solid #fecaca';
-                    resultBox.innerHTML = `<span style="color: #ef4444; font-weight: 800; font-size: 1.1rem;">❌ Not Found</span><br><span style="color: #475569; font-weight: 500; margin-top: 5px; display: inline-block;">No aspirant found matching the email <strong>${emailInput}</strong>.</span>`;
+                    resultBox.innerHTML = `<span style="color: #ef4444; font-weight: 800; font-size: 1.1rem;">❌ Not Found</span><br><span style="color: #475569; font-weight: 500; margin-top: 5px; display: inline-block;">No user found matching the email <strong>${emailInput}</strong>.</span>`;
                     return;
                 }
 
@@ -303,7 +308,7 @@
                             <span style="color: #475569; font-weight: 500; margin-top: 5px; display: inline-block;"><strong>${name}</strong> is verified and approved for the Premium WhatsApp Group.</span><br>
                             <div style="margin-top: 12px; background: white; padding: 8px 15px; border-radius: 8px; border: 1px solid #e2e8f0; display: inline-block;">
                                 <span style="font-size: 0.8rem; color: #64748b; font-weight: 700; text-transform: uppercase;">WhatsApp Number:</span><br>
-                                <span style="font-size: 1.1rem; font-weight: 800; color: #0f172a; font-family: monospace;">${waNum}</span>
+                                <span style="font-size: 1.1rem; font-weight: 800; color: #0B1220; font-family: monospace;">${waNum}</span>
                             </div>
                         `;
                     } else if (student.vip_group_status === 'pending') {
@@ -343,7 +348,7 @@
                         <tr>
                             <td colspan="5" style="text-align: center; padding: 4rem 1rem;">
                                 <div style="font-size: 3rem; margin-bottom: 10px;">🎉</div>
-                                <h3 style="margin: 0 0 5px 0; color: #0f172a; font-weight: 800;">You're all caught up!</h3>
+                                <h3 style="margin: 0 0 5px 0; color: #0B1220; font-weight: 800;">You're all caught up!</h3>
                                 <p style="margin: 0; color: #64748b;">No pending Premium Group requests at the moment.</p>
                             </td>
                         </tr>
@@ -359,7 +364,7 @@
                     tbody.innerHTML += `
                         <tr id="row-${user.id}">
                             <td><span class="status-badge badge-pending">Pending</span></td>
-                            <td style="font-weight: 700; color: #0f172a;">${user.full_name}</td>
+                            <td style="font-weight: 700; color: #0B1220;">${user.full_name}</td>
                             <td style="font-family: monospace; font-size: 1rem; color: #334155; font-weight: 600;">${safeNumber}</td>
                             <td style="color: #64748b;">${cleanCourse}</td>
                             <td style="text-align: right; display: flex; justify-content: flex-end; gap: 8px;">

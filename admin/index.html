@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Command Center - AFIT CBT Simulator</title>
+    <title>Admin Command Center | BRYT CBT SIM</title>
     
-    <link rel="icon" type="image/svg+xml" href="../static/img/afitcbtsim-logo.svg">
-    <link rel="icon" type="image/png" sizes="512x512" href="../static/img/afitcbtsim-logo.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="../static/img/afitcbtsim-logo1.png">
+    <link rel="icon" type="image/svg+xml" href="../static/img/brytcbtsim-logo.svg">
+    <link rel="icon" type="image/png" sizes="512x512" href="../static/img/brytcbtsim-logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../static/img/brytcbtsim-logo1.png">
     <link rel="apple-touch-icon" href="../static/img/apple-touch-icon.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/main.css">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -23,10 +23,10 @@
         *, *::before, *::after { box-sizing: border-box !important; }
 
         body { 
-            background-color: #f8fafc;
+            background-color: #F5F8FC;
             background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
             background-size: 30px 30px;
-            color: #0f172a; font-family: 'Poppins', sans-serif; 
+            color: #0B1220; font-family: 'Sora', sans-serif; 
         }
         
         ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -35,8 +35,8 @@
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
         #auth-loader {
-            position: fixed; inset: 0; background: #f8fafc; z-index: 9999;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; color: #0f172a;
+            position: fixed; inset: 0; background: #F5F8FC; z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; color: #0B1220;
         }
 
         #admin-dashboard { display: none; }
@@ -49,16 +49,16 @@
             position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
         
-        .admin-nav-title { font-weight: 800; font-size: 1.15rem; display: flex; align-items: center; gap: 10px; color: #1e293b;}
-        .admin-nav-title svg { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 4px 10px rgba(37,99,235,0.2);}
+        .admin-nav-title { font-weight: 800; font-size: 1.15rem; display: flex; align-items: center; gap: 10px; color: #071A3A;}
+        .admin-nav-title img { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 4px 10px rgba(29,94,208,0.2);}
 
         .btn-back {
             background: white; color: #475569; border: 1px solid #e2e8f0;
             padding: 0.6rem 1.2rem; border-radius: 10px; font-weight: 700; cursor: pointer;
-            transition: all 0.2s; font-family: 'Poppins', sans-serif; font-size: 0.9rem;
+            transition: all 0.2s; font-family: 'Sora', sans-serif; font-size: 0.9rem;
             display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
-        .btn-back:hover { background: #f1f5f9; color: #0f172a; transform: translateY(-2px); }
+        .btn-back:hover { background: #f1f5f9; color: #0B1220; transform: translateY(-2px); }
         .btn-back svg { width: 16px; height: 16px; }
         
         .admin-wrapper { max-width: 1400px; margin: 2.5rem auto; padding: 0 1.5rem; animation: fadeSlideUp 0.5s ease forwards;}
@@ -83,7 +83,7 @@
         
         .kpi-icon { width: 60px; height: 60px; border-radius: 16px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
         .kpi-icon svg { width: 28px; height: 28px; }
-        .kpi-icon.blue { background: #eff6ff; color: #2563eb; }
+        .kpi-icon.blue { background: #F5F8FC; color: #1D5ED0; }
         .kpi-icon.green { background: #ecfdf5; color: #10b981; }
         .kpi-icon.purple { background: #f5f3ff; color: #8b5cf6; }
         .kpi-icon.orange { background: #fff7ed; color: #ea580c; }
@@ -91,7 +91,7 @@
 
         .kpi-info { display: flex; flex-direction: column; }
         .kpi-title { color: #64748b; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 5px;}
-        .kpi-value { font-size: 2rem; font-weight: 900; color: #0f172a; line-height: 1;}
+        .kpi-value { font-size: 2rem; font-weight: 800; color: #0B1220; line-height: 1;}
 
         /* 🚀 TABS */
         .tabs-container { 
@@ -99,11 +99,11 @@
             border-radius: 14px; width: fit-content; max-width: 100%; overflow-x: auto;
         }
         .tab-btn {
-            background: transparent; border: none; padding: 0.8rem 1.8rem; font-family: 'Poppins', sans-serif; font-weight: 700;
+            background: transparent; border: none; padding: 0.8rem 1.8rem; font-family: 'Sora', sans-serif; font-weight: 700;
             font-size: 0.95rem; color: #475569; cursor: pointer; border-radius: 10px; transition: all 0.2s; white-space: nowrap;
         }
-        .tab-btn:hover { color: #0f172a; }
-        .tab-btn.active { background: white; color: #0f172a; box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
+        .tab-btn:hover { color: #0B1220; }
+        .tab-btn.active { background: white; color: #0B1220; box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
 
         /* 🚀 DATA PANELS */
         .data-panel {
@@ -117,48 +117,48 @@
         /* 🚀 DEMOGRAPHICS GRID */
         .demo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 15px; }
         .course-stat-card {
-            background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 1.5rem;
+            background: #F5F8FC; border: 1px solid #e2e8f0; border-radius: 16px; padding: 1.5rem;
             display: flex; justify-content: space-between; align-items: center; transition: all 0.2s;
         }
         .course-stat-card:hover { background: white; border-color: #cbd5e1; box-shadow: 0 4px 15px rgba(0,0,0,0.03); transform: translateY(-2px);}
         .course-name { font-weight: 700; color: #1e293b; font-size: 0.95rem; word-break: break-word; padding-right: 15px;}
-        .course-count { background: #eff6ff; color: #2563eb; padding: 0.6rem 1.2rem; border-radius: 12px; font-weight: 800; font-size: 1rem; flex-shrink: 0;}
+        .course-count { background: #e0e7ff; color: #1D5ED0; padding: 0.6rem 1.2rem; border-radius: 12px; font-weight: 800; font-size: 1rem; flex-shrink: 0;}
 
         /* 🚀 MODERN BUTTONS */
         .btn-action {
             background: white; border: 1px solid #cbd5e1; padding: 0.8rem 1.5rem; border-radius: 12px; 
-            font-weight: 700; cursor: pointer; color: #1e293b; transition: all 0.2s; font-family: 'Poppins', sans-serif; font-size: 0.95rem;
+            font-weight: 700; cursor: pointer; color: #1e293b; transition: all 0.2s; font-family: 'Sora', sans-serif; font-size: 0.95rem;
             display: inline-flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
         .btn-action svg { width: 18px; height: 18px; }
         .btn-action:hover { background: #f8fafc; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.05);}
         
-        .btn-primary { background: #2563eb; color: white; border: none; box-shadow: 0 8px 15px -4px rgba(37, 99, 235, 0.4); }
-        .btn-primary:hover { background: #1d4ed8; color: white; }
+        .btn-primary { background: #1D5ED0; color: white; border: none; box-shadow: 0 8px 15px -4px rgba(29, 94, 208, 0.4); }
+        .btn-primary:hover { background: #159FE3; color: white; }
         
         .btn-sm { padding: 0.6rem 1.2rem; font-size: 0.85rem; border-radius: 10px; }
 
         .admin-table { width: 100%; border-collapse: collapse; text-align: left; margin: 0;}
         .admin-table th { 
             color: #64748b; font-size: 0.8rem; text-transform: uppercase; padding: 1.2rem 1.5rem; 
-            border-bottom: 2px solid #e2e8f0; position: sticky; top: 0; background: #f8fafc; z-index: 10;
+            border-bottom: 2px solid #e2e8f0; position: sticky; top: 0; background: #F5F8FC; z-index: 10;
             font-weight: 800; white-space: nowrap; letter-spacing: 0.5px;
         }
         .admin-table td { padding: 1.2rem 1.5rem; border-bottom: 1px solid #f1f5f9; font-weight: 600; color: #1e293b; font-size: 0.9rem; white-space: nowrap;}
-        .admin-table tr:hover td { background: #f8fafc; }
+        .admin-table tr:hover td { background: #F5F8FC; }
         
         /* 🚀 BEAUTIFUL HIDDEN CAPTURE AREAS FOR SCREENSHOTS */
         .capture-layer {
             position: absolute !important; left: -9999px !important; top: 0 !important; 
             width: 850px !important; max-width: none !important;
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%) !important;
+            background: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%) !important;
             color: white !important; padding: 50px !important; border-radius: 30px !important; 
-            font-family: 'Poppins', sans-serif !important; 
+            font-family: 'Sora', sans-serif !important; 
             box-sizing: border-box !important; z-index: -100 !important; overflow: hidden !important;
         }
         .capture-layer::before {
             content: ''; position: absolute; top: -20%; left: -10%; width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(56,189,248,0.15) 0%, transparent 70%); border-radius: 50%;
+            background: radial-gradient(circle, rgba(21,159,227,0.15) 0%, transparent 70%); border-radius: 50%;
         }
         .capture-layer::after {
             content: ''; position: absolute; bottom: -20%; right: -10%; width: 400px; height: 400px;
@@ -167,7 +167,7 @@
 
         .report-header { border-bottom: 2px solid rgba(255,255,255,0.1); padding-bottom: 25px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2;}
         .report-title { margin: 0; font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 12px;}
-        .report-title svg { width: 36px; height: 36px; color: #38bdf8; }
+        .report-title svg { width: 36px; height: 36px; color: #159FE3; }
         .report-date { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 8px 16px; border-radius: 10px; font-weight: 700; font-size: 1rem; display: inline-block; border: 1px solid rgba(255,255,255,0.2);}
         
         .report-total { margin-top: 10px; font-size: 1rem; color: #bae6fd; font-weight: 600; text-align: right; line-height: 1.4; max-width: 300px; margin-left: auto;}
@@ -182,7 +182,7 @@
         .r-rank svg { width: 24px; height: 24px; }
         .r-name { font-weight: 800; font-size: 1.25rem; flex-grow: 1; margin: 0 20px; letter-spacing: -0.5px;}
         .r-course { font-size: 0.9rem; color: #cbd5e1; font-weight: 600; display: block; margin-top: 4px;}
-        .r-score { background: white; color: #1e3a8a; padding: 10px 20px; border-radius: 12px; font-weight: 800; font-size: 1.4rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);}
+        .r-score { background: white; color: #071A3A; padding: 10px 20px; border-radius: 12px; font-weight: 800; font-size: 1.4rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);}
 
         /* 🚀 MOBILE ADJUSTMENTS */
         @media (max-width: 900px) {
@@ -201,7 +201,7 @@
 <body>
 
     <div id="auth-loader">
-        <svg class="animate-spin" style="width: 45px; height: 45px; color: #2563eb; margin-bottom: 15px;" fill="none" viewBox="0 0 24 24">
+        <svg class="animate-spin" style="width: 45px; height: 45px; color: #1D5ED0; margin-bottom: 15px;" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
@@ -216,7 +216,7 @@
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
                     Daily Top Scorers
                 </h2>
-                <p style="margin: 5px 0 0 0; color: #93c5fd; font-size: 1.1rem; font-weight: 600;">AFIT CBT Simulator Leaderboard</p>
+                <p style="margin: 5px 0 0 0; color: #93c5fd; font-size: 1.1rem; font-weight: 600;">BRYT CBT SIM Leaderboard</p>
             </div>
             <div style="text-align: right;">
                 <div class="report-date" id="img-date">--</div>
@@ -227,7 +227,7 @@
         <div id="img-list" style="display: flex; flex-direction: column; gap: 12px;"></div>
         
         <div style="text-align: center; margin-top: 40px; font-size: 0.95rem; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">
-            Powered by brightsitedev
+            Powered by BRYT Technologies
         </div>
     </div>
 
@@ -251,17 +251,15 @@
         <div id="demo-img-list" style="position: relative; z-index: 2;"></div>
         
         <div style="text-align: center; margin-top: 40px; font-size: 0.95rem; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; position: relative; z-index: 2;">
-            Powered by brightsitedev
+            Powered by BRYT Technologies
         </div>
     </div>
 
     <div id="admin-dashboard">
         <nav class="admin-nav">
             <div class="admin-nav-title">
-                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="100" height="100" rx="22" fill="#2563eb"/>
-                    <path d="M50 20 L22 75 H36 L43 60 H57 L64 75 H78 L50 20 Z" fill="#ffffff"/>
-                </svg>
+                <!-- 🚀 REPLACED INLINE SVG WITH BRYT PNG -->
+                <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo">
                 COMMAND CENTER
             </div>
             <button onclick="window.location.href='../dashboard/index.html'" class="btn-back">
@@ -274,7 +272,7 @@
             
             <div class="header-actions">
                 <div>
-                    <h1 style="margin: 0 0 5px 0; font-size: 2rem; font-weight: 900; color: #0f172a; letter-spacing: -0.5px;">Live Telemetry</h1>
+                    <h1 style="margin: 0 0 5px 0; font-size: 2rem; font-weight: 800; color: #0B1220; letter-spacing: -0.5px;">Live Telemetry</h1>
                     <p style="margin: 0; color: #64748b; font-weight: 500; font-size: 1.05rem;">Real-time platform analytics and candidate data.</p>
                 </div>
                 <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end;">
@@ -530,7 +528,7 @@
                 globalCourseArray = Object.keys(courseCounts).map(key => ({ name: key, count: courseCounts[key] }));
                 globalCourseArray.sort((a, b) => b.count - a.count);
 
-                document.getElementById('demo-total-candidates').innerHTML = `${globalTotalCandidates} Candidates Registered<br>in AFIT CBT SIM`;
+                document.getElementById('demo-total-candidates').innerHTML = `${globalTotalCandidates} Candidates Registered<br>in BRYT CBT SIM`;
 
                 if (globalCourseArray.length === 0) {
                     courseBody.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: #94a3b8; padding: 2rem;">No demographic data available.</div>';
@@ -557,12 +555,12 @@
                         const timeStr = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' + dateObj.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
                         
                         const aspirantName = r.profiles ? r.profiles.full_name : 'Unknown Aspirant';
-                        const f = (score) => score > 0 ? `<span style="color:#0f172a; font-weight:800;">${score}</span>` : `<span style="color:#cbd5e1;">-</span>`;
+                        const f = (score) => score > 0 ? `<span style="color:#0B1220; font-weight:800;">${score}</span>` : `<span style="color:#cbd5e1;">-</span>`;
 
                         rBody.innerHTML += `
                             <tr>
-                                <td style="font-weight: 800; color: #0f172a;">${aspirantName}</td>
-                                <td><span style="background: #eff6ff; color: #2563eb; padding: 6px 12px; border-radius: 8px; font-weight: 800;">${r.total_score} / 50</span></td>
+                                <td style="font-weight: 800; color: #0B1220;">${aspirantName}</td>
+                                <td><span style="background: #F5F8FC; color: #1D5ED0; padding: 6px 12px; border-radius: 8px; font-weight: 800;">${r.total_score} / 50</span></td>
                                 <td>${f(r.english_score)}</td>
                                 <td>${f(r.math_score)}</td>
                                 <td>${f(r.physics_score)}</td>
@@ -628,7 +626,7 @@
                 html2canvas(captureArea, { scale: 2, backgroundColor: null }).then(canvas => {
                     const link = document.createElement('a');
                     const dateStr = new Date().toISOString().split('T')[0];
-                    link.download = `AFIT_Top_Scorers_${dateStr}.png`;
+                    link.download = `BRYT_Top_Scorers_${dateStr}.png`;
                     link.href = canvas.toDataURL('image/png');
                     link.click();
                     
@@ -729,7 +727,7 @@
                 html2canvas(captureArea, { scale: 2, backgroundColor: null }).then(canvas => {
                     const link = document.createElement('a');
                     const dateStr = new Date().toISOString().split('T')[0];
-                    link.download = `AFIT_Demographics_${tier.toUpperCase()}_${dateStr}.png`;
+                    link.download = `BRYT_Demographics_${tier.toUpperCase()}_${dateStr}.png`;
                     link.href = canvas.toDataURL('image/png');
                     link.click();
                     
