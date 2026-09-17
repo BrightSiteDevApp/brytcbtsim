@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "ng.name.brytcbtsim.twa",
+        "sha256_cert_fingerprints": ["FA:C5:51:E4:B9:DF:0A:F6:16:61:51:47:D5:B6:12:D4:98:E6:2C:98:C8:9A:71:7E:7D:D7:F7:E4:1F:51:42:62"]
+      }
+    }]
