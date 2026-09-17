@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bryt-cbt-v1';
+const CACHE_NAME = 'bryt-cbt-v2';
 
 // Core assets to pre-cache immediately
 const PRECACHE_ASSETS = [

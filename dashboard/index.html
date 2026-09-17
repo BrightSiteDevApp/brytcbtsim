@@ -21,12 +21,12 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <!-- PWA Manifest & Mobile Capability -->
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#071A3A">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="BRYT CBT">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#071A3A">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BRYT CBT">
 
     <style>
         html, body { max-width: 100vw !important; overflow-x: hidden !important; margin: 0; padding: 0; background-color: #F5F8FC; font-family: 'Sora', sans-serif; }
@@ -46,12 +46,12 @@
         .leaderboard-table th:nth-child(4) { width: 18%; text-align: right; }
 
         .btn-action-main {
-            padding: 0.8rem 1.5rem; border-radius: 12px; font-weight: 700; border: none; 
-            cursor: pointer; font-size: 0.95rem; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 1rem 1.5rem; border-radius: 12px; font-weight: 700; border: none; 
+            cursor: pointer; font-size: 0.95rem; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: 'Sora', sans-serif;
         }
         .btn-action-main svg { width: 18px; height: 18px; }
-        .btn-action-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -10px rgba(0,0,0,0.3); }
+        .btn-action-main:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -10px rgba(0,0,0,0.3); }
         .btn-green { background: #10b981; color: white; box-shadow: 0 8px 16px -4px rgba(16, 185, 129, 0.3); }
         .btn-blue { background: #1D5ED0; color: white; box-shadow: 0 8px 16px -4px rgba(29, 94, 208, 0.3); }
         .btn-orange { background: #f97316; color: white; box-shadow: 0 8px 16px -4px rgba(249, 115, 22, 0.3); }
@@ -59,7 +59,6 @@
         .btn-purple { background: #8b5cf6; color: white; box-shadow: 0 8px 16px -4px rgba(139, 92, 246, 0.3); }
         .btn-outline-purple { background: white; color: #8b5cf6; border: 2px solid #8b5cf6; }
 
-        /* 🚀 BRYT WELCOME BANNER */
         .welcome-banner {
             background: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
             border-radius: 24px; padding: 2.5rem 3rem; margin-bottom: 2rem;
@@ -74,7 +73,6 @@
         .welcome-text h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 0.5rem; }
         .welcome-text p { color: #E0E7FF; font-size: 1.05rem; margin-bottom: 1.5rem; }
 
-        /* 🚀 ULTRA-SLIM NOTIFICATION TICKER */
         .countdown-banner {
             background: linear-gradient(135deg, #0B1220 0%, #071A3A 100%);
             border: 1px solid #1D5ED0; border-radius: 8px;
@@ -87,7 +85,6 @@
         .venue-link { font-size: 0.75rem; color: #159FE3; text-decoration: none; cursor: pointer; border-bottom: 1px dashed #159FE3; font-weight: 600; transition: all 0.2s;}
         .venue-link:hover { color: #bae6fd; border-color: #bae6fd; }
 
-        /* 🚀 VIP PROMO INLINE BANNER */
         .promo-banner {
             background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 20px; 
             padding: 1.5rem 2rem; margin-bottom: 2rem; display: flex; justify-content: space-between; 
@@ -111,7 +108,6 @@
         }
         .promo-close:hover { background: #dcfce7; color: #065f46; }
 
-        /* 🚀 PREMIUM QUICK TOOLS GRID */
         .quick-actions-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 2rem;
         }
@@ -134,11 +130,6 @@
         .qa-icon.green { background: #dcfce7; color: #10b981; }
         .qa-icon.light { background: #F5F8FC; color: #0B1220; }
 
-        /* LEADERBOARD PROFESSIONAL BADGES */
-        .rank-1 { background: #fef3c7; color: #d97706; padding: 4px 10px; border-radius: 6px; font-weight: 800; font-size: 0.8rem; border: 1px solid #fde68a; }
-        .rank-2 { background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 6px; font-weight: 800; font-size: 0.8rem; border: 1px solid #e2e8f0; }
-        .rank-3 { background: #ffedd5; color: #c2410c; padding: 4px 10px; border-radius: 6px; font-weight: 800; font-size: 0.8rem; border: 1px solid #fed7aa; }
-
         .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 2rem; }
         .stat-card {
             background: white; border-radius: 24px; padding: 1.5rem; display: flex; align-items: center; gap: 15px;
@@ -153,13 +144,6 @@
         .dash-card { background: white; padding: 2rem; border-radius: 24px; box-shadow: 0 10px 40px -10px rgba(0,0,0,0.03); border: none; }
         .dash-card h3 { font-size: 1.1rem; font-weight: 700; color: #0B1220; margin-top: 0; margin-bottom: 1.5rem; display: flex; align-items: center; }
         .chart-container { position: relative; height: 260px; width: 100%; }
-
-        @keyframes pulse-flame {
-            0% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(239, 68, 68, 0)); }
-            50% { transform: scale(1.15); filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.4)); }
-            100% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(239, 68, 68, 0)); }
-        }
-        .flame-active svg { animation: pulse-flame 1.5s infinite; color: #ef4444; }
 
         /* MODALS */
         .premium-modal-overlay {
@@ -176,7 +160,6 @@
             align-items: center; color: #64748b; font-weight: bold; transition: 0.2s;
         }
         .close-modal-btn:hover { background: #e2e8f0; color: #0B1220; }
-
         .modal-icon-header { width: 60px; height: 60px; border-radius: 20px; display: flex; justify-content: center; align-items: center; margin: 0 auto 20px auto; }
         .modal-icon-header svg { width: 30px; height: 30px; }
 
@@ -185,41 +168,34 @@
         .upsell-block h4 svg { width: 18px; height: 18px; color: #64748b; }
         .upsell-block p { margin: 0 0 15px 0; color: #64748b; font-size: 0.85rem; line-height: 1.5; }
 
+        /* Payment Loader Spinner */
+        @keyframes spinner-spin { to { transform: rotate(360deg); } }
+
         @media (max-width: 900px) {
             .dashboard-content { width: 100vw !important; max-width: 100vw !important; box-sizing: border-box; overflow-x: hidden !important; padding: 1rem !important;}
             #action-buttons-container { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; width: 100% !important; margin-top: 15px; }
             .btn-action-main { width: 100% !important; padding: 0.8rem 0.5rem !important; font-size: 0.8rem !important; white-space: normal !important; line-height: 1.3; text-align: center; height: 100%; }
-            
             .welcome-banner { padding: 2rem 1.5rem; border-radius: 20px;}
             .welcome-text h1 { font-size: 1.8rem; }
-
-            /* Mobile Ticker */
             .countdown-banner { margin: 0 auto 1.2rem auto; padding: 5px 12px; width: 100%; max-width: 340px; justify-content: center; gap: 6px; flex-wrap: wrap;}
             .cd-left { font-size: 0.7rem; gap: 5px; }
             .cd-right { font-size: 0.65rem; padding: 2px 8px;}
-
-            /* Mobile Promo Banner */
             .promo-banner { flex-direction: column; text-align: left; padding: 1.5rem; align-items: flex-start; border-radius: 16px;}
             .promo-content { margin-right: 0; margin-bottom: 1.2rem; }
             .promo-title { font-size: 1.1rem; }
             .promo-btn { width: 100%; justify-content: center; }
-
-            /* Mobile Quick Actions Grid */
             .quick-actions-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 1.5rem; }
             .quick-action-card { padding: 1.2rem 0.5rem; gap: 8px; border-radius: 16px;}
             .qa-icon { width: 40px; height: 40px; font-size: 1.1rem; border-radius: 12px;}
             .qa-icon svg { width: 20px; height: 20px; }
             .qa-text { font-size: 0.75rem; }
-
             .stats-row { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; width: 100% !important; margin-bottom: 1.5rem;}
             .stat-card { min-width: 0 !important; padding: 1.2rem 0.5rem !important; display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; gap: 8px !important; border-radius: 16px;}
             .stat-icon { margin: 0 !important; width: 45px; height: 45px;}
             .stat-info h4 { font-size: 0.65rem !important; margin-bottom: 2px !important; line-height: 1.2; }
             .stat-info .stat-val { font-size: 1.2rem !important; }
-
             .analytics-grid { grid-template-columns: 1fr; gap: 15px; }
             .chart-container { height: 220px; }
-
             .data-table th, .data-table td { font-size: 0.75rem; padding: 0.8rem 0.2rem; }
             .dash-card { padding: 1.5rem 1rem; border-radius: 20px;}
             .premium-modal { padding: 2rem 1.2rem; }
@@ -227,6 +203,12 @@
     </style>
 </head>
 <body class="dashboard-body">
+
+    <!-- 🚀 NEW: SECURE PAYMENT LOADER -->
+    <div class="premium-modal-overlay" id="payment-loader-overlay" style="z-index: 20000; flex-direction: column;">
+        <div style="width: 44px; height: 44px; border: 4px solid #e2e8f0; border-top-color: #1D5ED0; border-radius: 50%; animation: spinner-spin 1s linear infinite;"></div>
+        <p id="payment-loader-text" style="color: white; font-weight: 700; margin-top: 18px; font-size: 1.05rem;">Initializing secure checkout...</p>
+    </div>
 
     <!-- VENUE DETAILS MODAL -->
     <div class="premium-modal-overlay" id="venue-modal-overlay">
@@ -250,7 +232,7 @@
         </div>
     </div>
 
-    <!-- STANDARD MODALS -->
+    <!-- DAILY UPSELL MODAL -->
     <div class="premium-modal-overlay" id="daily-upsell-modal">
         <div class="premium-modal">
             <button class="close-modal-btn" onclick="closeDailyUpsell()">
@@ -280,6 +262,26 @@
         </div>
     </div>
 
+    <!-- 🚀 BRYT PAY WALLET WARNING MODAL -->
+    <div class="premium-modal-overlay" id="bryt-pay-warning-modal">
+        <div class="premium-modal">
+            <div class="modal-icon-header" style="background: #eff6ff; color: #1d4ed8;">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
+            </div>
+            <h2 style="font-size: 1.4rem; font-weight: 800; color: #0B1220; margin-bottom: 8px;">BRYT Pay Wallet Required</h2>
+            <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.5rem;">Ensure you have an active BRYT Pay account and at least <strong>₦1,000</strong> funded in your wallet before proceeding.</p>
+            
+            <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; background: #f8fafc; padding: 12px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                Don't have an account or need to fund? <br>
+                <a href="https://brytpay.name.ng" target="_blank" style="color: #1D5ED0; font-weight: 700; text-decoration: none; display: inline-block; margin-top: 5px;">Visit brytpay.name.ng &rarr;</a>
+            </p>
+            
+            <button id="btn-proceed-brytpay" class="btn-action-main" style="background: #1D5ED0; color: white; width: 100%; margin-bottom: 12px; box-shadow: 0 8px 15px rgba(29, 94, 208, 0.2);">Proceed to Pay</button>
+            <button onclick="closeBrytPayWarning()" class="btn-action-main" style="background: #f1f5f9; color: #475569; width: 100%;">Cancel</button>
+        </div>
+    </div>
+
+    <!-- 🚀 DUAL PAYMENT: PREMIUM MODAL -->
     <div class="premium-modal-overlay" id="premium-modal-overlay">
         <div class="premium-modal">
             <button class="close-modal-btn" onclick="closePremiumModal()">
@@ -290,12 +292,17 @@
             </div>
             <h2 style="font-size: 1.4rem; font-weight: 800; color: #0B1220; margin-bottom: 8px;">Premium Access</h2>
             <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.5rem;">Unlock unlimited timed tests and advanced real-time performance analytics.</p>
-            <button id="modal-proceed-btn" style="width: 100%; padding: 1rem; border-radius: 10px; font-weight: 700; border: none; cursor: pointer; background: #ea580c; color: white; font-size: 1rem; box-shadow: 0 8px 15px rgba(234, 88, 12, 0.2); transition: transform 0.2s; font-family: 'Sora', sans-serif;">
-                Upgrade ₦1,050
+            
+            <button id="btn-premium-brytpay" class="btn-action-main" style="background: #0B1220; color: white; width: 100%; margin-bottom: 12px; box-shadow: 0 8px 15px rgba(11, 18, 32, 0.2);">
+                Pay ₦1,000 with <img src="https://i.ibb.co/nNLfs1r3/brytpay-logo.png" alt="BRYT Pay" style="height: 18px; margin-left: 8px; background: white; padding: 2px 6px; border-radius: 4px;">
+            </button>
+            <button id="btn-premium-paystack" class="btn-action-main" style="background: #f8fafc; color: #475569; border: 1px solid #cbd5e1; width: 100%;">
+                Pay ₦1,050 via Paystack
             </button>
         </div>
     </div>
 
+    <!-- 🚀 DUAL PAYMENT: QBANK MODAL -->
     <div class="premium-modal-overlay" id="qbank-modal-overlay">
         <div class="premium-modal">
             <button class="close-modal-btn" onclick="closeQbankModal()">
@@ -306,8 +313,12 @@
             </div>
             <h2 style="font-size: 1.4rem; font-weight: 800; color: #0B1220; margin-bottom: 8px;">Unlock Question Bank</h2>
             <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.5rem;">Study without pressure. Get direct access to 5,500+ questions, practice without a timer, and view instant answers.</p>
-            <button id="qbank-proceed-btn" style="width: 100%; padding: 1rem; border-radius: 10px; font-weight: 700; border: none; cursor: pointer; background: #8b5cf6; color: white; font-size: 1rem; box-shadow: 0 8px 15px rgba(139, 92, 246, 0.2); transition: transform 0.2s; font-family: 'Sora', sans-serif;">
-                Unlock Vault ₦1,050
+            
+            <button id="btn-qbank-brytpay" class="btn-action-main" style="background: #0B1220; color: white; width: 100%; margin-bottom: 12px; box-shadow: 0 8px 15px rgba(11, 18, 32, 0.2);">
+                Unlock for ₦1,000 with <img src="https://i.ibb.co/nNLfs1r3/brytpay-logo.png" alt="BRYT Pay" style="height: 18px; margin-left: 8px; background: white; padding: 2px 6px; border-radius: 4px;">
+            </button>
+            <button id="btn-qbank-paystack" class="btn-action-main" style="background: #f8fafc; color: #475569; border: 1px solid #cbd5e1; width: 100%;">
+                Unlock for ₦1,050 via Paystack
             </button>
         </div>
     </div>
@@ -316,7 +327,6 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header" style="display: flex; align-items: center; gap: 12px; padding: 1rem 0;">
-            <!-- 🚀 REPLACED INLINE SVG LOGO WITH BRYT PNG -->
             <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo" style="width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(29, 94, 208, 0.3);">
             <span style="font-weight: 800; font-size: 1.15rem; color: #0B1220; letter-spacing: -0.5px; white-space: nowrap;">BRYT CBT SIM</span>
         </div>
@@ -342,8 +352,7 @@
         <main class="dashboard-content">
             
             <div style="text-align: center;">
-                <div class="countdown-banner" id="main-countdown-banner" style="display: none;">
-                </div>
+                <div class="countdown-banner" id="main-countdown-banner" style="display: none;"></div>
             </div>
 
             <div class="welcome-banner">
@@ -354,7 +363,6 @@
                 </div>
             </div>
 
-            <!-- 🚀 VIP PROMO INLINE BANNER -->
             <div class="promo-banner" id="vip-promo-banner" style="display: flex;">
                 <button class="promo-close" onclick="closePromoBanner()" aria-label="Close">
                     <svg style="width: 18px; height: 18px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
@@ -374,57 +382,35 @@
 
             <div class="quick-actions-grid">
                 <div class="quick-action-card" onclick="window.location.href='../mock-23rd/'">
-                    <div class="qa-icon red">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                    </div>
+                    <div class="qa-icon red"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></div>
                     <span class="qa-text">Aug 23rd Mock</span>
                 </div>
-                
                 <div class="quick-action-card" onclick="window.location.href='../aggregate-cal/index.html'">
-                    <div class="qa-icon blue">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2-2v14a2 2 0 002 2z" /></svg>
-                    </div>
+                    <div class="qa-icon blue"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2-2v14a2 2 0 002 2z" /></svg></div>
                     <span class="qa-text">Aggregate Calc</span>
                 </div>
-
                 <div class="quick-action-card" onclick="window.location.href='../review/index.html'">
-                    <div class="qa-icon yellow">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.898 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg>
-                    </div>
+                    <div class="qa-icon yellow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.898 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg></div>
                     <span class="qa-text">Drop a Review</span>
                 </div>
-
                 <div class="quick-action-card" onclick="window.location.href='../reviews/index.html'">
-                    <div class="qa-icon pink">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                    </div>
+                    <div class="qa-icon pink"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg></div>
                     <span class="qa-text">Reviews</span>
                 </div>
-
                 <div class="quick-action-card" onclick="handleVipGroupClick()">
-                    <div class="qa-icon green">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-                    </div>
+                    <div class="qa-icon green"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg></div>
                     <span class="qa-text">Premium Group</span>
                 </div>
-                
                 <div class="quick-action-card" onclick="window.open('https://chat.whatsapp.com/GVXHCJOEIpZKILyWLXe7kt', '_blank')">
-                    <div class="qa-icon light">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
-                    </div>
+                    <div class="qa-icon light"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg></div>
                     <span class="qa-text">General Chat</span>
                 </div>
             </div>
 
             <div class="stats-row">
                 <div class="stat-card">
-                    <div class="stat-icon" id="streak-icon" style="background: #fef2f2; color: #ef4444;">
-                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.66 11.2c-.23-.3-.51-.56-.77-.82-.67-.6-1.43-1.03-2.07-1.66C13.33 7.26 13 4.85 13.95 3c-.95.23-1.78.75-2.49 1.32-2.59 2.08-3.61 5.75-2.39 8.9.04.1.08.2.08.33 0 .22-.15.42-.35.5-.23.1-.47.04-.66-.12a.58.58 0 01-.14-.17c-1.13-1.43-1.31-3.48-.55-5.12C5.78 10 4.87 12.3 5 14.47c.06.5.12 1 .29 1.5.14.6.41 1.2.74 1.73 1.08 1.73 2.86 2.97 4.96 3.22 2.14.25 4.43-.12 6.07-1.6 1.83-1.66 2.47-4.32 1.53-6.6l-.13-.26c-.21-.46-.57-.87-.8-1.26z"/></svg>
-                    </div>
-                    <div class="stat-info">
-                        <h4>Study Streak</h4>
-                        <div class="stat-val"><span id="streak-count">0</span> <span style="font-size: 1rem; color: #94a3b8;">Days</span></div>
-                    </div>
+                    <div class="stat-icon" id="streak-icon" style="background: #fef2f2; color: #ef4444;"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.66 11.2c-.23-.3-.51-.56-.77-.82-.67-.6-1.43-1.03-2.07-1.66C13.33 7.26 13 4.85 13.95 3c-.95.23-1.78.75-2.49 1.32-2.59 2.08-3.61 5.75-2.39 8.9.04.1.08.2.08.33 0 .22-.15.42-.35.5-.23.1-.47.04-.66-.12a.58.58 0 01-.14-.17c-1.13-1.43-1.31-3.48-.55-5.12C5.78 10 4.87 12.3 5 14.47c.06.5.12 1 .29 1.5.14.6.41 1.2.74 1.73 1.08 1.73 2.86 2.97 4.96 3.22 2.14.25 4.43-.12 6.07-1.6 1.83-1.66 2.47-4.32 1.53-6.6l-.13-.26c-.21-.46-.57-.87-.8-1.26z"/></svg></div>
+                    <div class="stat-info"><h4>Study Streak</h4><div class="stat-val"><span id="streak-count">0</span> <span style="font-size: 1rem; color: #94a3b8;">Days</span></div></div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon blue"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
@@ -436,37 +422,24 @@
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon purple"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
-                    <div class="stat-info"><h4>Average Score</h4><div class="stat-val" id="avg-score">0 <span style="font-size: 1rem; color: #94a3b8;">/ 50</span></div></div>
+                    <div class="stat-info"><h4>Average Score</h4><div class="stat-val" id="avg-score">0</div></div>
                 </div>
             </div>
 
             <div class="analytics-grid">
                 <div class="dash-card">
-                    <h3>
-                        <svg style="width: 20px; color: #1D5ED0; vertical-align: middle; margin-right: 5px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                        Performance Trend (Last 10 Exams)
-                    </h3>
-                    <div class="chart-container">
-                        <canvas id="trendChart"></canvas>
-                    </div>
+                    <h3><svg style="width: 20px; color: #1D5ED0; vertical-align: middle; margin-right: 5px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg> Performance Trend</h3>
+                    <div class="chart-container"><canvas id="trendChart"></canvas></div>
                 </div>
                 <div class="dash-card">
-                    <h3>
-                        <svg style="width: 20px; color: #8b5cf6; vertical-align: middle; margin-right: 5px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                        Subject Mastery
-                    </h3>
-                    <div class="chart-container">
-                        <canvas id="radarChart"></canvas>
-                    </div>
+                    <h3><svg style="width: 20px; color: #8b5cf6; vertical-align: middle; margin-right: 5px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg> Subject Mastery</h3>
+                    <div class="chart-container"><canvas id="radarChart"></canvas></div>
                 </div>
             </div>
 
             <div class="dashboard-grid">
                 <div class="dash-card">
-                    <h3>
-                        <svg style="width: 20px; color: #1D5ED0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                        Recent History (Last 5)
-                    </h3>
+                    <h3><svg style="width: 20px; color: #1D5ED0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg> Recent History</h3>
                     <div style="overflow-x: hidden;">
                         <table class="data-table history-table">
                             <thead><tr><th>Date</th><th>Breakdown</th><th style="text-align: right;">Total Score</th></tr></thead>
@@ -476,10 +449,7 @@
                 </div>
 
                 <div class="dash-card">
-                    <h3>
-                        <svg style="width: 20px; color: #10b981;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <span id="today-leaderboard-title">Top 10 Achievers Today</span>
-                    </h3>
+                    <h3><svg style="width: 20px; color: #10b981;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> <span id="today-leaderboard-title">Top 10 Achievers Today</span></h3>
                     <div style="overflow-x: hidden;">
                         <table class="data-table leaderboard-table">
                             <thead><tr><th style="text-align: center;">Rank</th><th>Aspirant</th><th>Course</th><th style="text-align: right;">Score</th></tr></thead>
@@ -495,77 +465,78 @@
     <script src="../static/app.js"></script>
 
     <script>
-        const EXAM_SCHEDULE = [
-            { id: 'kad', state: 'Kaduna', dateStr: 'Aug 24, 2026', date: '2026-08-24T08:30:00', address: 'Air Force Institute of Technology, Nigerian Airforce Base, Kaduna.' }
-        ];
+        const EXAM_SCHEDULE = [{ id: 'kad', state: 'Kaduna', dateStr: 'Aug 24, 2026', date: '2026-08-24T08:30:00', address: 'Air Force Institute of Technology, Nigerian Airforce Base, Kaduna.' }];
 
         let sessionEmail = null; let sessionId = null;
         let globalProfileData = null; 
 
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('mobile-overlay').classList.toggle('active');
-        }
+        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); document.getElementById('mobile-overlay').classList.toggle('active'); }
+        function closePromoBanner() { document.getElementById('vip-promo-banner').style.display = 'none'; localStorage.setItem('vip_promo_hidden_date', new Date().toLocaleDateString('en-CA')); }
 
-        // 🚀 PROMO BANNER DISMISSAL LOGIC (Daily Reset)
-        function closePromoBanner() {
-            document.getElementById('vip-promo-banner').style.display = 'none';
-            // Save today's exact date
-            const todayStr = new Date().toLocaleDateString('en-CA');
-            localStorage.setItem('vip_promo_hidden_date', todayStr);
-        }
-
-        function openVenueModal(locId) {
-            const v = EXAM_SCHEDULE.find(e => e.id === locId);
-            document.getElementById('vm-title').innerText = v.state + ' Centre';
-            document.getElementById('vm-date').innerText = v.dateStr + ' • 8:30 AM';
-            document.getElementById('vm-address').innerText = v.address;
-            document.getElementById('venue-modal-overlay').style.display = 'flex';
-        }
+        function openVenueModal(locId) { const v = EXAM_SCHEDULE.find(e => e.id === locId); document.getElementById('vm-title').innerText = v.state + ' Centre'; document.getElementById('vm-date').innerText = v.dateStr + ' • 8:30 AM'; document.getElementById('vm-address').innerText = v.address; document.getElementById('venue-modal-overlay').style.display = 'flex'; }
         function closeVenueModal() { document.getElementById('venue-modal-overlay').style.display = 'none'; }
+
+        // 🚀 PAYMENT MODAL LOGIC
+        let pendingServiceType = '';
+        let pendingUserEmail = '';
+        let pendingUserId = '';
+
+        function openBrytPayWarning(email, userId, serviceType) {
+            closePremiumModal();
+            closeQbankModal();
+            pendingServiceType = serviceType;
+            pendingUserEmail = email;
+            pendingUserId = userId;
+            document.getElementById('bryt-pay-warning-modal').style.display = 'flex';
+        }
+        function closeBrytPayWarning() { document.getElementById('bryt-pay-warning-modal').style.display = 'none'; }
+
+        document.getElementById('btn-proceed-brytpay').onclick = function() {
+            closeBrytPayWarning();
+            triggerSecurePayment(pendingUserEmail, pendingUserId, pendingServiceType, 'BRYT_PAY');
+        };
 
         function showPremiumModal(email, userId) {
             document.getElementById('premium-modal-overlay').style.display = 'flex';
-            document.getElementById('modal-proceed-btn').onclick = function() {
-                closePremiumModal(); initiatePayment(email, userId, 'premium_access');
-            };
+            document.getElementById('btn-premium-brytpay').innerHTML = `Pay ₦1,000 with <img src="https://i.ibb.co/nNLfs1r3/brytpay-logo.png" alt="BRYT Pay" style="height: 18px; margin-left: 8px; background: white; padding: 2px 6px; border-radius: 4px;">`;
+            document.getElementById('btn-premium-brytpay').onclick = function() { openBrytPayWarning(email, userId, 'premium_access'); };
+            document.getElementById('btn-premium-paystack').onclick = function() { closePremiumModal(); triggerSecurePayment(email, userId, 'premium_access', 'PAYSTACK'); };
         }
         function closePremiumModal() { document.getElementById('premium-modal-overlay').style.display = 'none'; }
 
         function showQbankModal(email, userId) {
             document.getElementById('qbank-modal-overlay').style.display = 'flex';
-            document.getElementById('qbank-proceed-btn').onclick = function() {
-                closeQbankModal(); initiatePayment(email, userId, 'qbank_access');
-            };
+            document.getElementById('btn-qbank-brytpay').innerHTML = `Unlock for ₦1,000 with <img src="https://i.ibb.co/nNLfs1r3/brytpay-logo.png" alt="BRYT Pay" style="height: 18px; margin-left: 8px; background: white; padding: 2px 6px; border-radius: 4px;">`;
+            document.getElementById('btn-qbank-brytpay').onclick = function() { openBrytPayWarning(email, userId, 'qbank_access'); };
+            document.getElementById('btn-qbank-paystack').onclick = function() { closeQbankModal(); triggerSecurePayment(email, userId, 'qbank_access', 'PAYSTACK'); };
         }
         function closeQbankModal() { document.getElementById('qbank-modal-overlay').style.display = 'none'; }
 
         function closeDailyUpsell() { document.getElementById('daily-upsell-modal').style.display = 'none'; }
-        function initiateDailyPayment(paymentType) { closeDailyUpsell(); initiatePayment(sessionEmail, sessionId, paymentType); }
+        
+        function initiateDailyPayment(paymentType) { 
+            closeDailyUpsell(); 
+            if (paymentType === 'premium_access') showPremiumModal(sessionEmail, sessionId);
+            else if (paymentType === 'qbank_access') showQbankModal(sessionEmail, sessionId);
+        }
 
         function setTimeGreeting() {
-            const hour = new Date().getHours();
-            let greeting = 'Good Evening';
-            if (hour >= 5 && hour < 12) greeting = 'Good Morning';
-            else if (hour >= 12 && hour < 17) greeting = 'Good Afternoon';
+            const hour = new Date().getHours(); let greeting = 'Good Evening';
+            if (hour >= 5 && hour < 12) greeting = 'Good Morning'; else if (hour >= 12 && hour < 17) greeting = 'Good Afternoon';
             document.getElementById('time-greeting').innerText = greeting;
         }
 
         function handleVipGroupClick() {
             if (!globalProfileData) return;
-
             if (!globalProfileData.has_paid) {
                 alert("You must upgrade to Premium first before you can join the Premium Group.");
-                
                 document.getElementById('daily-upsell-modal').style.display = 'flex';
                 document.getElementById('daily-premium-block').style.display = 'block';
                 const premiumBtn = document.getElementById('upsell-premium-btn');
-                premiumBtn.style.background = '#ea580c'; premiumBtn.style.color = 'white'; premiumBtn.style.cursor = 'pointer'; premiumBtn.innerText = 'Upgrade for ₦1,050'; premiumBtn.onclick = () => initiateDailyPayment('premium_access');
-                
+                premiumBtn.style.background = '#ea580c'; premiumBtn.style.color = 'white'; premiumBtn.style.cursor = 'pointer'; premiumBtn.innerText = 'View Upgrade Options'; premiumBtn.onclick = () => initiateDailyPayment('premium_access');
                 document.getElementById('daily-qbank-block').style.display = 'none'; 
                 return;
             }
-
             window.location.href = '../wgroup/index.html';
         }
 
@@ -574,40 +545,15 @@
             const timer = setInterval(() => {
                 const now = new Date().getTime();
                 let activeExams = EXAM_SCHEDULE.filter(exam => new Date(exam.date).getTime() + (24 * 60 * 60 * 1000) > now); 
-
-                if (activeExams.length === 0) {
-                    banner.style.display = 'none';
-                    clearInterval(timer);
-                    return;
-                }
-
+                if (activeExams.length === 0) { banner.style.display = 'none'; clearInterval(timer); return; }
                 banner.style.display = 'inline-flex';
-                
-                const exam = activeExams[0]; 
-                const targetDate = new Date(exam.date).getTime();
-                const distance = targetDate - now;
-                let timeText = "";
-
-                if (distance < 0) {
-                    timeText = "Exam Today!";
-                } else {
-                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    timeText = days === 0 ? "Tomorrow" : `${days} Day${days !== 1 ? 's' : ''} Left`;
-                }
-
-                banner.innerHTML = `
-                    <div class="cd-left">
-                        <span>${exam.state} Post-UTME (${exam.dateStr})</span>
-                        <span onclick="openVenueModal('${exam.id}')" class="venue-link">View Venue</span>
-                    </div>
-                    <div class="cd-right">${timeText}</div>
-                `;
+                const exam = activeExams[0]; const distance = new Date(exam.date).getTime() - now;
+                let timeText = distance < 0 ? "Exam Today!" : (Math.floor(distance / (1000 * 60 * 60 * 24)) === 0 ? "Tomorrow" : `${Math.floor(distance / (1000 * 60 * 60 * 24))} Days Left`);
+                banner.innerHTML = `<div class="cd-left"><span>${exam.state} Post-UTME (${exam.dateStr})</span><span onclick="openVenueModal('${exam.id}')" class="venue-link">View Venue</span></div><div class="cd-right">${timeText}</div>`;
             }, 1000);
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            setTimeGreeting(); startCountdown(); initializeDashboard();
-        });
+        document.addEventListener("DOMContentLoaded", () => { setTimeGreeting(); startCountdown(); initializeDashboard(); });
 
         async function initializeDashboard() {
             const { data: { session }, error: authError } = await supabaseClient.auth.getSession();
@@ -617,251 +563,264 @@
             const { data: profile } = await supabaseClient.from('profiles').select('*').eq('id', session.user.id).single();
             globalProfileData = profile; 
 
-            // 🚀 Check promo banner preference (Daily Reset logic)
             const todayStr = new Date().toLocaleDateString('en-CA');
             if (localStorage.getItem('vip_promo_hidden_date') === todayStr) {
-                // If they already closed it TODAY, hide it.
-                const banner = document.getElementById('vip-promo-banner');
-                if (banner) banner.style.display = 'none';
-            } else {
-                // It's a brand new day! Clear the memory so it shows up.
-                localStorage.removeItem('vip_promo_hidden_date');
-            }
+                const banner = document.getElementById('vip-promo-banner'); if (banner) banner.style.display = 'none';
+            } else { localStorage.removeItem('vip_promo_hidden_date'); }
 
             const { data: resultsData } = await supabaseClient.from('results').select('id').eq('student_id', session.user.id);
-            const actualTestsTaken = resultsData ? resultsData.length : 0;
-            
-            document.getElementById('tests-count').innerText = actualTestsTaken;
+            document.getElementById('tests-count').innerText = resultsData ? resultsData.length : 0;
 
             if (profile.full_name) {
                 const nameParts = profile.full_name.trim().split(/\s+/);
                 document.getElementById('welcome-name').innerText = nameParts[0];
-                let initials = nameParts[0].charAt(0).toUpperCase();
-                if (nameParts.length > 1) initials += nameParts[1].charAt(0).toUpperCase();
-                document.getElementById('user-avatar').innerText = initials;
+                document.getElementById('user-avatar').innerText = nameParts[0].charAt(0).toUpperCase() + (nameParts.length > 1 ? nameParts[1].charAt(0).toUpperCase() : '');
             }
 
             const statusText = document.getElementById('account-status');
             const actionContainer = document.getElementById('action-buttons-container');
             actionContainer.innerHTML = '';
 
-            const lastPopup = localStorage.getItem('last_upsell_date');
-            let showPopup = (lastPopup !== todayStr);
-
+            let showPopup = (localStorage.getItem('last_upsell_date') !== todayStr);
             const dailyPremiumBtn = document.getElementById('upsell-premium-btn');
             const dailyQbankBtn = document.getElementById('upsell-qbank-btn');
 
             if (profile.has_paid) {
-                statusText.innerText = 'Premium Access';
-                statusText.style.color = '#10b981';
-                
+                statusText.innerText = 'Premium Access'; statusText.style.color = '#10b981';
                 if (profile.has_qbank_access) {
                     showPopup = false; 
-                    actionContainer.innerHTML = `
-                        <button onclick="window.location.href='../exam-room/index.html'" class="btn-action-main btn-green">Start Premium Exam <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></button> 
-                        <button onclick="window.location.href='../question-bank/index.html'" class="btn-action-main btn-purple">📚 Open Question Bank</button>
-                    `;
+                    actionContainer.innerHTML = `<button onclick="window.location.href='../exam-room/index.html'" class="btn-action-main btn-green">Start Premium Exam</button> <button onclick="window.location.href='../question-bank/index.html'" class="btn-action-main btn-purple">📚 Open Question Bank</button>`;
                 } else {
                     if (showPopup) {
                         document.getElementById('daily-upsell-modal').style.display = 'flex';
                         document.getElementById('daily-premium-block').style.display = 'block';
                         dailyPremiumBtn.style.background = '#e2e8f0'; dailyPremiumBtn.style.color = '#64748b'; dailyPremiumBtn.style.boxShadow = 'none'; dailyPremiumBtn.style.cursor = 'not-allowed'; dailyPremiumBtn.innerText = 'Activated'; dailyPremiumBtn.onclick = null;
                         document.getElementById('daily-qbank-block').style.display = 'block';
-                        dailyQbankBtn.style.background = '#8b5cf6'; dailyQbankBtn.style.color = 'white'; dailyQbankBtn.style.cursor = 'pointer'; dailyQbankBtn.innerText = 'Unlock Vault ₦1,050'; dailyQbankBtn.onclick = () => initiateDailyPayment('qbank_access');
+                        dailyQbankBtn.style.background = '#8b5cf6'; dailyQbankBtn.style.color = 'white'; dailyQbankBtn.style.cursor = 'pointer'; dailyQbankBtn.innerText = 'View Unlock Options'; dailyQbankBtn.onclick = () => initiateDailyPayment('qbank_access');
                         localStorage.setItem('last_upsell_date', todayStr);
                     }
-                    actionContainer.innerHTML = `
-                        <button onclick="window.location.href='../exam-room/index.html'" class="btn-action-main btn-green">Start Premium Exam <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></button> 
-                        <button onclick="showQbankModal('${session.user.email}', '${session.user.id}')" class="btn-action-main btn-outline-purple">📚 Unlock Question Bank</button>
-                    `;
+                    actionContainer.innerHTML = `<button onclick="window.location.href='../exam-room/index.html'" class="btn-action-main btn-green">Start Premium Exam</button> <button onclick="showQbankModal('${session.user.email}', '${session.user.id}')" class="btn-action-main btn-outline-purple">📚 Unlock Question Bank</button>`;
                 }
             } else {
                 if (showPopup) {
                     document.getElementById('daily-upsell-modal').style.display = 'flex';
                     document.getElementById('daily-premium-block').style.display = 'block';
-                    dailyPremiumBtn.style.background = '#ea580c'; dailyPremiumBtn.style.color = 'white'; dailyPremiumBtn.style.cursor = 'pointer'; dailyPremiumBtn.innerText = 'Upgrade for ₦1,050'; dailyPremiumBtn.onclick = () => initiateDailyPayment('premium_access');
+                    dailyPremiumBtn.style.background = '#ea580c'; dailyPremiumBtn.style.color = 'white'; dailyPremiumBtn.style.cursor = 'pointer'; dailyPremiumBtn.innerText = 'View Upgrade Options'; dailyPremiumBtn.onclick = () => initiateDailyPayment('premium_access');
                     document.getElementById('daily-qbank-block').style.display = 'block';
                     dailyQbankBtn.style.background = '#e2e8f0'; dailyQbankBtn.style.color = '#64748b'; dailyQbankBtn.style.boxShadow = 'none'; dailyQbankBtn.style.cursor = 'not-allowed'; dailyQbankBtn.innerText = 'Requires Premium First'; dailyQbankBtn.onclick = null;
                     localStorage.setItem('last_upsell_date', todayStr);
                 }
 
-                if (actualTestsTaken >= 1) {
+                if ((resultsData ? resultsData.length : 0) >= 1) {
                     statusText.innerText = 'Free Limit Reached'; statusText.style.color = '#f97316';
-                    actionContainer.innerHTML = `<button onclick="showPremiumModal('${session.user.email}', '${session.user.id}')" class="btn-action-main btn-orange"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.898 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg> Unlock Full Access (₦1,050)</button>`;
+                    actionContainer.innerHTML = `<button onclick="showPremiumModal('${session.user.email}', '${session.user.id}')" class="btn-action-main btn-orange">Unlock Full Access (₦1,050)</button>`;
                 } else {
                     statusText.innerText = `Free Tier (1 Left)`;
-                    actionContainer.innerHTML = `
-                        <button onclick="window.location.href='../exam-room/index.html'" class="btn-action-main btn-blue">Start Free Test <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></button> 
-                        <button onclick="showPremiumModal('${session.user.email}', '${session.user.id}')" class="btn-action-main btn-outline-orange"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.898 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg> Upgrade Now</button>
-                    `;
+                    actionContainer.innerHTML = `<button onclick="window.location.href='../exam-room/index.html'" class="btn-action-main btn-blue">Start Free Test</button> <button onclick="showPremiumModal('${session.user.email}', '${session.user.id}')" class="btn-action-main btn-outline-orange">Upgrade Now</button>`;
                 }
             }
 
-            fetchUserHistory(session.user.id); fetchTodayLeaderboard();
+            fetchUserHistory(session.user.id); 
+            fetchTodayLeaderboard();
         }
 
-        function initiatePayment(email, userId, paymentType) {
-            let handler = PaystackPop.setup({
-                key: 'pk_live_f1ca0bad0d6913267fb525e6c58cd2c447a1ae29', 
-                email: email, 
-                amount: 1050 * 100, 
-                currency: 'NGN',
-                ref: 'BRYT_' + Math.floor((Math.random() * 1000000000) + 1), // REBRANDED PAYMENT REFERENCE
-                metadata: { custom_fields: [{ display_name: "Student ID", variable_name: "student_id", value: userId }, { display_name: "Payment Type", variable_name: "payment_type", value: paymentType }] },
-                callback: function(response) { alert('Payment successful! Verifying account upgrade.'); setTimeout(() => { window.location.reload(); }, 3000); },
-                onClose: function() { alert('Payment process was cancelled.'); }
-            });
-            handler.openIframe();
-        }
+        // 🚀 SECURE PAYMENT TRIGGER
+        async function triggerSecurePayment(email, userId, serviceType, provider) {
+            const loader = document.getElementById('payment-loader-overlay');
+            const loaderText = document.getElementById('payment-loader-text');
+            loader.style.display = 'flex';
+            loaderText.innerText = 'Securing payment session...';
+            try {
+                const { data: initData, error: initError } = await supabaseClient.functions.invoke('cbt-initiate-payment', { body: { service_type: serviceType, provider: provider } });
+                if (initError) { let msg = initError.message; try { const err = await initError.context.json(); if(err?.message) msg = err.message; }catch(e){} throw new Error(msg); }
+                if (!initData || !initData.success) throw new Error(initData?.message || "Failed to initialize transaction.");
+                const { reference, amount, checkout_url } = initData;
 
-        async function fetchUserHistory(userId) {
-            const { data, error } = await supabaseClient.from('results').select('submitted_at, total_score, english_score, gns_score, math_score, physics_score, chemistry_score, economics_score, literature_score, government_score, commerce_score').eq('student_id', userId).order('submitted_at', { ascending: false });
-            
-            const tbody = document.getElementById('history-body');
-            const avgDisplay = document.getElementById('avg-score');
-            const streakDisplay = document.getElementById('streak-count');
-            const trendContainer = document.getElementById('trendChart').parentElement;
-            const radarContainer = document.getElementById('radarChart').parentElement;
-            
-            if (error || !data || data.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: #94a3b8; padding: 2rem;">No exams taken yet. Start practicing!</td></tr>';
-                
-                const emptyStateHtml = `
-                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center; color: #94a3b8; padding: 1rem;">
-                        <svg style="width: 48px; height: 48px; margin-bottom: 10px; color: #cbd5e1;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                        <p style="margin: 0; font-size: 0.95rem; font-weight: 600; color: #475569;">No Analytics Yet</p>
-                        <p style="margin: 5px 0 15px 0; font-size: 0.8rem; line-height: 1.5;">Take your first mock exam to generate this chart.</p>
-                        <button onclick="window.location.href='../exams/index.html'" style="background: #F5F8FC; color: #1D5ED0; border: 1px solid #bfdbfe; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.8rem; transition: background 0.2s; font-family: 'Sora', sans-serif;">Take an Exam</button>
-                    </div>
-                `;
-                trendContainer.innerHTML = emptyStateHtml;
-                radarContainer.innerHTML = emptyStateHtml;
-                
-                return;
-            }
-
-            let streak = 0;
-            const uniqueDates = [...new Set(data.map(r => new Date(r.submitted_at).toLocaleDateString('en-CA')))];
-            const today = new Date(); const yesterday = new Date(today); yesterday.setDate(yesterday.getDate() - 1);
-            const todayStr = today.toLocaleDateString('en-CA'); const yesterdayStr = yesterday.toLocaleDateString('en-CA');
-
-            let checkDate = new Date();
-            if (uniqueDates.includes(todayStr)) {} 
-            else if (uniqueDates.includes(yesterdayStr)) { checkDate = yesterday; } 
-            else { checkDate = null; }
-
-            if (checkDate) {
-                while(true) {
-                    const str = checkDate.toLocaleDateString('en-CA');
-                    if (uniqueDates.includes(str)) { streak++; checkDate.setDate(checkDate.getDate() - 1); } else { break; }
+                if (provider === 'PAYSTACK') {
+                    loader.style.display = 'none'; 
+                    let handler = PaystackPop.setup({
+                        key: 'pk_live_f1ca0bad0d6913267fb525e6c58cd2c447a1ae29', email: email, amount: amount * 100, currency: 'NGN', ref: reference, 
+                        callback: function(response) { 
+                            loader.style.display = 'flex'; loaderText.innerText = 'Payment confirmed! Verifying securely...';
+                            const verifyPayment = async () => {
+                                try {
+                                    const { data: verifyData, error: verifyError } = await supabaseClient.functions.invoke('cbt-verify-payment', { body: { reference: response.reference } });
+                                    if (verifyError || !verifyData || !verifyData.success) throw new Error(verifyData?.message || verifyError?.message || "Verification failed");
+                                    loaderText.innerText = 'Success! Upgrading your account...'; setTimeout(() => { window.location.reload(); }, 1500);
+                                } catch (err) { loader.style.display = 'none'; alert('Critical Verification Error: ' + err.message + '. Support Ref: ' + response.reference); }
+                            };
+                            verifyPayment();
+                        },
+                        onClose: function() { alert('Payment window closed. If you were charged, contact support with reference: ' + reference); }
+                    });
+                    handler.openIframe();
+                } 
+                else if (provider === 'BRYT_PAY') {
+                    loaderText.innerText = 'Connecting to BRYT Pay Wallet...';
+                    if (!checkout_url) throw new Error("Failed to generate secure checkout link. Please try again.");
+                    window.location.href = checkout_url;
                 }
-            }
-            streakDisplay.innerText = streak;
-            if(streak > 0) { document.getElementById('streak-icon').classList.add('flame-active'); }
+            } catch (err) { loader.style.display = 'none'; alert('Payment Initialization Error: ' + err.message); }
+        }
 
-            const latestScore = data[0].total_score;
-            if (latestScore >= 35 && uniqueDates.includes(todayStr) && !sessionStorage.getItem('confetti_fired_today')) {
-                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-                sessionStorage.setItem('confetti_fired_today', 'true');
-            }
-
-            let totalSum = 0; tbody.innerHTML = ''; 
+        // 🚀 FULLY RESTORED & DYNAMIC: Chart Generator
+        function renderCharts(results) {
+            if (!results || results.length === 0) return;
             
-            let chartLabels = [];
-            let chartScores = [];
-            let subjectAggregates = { 'ENG':0, 'GNS':0, 'MTH':0, 'PHY':0, 'CHM':0, 'ECO':0, 'LIT':0, 'GOV':0, 'COM':0 };
-            let subjectCounts = { 'ENG':0, 'GNS':0, 'MTH':0, 'PHY':0, 'CHM':0, 'ECO':0, 'LIT':0, 'GOV':0, 'COM':0 };
-            
-            const chartData = data.slice(0, 10).reverse(); 
-            chartData.forEach(row => {
-                chartLabels.push(new Date(row.submitted_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
-                chartScores.push(row.total_score);
-            });
+            const chronoResults = [...results].reverse();
+            const labels = chronoResults.map(r => new Date(r.submitted_at).toLocaleDateString('en-GB', {day: 'numeric', month: 'short'}));
+            const scores = chronoResults.map(r => r.total_score || 0);
 
-            data.forEach((row, index) => {
-                totalSum += row.total_score;
-                
-                const rawScores = { 'ENG': row.english_score, 'GNS': row.gns_score, 'MTH': row.math_score, 'PHY': row.physics_score, 'CHM': row.chemistry_score, 'ECO': row.economics_score, 'LIT': row.literature_score, 'GOV': row.government_score, 'COM': row.commerce_score };
-                
-                let breakdownArray = [];
-                for (const [subj, score] of Object.entries(rawScores)) {
-                    if (score !== undefined && score !== null && score > 0) {
-                        breakdownArray.push(`${subj}: <strong>${score}</strong>`);
-                        subjectAggregates[subj] += score;
-                        subjectCounts[subj]++;
+            let avg = (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1);
+            document.getElementById('avg-score').innerText = avg;
+
+            if (window.myTrendChart) window.myTrendChart.destroy();
+            const ctxTrend = document.getElementById('trendChart');
+            if (ctxTrend) {
+                window.myTrendChart = new Chart(ctxTrend, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{ label: 'Total Score', data: scores, borderColor: '#1D5ED0', backgroundColor: 'rgba(29, 94, 208, 0.1)', tension: 0.4, fill: true }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            }
+
+            const subjects = ['english', 'math', 'physics', 'chemistry', 'gns', 'economics', 'literature', 'government', 'commerce'];
+            let subjectTotals = {}; let subjectCounts = {};
+            subjects.forEach(sub => { subjectTotals[sub] = 0; subjectCounts[sub] = 0; });
+
+            results.forEach(r => {
+                subjects.forEach(sub => {
+                    const val = r[`${sub}_score`];
+                    if (val !== null && val !== undefined) {
+                        subjectTotals[sub] += Number(val);
+                        subjectCounts[sub]++;
                     }
-                }
-                if (breakdownArray.length === 0) { breakdownArray.push(`ENG: <strong>0</strong>`); } 
+                });
+            });
 
-                if (index < 5) {
-                    const formattedDate = new Date(row.submitted_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-                    const badgeClass = row.total_score >= 25 ? 'badge-green' : 'badge-orange';
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `<td><strong>${formattedDate}</strong></td><td style="color: #64748b; line-height: 1.8;">${breakdownArray.join(' | ')}</td><td style="text-align: right;"><span class="score-badge ${badgeClass}" style="white-space: nowrap;">${row.total_score} / 50</span></td>`;
-                    tbody.appendChild(tr);
+            const radarLabels = []; const radarData = [];
+            subjects.forEach(sub => {
+                if (subjectCounts[sub] > 0) {
+                    radarLabels.push(sub.toUpperCase());
+                    radarData.push((subjectTotals[sub] / subjectCounts[sub]).toFixed(1));
                 }
             });
 
-            const average = (totalSum / data.length).toFixed(1);
-            avgDisplay.innerHTML = `${average} <span style="font-size: 1rem; color: #94a3b8;">/ 50</span>`;
-
-            renderCharts(chartLabels, chartScores, subjectAggregates, subjectCounts);
-        }
-
-        function renderCharts(labels, scores, subjectAggregates, subjectCounts) {
-            const ctxTrend = document.getElementById('trendChart').getContext('2d');
-            new Chart(ctxTrend, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Total Score', data: scores,
-                        borderColor: '#1D5ED0', backgroundColor: 'rgba(29, 94, 208, 0.1)',
-                        borderWidth: 3, pointBackgroundColor: '#ffffff', pointBorderColor: '#1D5ED0', pointRadius: 5, fill: true, tension: 0.3
-                    }]
-                },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, max: 50 } } }
-            });
-
-            const radarLabels = [];
-            const radarData = [];
-            for (const [subj, total] of Object.entries(subjectAggregates)) {
-                if (subjectCounts[subj] > 0) {
-                    radarLabels.push(subj);
-                    radarData.push((total / subjectCounts[subj]).toFixed(1)); 
-                }
+            if (window.myRadarChart) window.myRadarChart.destroy();
+            const ctxRadar = document.getElementById('radarChart');
+            if (ctxRadar && radarLabels.length > 0) {
+                window.myRadarChart = new Chart(ctxRadar, {
+                    type: 'radar',
+                    data: {
+                        labels: radarLabels,
+                        datasets: [{ label: 'Average Subject Score', data: radarData, borderColor: '#8b5cf6', backgroundColor: 'rgba(139, 92, 246, 0.2)' }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
             }
-
-            const ctxRadar = document.getElementById('radarChart').getContext('2d');
-            new Chart(ctxRadar, {
-                type: 'radar',
-                data: {
-                    labels: radarLabels,
-                    datasets: [{
-                        label: 'Average Score', data: radarData,
-                        backgroundColor: 'rgba(139, 92, 246, 0.2)', borderColor: '#8b5cf6',
-                        pointBackgroundColor: '#8b5cf6', borderWidth: 2
-                    }]
-                },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { r: { beginAtZero: true, suggestedMax: 20 } } }
-            });
         }
 
-        async function fetchTodayLeaderboard() {
-            const startOfDay = new Date(); startOfDay.setHours(0, 0, 0, 0);
-            const endOfDay = new Date(); endOfDay.setHours(23, 59, 59, 999);
-            const { data, error } = await supabaseClient.from('results').select(`total_score, profiles(full_name, course_applied)`).gte('submitted_at', startOfDay.toISOString()).lte('submitted_at', endOfDay.toISOString()).order('total_score', { ascending: false }).limit(10); 
-            const tbody = document.getElementById('today-leaderboard-body');
-            if (error || !data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #94a3b8; padding: 2rem;">No exams taken today.</td></tr>'; return; }
-            tbody.innerHTML = ''; 
-            data.forEach((row, i) => {
-                let rankHtml = `<span style="color:#64748b;font-weight:700;">#${i+1}</span>`;
-                if(i===0) rankHtml = `<span style="font-size:1.4rem;" title="1st Place">🥇</span>`;
-                if(i===1) rankHtml = `<span style="font-size:1.4rem;" title="2nd Place">🥈</span>`;
-                if(i===2) rankHtml = `<span style="font-size:1.4rem;" title="3rd Place">🥉</span>`;
+        // 🚀 DYNAMIC RECENT HISTORY 
+        async function fetchUserHistory(userId) {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('results')
+                    .select('*')
+                    .eq('student_id', userId)
+                    .order('submitted_at', { ascending: false })
+                    .limit(10);
 
-                tbody.innerHTML += `<tr><td style="text-align:center;">${rankHtml}</td><td><span style="font-weight:600;color:#1e293b;">${row.profiles?.full_name||'Unknown'}</span></td><td style="font-size:0.85rem;color:#64748b;">${row.profiles?.course_applied||'General'}</td><td style="text-align:right;"><span class="score-badge badge-blue">${row.total_score}</span></td></tr>`;
-            });
+                if (error) { console.error("History Error:", error); return; }
+
+                renderCharts(data);
+
+                const tbody = document.getElementById('history-body');
+                const recent5 = data ? data.slice(0, 5) : [];
+                
+                if (recent5.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: #94a3b8; padding: 2rem;">No exams taken yet.</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = recent5.map(row => {
+                    const date = row.submitted_at ? new Date(row.submitted_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : 'Recent';
+                    
+                    let subjectsTaken = [];
+                    if (row.english_score !== null && row.english_score !== undefined) subjectsTaken.push(`ENG: ${row.english_score}`);
+                    if (row.math_score !== null && row.math_score !== undefined) subjectsTaken.push(`MTH: ${row.math_score}`);
+                    if (row.physics_score !== null && row.physics_score !== undefined) subjectsTaken.push(`PHY: ${row.physics_score}`);
+                    if (row.chemistry_score !== null && row.chemistry_score !== undefined) subjectsTaken.push(`CHM: ${row.chemistry_score}`);
+                    if (row.government_score !== null && row.government_score !== undefined) subjectsTaken.push(`GOV: ${row.government_score}`);
+                    if (row.literature_score !== null && row.literature_score !== undefined) subjectsTaken.push(`LIT: ${row.literature_score}`);
+                    if (row.commerce_score !== null && row.commerce_score !== undefined) subjectsTaken.push(`COM: ${row.commerce_score}`);
+                    if (row.economics_score !== null && row.economics_score !== undefined) subjectsTaken.push(`ECO: ${row.economics_score}`);
+                    if (row.gns_score !== null && row.gns_score !== undefined) subjectsTaken.push(`GNS: ${row.gns_score}`);
+                    
+                    let breakdownText = subjectsTaken.length > 0 ? subjectsTaken.join(' | ') : 'Mock Exam Completed';
+
+                    return `
+                        <tr>
+                            <td style="font-weight: 600; color: #334155;">${date}</td>
+                            <td style="color: #64748b; font-size: 0.8rem;">${breakdownText}</td>
+                            <td style="text-align: right; font-weight: 800; color: #1D5ED0;">${row.total_score || 0}</td>
+                        </tr>
+                    `;
+                }).join('');
+            } catch (err) { console.error("History script error:", err); }
+        }
+
+        // 🚀 LEADERBOARD FETCHER WITH EMOJIS & COURSE FIX
+        async function fetchTodayLeaderboard() {
+            try {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                const { data: results, error: resError } = await supabaseClient
+                    .from('results')
+                    .select('*')
+                    .gte('submitted_at', today.toISOString())
+                    .order('total_score', { ascending: false })
+                    .limit(10);
+
+                if (resError) { console.error("Leaderboard Error:", resError); return; }
+
+                const tbody = document.getElementById('today-leaderboard-body');
+                if (!results || results.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #94a3b8; padding: 2rem;">No results recorded today yet.</td></tr>';
+                    return;
+                }
+
+                // Fetch Profile info (now correctly using course_applied)
+                const studentIds = [...new Set(results.map(r => r.student_id).filter(Boolean))];
+                let profilesMap = {};
+                if (studentIds.length > 0) {
+                    const { data: profiles } = await supabaseClient.from('profiles').select('id, full_name, course_applied').in('id', studentIds);
+                    if (profiles) profiles.forEach(p => { profilesMap[p.id] = p; });
+                }
+
+                tbody.innerHTML = results.map((row, index) => {
+                    // Assign Emojis for 1st, 2nd, 3rd, and standard numbers for the rest
+                    let rankDisplay = '';
+                    if (index === 0) rankDisplay = '<span style="font-size: 1.4rem;" title="1st Place">🥇</span>';
+                    else if (index === 1) rankDisplay = '<span style="font-size: 1.4rem;" title="2nd Place">🥈</span>';
+                    else if (index === 2) rankDisplay = '<span style="font-size: 1.4rem;" title="3rd Place">🥉</span>';
+                    else rankDisplay = `<span style="color: #64748b; font-weight: 800; font-size: 1rem;">${index + 1}</span>`;
+                    
+                    const profile = profilesMap[row.student_id] || {};
+                    
+                    return `
+                        <tr>
+                            <td style="text-align: center; vertical-align: middle;">${rankDisplay}</td>
+                            <td style="font-weight: 700; color: #0B1220; vertical-align: middle;">${profile.full_name || 'Aspirant'}</td>
+                            <td style="color: #64748b; font-size: 0.8rem; vertical-align: middle;">${profile.course_applied || 'General CBT'}</td>
+                            <td style="text-align: right; font-weight: 800; color: #10b981; vertical-align: middle;">${row.total_score || 0}</td>
+                        </tr>
+                    `;
+                }).join('');
+            } catch (err) { console.error("Leaderboard script error:", err); }
         }
 
         window.logout = async function() { await supabaseClient.auth.signOut(); localStorage.removeItem('cbt_session_token'); window.location.href = '../index.html'; }
