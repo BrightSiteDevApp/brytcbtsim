@@ -135,3 +135,18 @@ if ('serviceWorker' in navigator) {
       });
   });
 }
+
+// Listen for the browser determining the PWA is ready to install
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Prevent the default browser mini-infobar from appearing
+    e.preventDefault();
+    
+    // Wait 3 seconds so the user can see your landing page/dashboard first
+    setTimeout(() => {
+        const pwaInstall = document.getElementById('pwa-install-widget');
+        if (pwaInstall) {
+            // Trigger the PWABuilder custom dialog
+            pwaInstall.showDialog(true);
+        }
+    }, 3000);
+});
