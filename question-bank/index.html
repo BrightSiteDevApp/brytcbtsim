@@ -17,12 +17,12 @@
     <link rel="stylesheet" href="../static/main.css">
 
     <!-- PWA Manifest & Mobile Capability -->
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#071A3A">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="BRYT CBT">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#071A3A">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BRYT CBT">
     
     <script>
         window.MathJax = {
@@ -33,49 +33,150 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <style>
+        /* 🚀 STRICT BRAND SYSTEM & BOX SIZING */
+        :root {
+            --primary-blue: #1D5ED0;
+            --accent-blue: #159FE3;
+            --deep-navy: #071A3A;
+            --near-black: #0B1220;
+            --pure-white: #FFFFFF;
+            --light-bg: #F5F8FC;
+            --text-gray: #64748B;
+            --border-color: #E2E8F0;
+            --gradient-primary: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
+            --sidebar-width: 260px;
+        }
+
         html, body { max-width: 100vw; overflow-x: hidden; margin: 0; padding: 0; }
         *, *::before, *::after { box-sizing: border-box; }
 
         /* 🚀 HIGH-END CLEAN BACKGROUND & ANTI-COPY */
         body { 
-            background-color: #F5F8FC;
-            color: #0B1220; font-family: 'Sora', sans-serif; 
+            background-color: var(--light-bg);
+            color: var(--near-black); font-family: 'Sora', sans-serif; 
             min-height: 100vh; position: relative;
-            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
             background-size: 30px 30px;
+            -webkit-font-smoothing: antialiased;
             
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
         }
-        
+
+        /* 🚀 DESKTOP SIDEBAR */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--gradient-primary);
+            position: fixed;
+            top: 0; left: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--pure-white);
+            z-index: 1000;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .sidebar-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .sidebar-header img {
+            width: 36px; height: 36px;
+            border-radius: 8px;
+            background: var(--pure-white);
+            padding: 2px;
+        }
+        .sidebar-header span {
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: -0.5px;
+        }
+        .sidebar-nav {
+            list-style: none;
+            padding: 1.5rem 1rem;
+            margin: 0;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            padding: 0.9rem 1rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .sidebar-nav a svg { width: 20px; margin-right: 12px; }
+        .sidebar-nav li.active a, .sidebar-nav a:hover {
+            background: var(--primary-blue);
+            color: var(--pure-white);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .sidebar-footer { padding: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        .logout-btn-sidebar {
+            width: 100%;
+            background: transparent;
+            color: rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.8rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-family: 'Sora', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .logout-btn-sidebar:hover { background: rgba(239, 68, 68, 0.1); color: #EF4444; border-color: #EF4444; }
+
+        .sidebar-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(11, 18, 32, 0.6); backdrop-filter: blur(4px);
+            z-index: 999; display: none; opacity: 0; transition: opacity 0.3s;
+        }
+
+        /* 🚀 VAULT HEADER */
         .nav-header {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 1.2rem 5%; background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(15px); border-bottom: 1px solid #e2e8f0;
-            position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            padding: 1rem 2rem; background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color);
+            position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(7, 26, 58, 0.02);
+            margin-left: var(--sidebar-width);
         }
-
-        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.1rem; color: #071A3A; }
-        .nav-logo img { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 4px 10px rgba(29, 94, 208, 0.2); }
+        .mobile-menu-btn {
+            display: none; background: none; border: none; color: var(--near-black); cursor: pointer; padding: 0;
+        }
+        .mobile-menu-btn svg { width: 28px; height: 28px; }
+        .mobile-header-brand { display: none; }
 
         .btn-back {
-            background: #0B1220; color: white; border: none;
+            background: var(--pure-white); color: var(--text-gray); border: 1px solid var(--border-color);
             padding: 0.6rem 1.2rem; border-radius: 10px; font-weight: 700; cursor: pointer;
             transition: all 0.2s; font-family: 'Sora', sans-serif; font-size: 0.9rem;
-            box-shadow: 0 4px 10px rgba(11, 18, 32, 0.2); display: flex; align-items: center; gap: 8px;
+            box-shadow: 0 2px 4px rgba(7, 26, 58, 0.02); display: flex; align-items: center; gap: 8px;
         }
-        .btn-back:hover { background: #071A3A; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(7, 26, 58, 0.3); }
+        .btn-back:hover { background: var(--light-bg); color: var(--near-black); transform: translateY(-1px); }
 
-        .vault-container { max-width: 900px; margin: 3rem auto; padding: 0 1.5rem; display: flex; flex-direction: column; gap: 2rem; position: relative; z-index: 1; }
+        .vault-container { 
+            max-width: 900px; margin: 2rem auto; padding: 0 2rem; 
+            display: flex; flex-direction: column; gap: 2rem; position: relative; z-index: 1; 
+            margin-left: calc(var(--sidebar-width) + auto); /* Center relative to sidebar */
+        }
 
-        /* 🚀 MILLION-DOLLAR WELCOME BANNER */
+        /* 🚀 PREMIUM WELCOME BANNER */
         .welcome-banner {
-            background: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
-            border-radius: 24px; padding: 2.5rem 3rem;
-            position: relative; overflow: hidden; box-shadow: 0 20px 40px -15px rgba(7, 26, 58, 0.4);
-            color: white; animation: fadeSlideUp 0.4s ease forwards;
+            background: var(--gradient-primary);
+            border-radius: 20px; padding: 2.5rem 3rem;
+            position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(7, 26, 58, 0.15);
+            color: var(--pure-white); animation: fadeSlideUp 0.4s ease forwards;
         }
         .welcome-banner::after {
             content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px;
@@ -83,170 +184,199 @@
             pointer-events: none;
         }
         .welcome-text { position: relative; z-index: 2; }
-        .welcome-text h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; margin: 0 0 10px 0; display: flex; align-items: center; gap: 12px; }
-        .welcome-text h1 svg { width: 32px; height: 32px; color: #159FE3; }
-        .welcome-text p { color: #E0E7FF; font-size: 1.05rem; margin: 0; font-weight: 500; line-height: 1.6; max-width: 90%;}
+        .welcome-text h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; margin: 0 0 10px 0; display: flex; align-items: center; gap: 12px; }
+        .welcome-text h1 svg { width: 32px; height: 32px; color: var(--accent-blue); }
+        .welcome-text p { color: #E2E8F0; font-size: 1rem; margin: 0; font-weight: 400; line-height: 1.6; max-width: 90%;}
 
         /* 🚀 CONTROL PANEL */
         .control-panel {
-            background: white; padding: 2rem 2.5rem; border-radius: 24px; border: 1px solid #e2e8f0; 
-            box-shadow: 0 15px 35px -10px rgba(0,0,0,0.05); display: flex; gap: 20px; align-items: flex-end; flex-wrap: wrap;
+            background: var(--pure-white); padding: 1.5rem 2rem; border-radius: 20px; border: 1px solid var(--border-color); 
+            box-shadow: 0 4px 15px rgba(7, 26, 58, 0.02); display: flex; gap: 16px; align-items: flex-end; flex-wrap: wrap;
             animation: fadeSlideUp 0.5s ease forwards;
         }
         .input-group { flex-grow: 1; min-width: 250px; }
-        .input-group label { display: block; font-size: 0.85rem; font-weight: 700; color: #64748b; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;}
+        .input-group label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-gray); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;}
         
         /* Premium Select Dropdown */
         .input-group select { 
-            width: 100%; height: 55px; padding: 0 1.2rem; border-radius: 12px; border: 2px solid #e2e8f0; 
-            font-family: 'Sora', sans-serif; font-size: 1.05rem; outline: none; transition: all 0.2s; 
-            color: #0B1220; font-weight: 600; box-sizing: border-box; cursor: pointer; background-color: #F5F8FC;
+            width: 100%; height: 50px; padding: 0 1.2rem; border-radius: 12px; border: 1px solid var(--border-color); 
+            font-family: 'Sora', sans-serif; font-size: 0.95rem; outline: none; transition: all 0.2s; 
+            color: var(--near-black); font-weight: 600; box-sizing: border-box; cursor: pointer; background-color: var(--light-bg);
             appearance: none; -webkit-appearance: none; -moz-appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em;
         }
-        .input-group select:focus { border-color: #1D5ED0; background-color: white; box-shadow: 0 0 0 4px rgba(29, 94, 208, 0.1); }
+        .input-group select:focus { border-color: var(--primary-blue); background-color: var(--pure-white); box-shadow: 0 0 0 4px rgba(29, 94, 208, 0.1); }
         
         .btn-load {
-            background: #1D5ED0; color: white; padding: 0 2rem; border-radius: 12px; font-weight: 700; 
-            border: none; cursor: pointer; font-size: 1.05rem; transition: all 0.2s; box-shadow: 0 10px 20px -5px rgba(29, 94, 208, 0.4);
+            background: var(--primary-blue); color: var(--pure-white); padding: 0 2rem; border-radius: 12px; font-weight: 600; 
+            border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.2s; box-shadow: 0 4px 15px rgba(29, 94, 208, 0.2);
             display: inline-flex; align-items: center; justify-content: center; gap: 8px; white-space: nowrap; 
-            height: 55px; flex-shrink: 0; box-sizing: border-box; font-family: 'Sora', sans-serif;
+            height: 50px; flex-shrink: 0; box-sizing: border-box; font-family: 'Sora', sans-serif;
         }
-        .btn-load svg { width: 20px; height: 20px; }
-        .btn-load:hover { transform: translateY(-3px); box-shadow: 0 15px 25px -5px rgba(29, 94, 208, 0.5); background: #159FE3;}
-        .btn-load:disabled { background: #cbd5e1; cursor: not-allowed; transform: none; box-shadow: none;}
+        .btn-load svg { width: 18px; height: 18px; }
+        .btn-load:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(29, 94, 208, 0.3); background: var(--deep-navy);}
+        .btn-load:disabled { background: var(--text-gray); cursor: not-allowed; transform: none; box-shadow: none;}
 
         /* 🚀 PREMIUM QUESTION CARDS */
         .question-card {
-            background: white; padding: 2.5rem 3rem; border-radius: 24px; border: 1px solid #e2e8f0; 
-            box-shadow: 0 15px 35px -10px rgba(0,0,0,0.05); margin-bottom: 2rem;
+            background: var(--pure-white); padding: 2.5rem; border-radius: 20px; border: 1px solid var(--border-color); 
+            box-shadow: 0 4px 15px rgba(7, 26, 58, 0.02); margin-bottom: 2rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease; opacity: 0; transform: translateY(20px);
         }
-        .question-card:hover { box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08); border-color: #cbd5e1; }
+        .question-card:hover { box-shadow: 0 10px 25px rgba(7, 26, 58, 0.05); border-color: #CBD5E1; }
 
         .q-meta { 
-            color: #64748b; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;
+            color: var(--text-gray); font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;
             margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; 
-            border-bottom: 2px solid #f1f5f9; padding-bottom: 1rem; 
+            border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; 
         }
         
-        .q-subject-badge { display: flex; align-items: center; gap: 8px; color: #1D5ED0; }
+        .q-subject-badge { display: flex; align-items: center; gap: 8px; color: var(--primary-blue); }
         .q-subject-badge svg { width: 18px; height: 18px; }
 
-        .q-text { font-size: 1.2rem; line-height: 1.7; font-weight: 500; margin-bottom: 1.5rem; color: #0B1220; }
+        .q-text { font-size: 1.15rem; line-height: 1.7; font-weight: 500; margin-bottom: 1.5rem; color: var(--near-black); }
 
         .report-bar {
             display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
-            background: #F5F8FC; border: 1px solid #e2e8f0; padding: 12px 15px; border-radius: 12px; margin-bottom: 2rem;
+            background: var(--light-bg); border: 1px solid var(--border-color); padding: 12px 16px; border-radius: 12px; margin-bottom: 2rem;
         }
-        .report-id { display: flex; align-items: center; gap: 8px; color: #64748b; font-size: 0.85rem; font-weight: 700; }
-        .report-id svg { width: 16px; height: 16px; color: #94a3b8; }
+        .report-id { display: flex; align-items: center; gap: 8px; color: var(--text-gray); font-size: 0.8rem; font-weight: 700; }
+        .report-id svg { width: 16px; height: 16px; color: #94A3B8; }
         
         .wa-report-btn {
-            display: inline-flex; align-items: center; gap: 6px; background: white; color: #16a34a; 
-            border: 1px solid #bbf7d0; padding: 6px 12px; border-radius: 8px; text-decoration: none; 
+            display: inline-flex; align-items: center; gap: 6px; background: var(--pure-white); color: #10B981; 
+            border: 1px solid #A7F3D0; padding: 6px 12px; border-radius: 8px; text-decoration: none; 
             font-size: 0.8rem; font-weight: 700; transition: all 0.2s; font-family: 'Sora', sans-serif;
         }
-        .wa-report-btn:hover { background: #dcfce7; transform: translateY(-1px); }
+        .wa-report-btn:hover { background: #ECFDF5; border-color: #6EE7B7; }
         .wa-report-btn svg { width: 14px; height: 14px; }
 
         .option-box { 
-            display: flex; align-items: center; padding: 1.2rem 1.5rem; background: #F5F8FC; 
-            border: 2px solid #e2e8f0; border-radius: 16px; margin-bottom: 1rem; transition: all 0.2s;
+            display: flex; align-items: center; padding: 1rem 1.25rem; background: var(--light-bg); 
+            border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 12px; transition: all 0.2s;
         }
         .opt-letter { 
-            width: 36px; height: 36px; border-radius: 50%; background: #e2e8f0; flex-shrink: 0; 
-            display: flex; justify-content: center; align-items: center; font-weight: 800; 
-            margin-right: 15px; color: #475569; transition: all 0.2s;
+            width: 32px; height: 32px; border-radius: 8px; background: var(--pure-white); flex-shrink: 0; 
+            display: flex; justify-content: center; align-items: center; font-weight: 700; 
+            margin-right: 12px; color: var(--text-gray); transition: all 0.2s; border: 1px solid var(--border-color);
         }
-        .opt-text { font-size: 1.05rem; color: #334155; font-weight: 500;}
+        .opt-text { font-size: 0.95rem; color: var(--near-black); font-weight: 500;}
 
         /* REVEAL ANSWER LOGIC */
         .btn-reveal {
-            background: white; color: #1D5ED0; border: 2px solid #bfdbfe; padding: 0.9rem 1.8rem; 
-            border-radius: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; 
-            display: inline-flex; align-items: center; gap: 8px; font-size: 1rem; margin-top: 1rem;
-            box-shadow: 0 4px 10px rgba(29, 94, 208, 0.1); font-family: 'Sora', sans-serif;
+            background: var(--pure-white); color: var(--primary-blue); border: 1px solid var(--primary-blue); padding: 0.8rem 1.5rem; 
+            border-radius: 10px; font-weight: 600; cursor: pointer; transition: all 0.2s; 
+            display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; margin-top: 1rem;
+            box-shadow: 0 2px 5px rgba(29, 94, 208, 0.05); font-family: 'Sora', sans-serif;
         }
-        .btn-reveal svg { width: 20px; height: 20px; }
-        .btn-reveal:hover { background: #F5F8FC; border-color: #1D5ED0; transform: translateY(-2px); box-shadow: 0 8px 15px rgba(29, 94, 208, 0.2); }
+        .btn-reveal svg { width: 18px; height: 18px; }
+        .btn-reveal:hover { background: var(--light-bg); transform: translateY(-1px); }
         
         .answer-block {
-            display: none; background: #ecfdf5; border: 2px solid #10b981; padding: 1.5rem; 
-            border-radius: 16px; margin-top: 1.5rem; animation: slideDown 0.3s ease; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.1);
+            display: none; background: #ECFDF5; border: 1px solid #10B981; padding: 1.25rem; 
+            border-radius: 12px; margin-top: 1.25rem; animation: slideDown 0.3s ease;
         }
         .answer-block .correct-title { 
-            color: #10b981; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; 
+            color: #059669; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; 
             letter-spacing: 1px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
         }
         .answer-block .correct-title svg { width: 16px; height: 16px; }
-        .answer-block .correct-val { color: #064e3b; font-size: 1.15rem; font-weight: 600; display: block;}
+        .answer-block .correct-val { color: var(--near-black); font-size: 1rem; font-weight: 600; display: block;}
 
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeSlideUp { to { opacity: 1; transform: translateY(0); } }
 
         /* BOTTOM CTA SECTION */
         #bottom-controls { display: none; text-align: center; margin-bottom: 3rem; }
         
         .exam-cta {
-            background: linear-gradient(135deg, #0B1220 0%, #071A3A 100%);
-            padding: 3.5rem 2rem; border-radius: 24px; text-align: center; color: white;
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3); margin-top: 2.5rem; position: relative; overflow: hidden;
+            background: var(--gradient-primary);
+            padding: 3rem 2rem; border-radius: 20px; text-align: center; color: var(--pure-white);
+            box-shadow: 0 10px 25px rgba(29, 94, 208, 0.2); margin-top: 2.5rem; position: relative; overflow: hidden;
         }
         .exam-cta::after {
             content: ''; position: absolute; bottom: -50%; left: -10%; width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(29, 94, 208, 0.2) 0%, transparent 70%); border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); border-radius: 50%;
         }
-        .exam-cta h3 { font-size: 1.8rem; font-weight: 800; margin: 0 0 10px 0; position: relative; z-index: 2;}
-        .exam-cta p { color: #94a3b8; font-size: 1.05rem; margin: 0 auto 25px auto; line-height: 1.6; max-width: 500px; font-weight: 500; position: relative; z-index: 2;}
+        .exam-cta h3 { font-size: 1.6rem; font-weight: 800; margin: 0 0 10px 0; position: relative; z-index: 2;}
+        .exam-cta p { color: #E2E8F0; font-size: 0.95rem; margin: 0 auto 20px auto; line-height: 1.6; max-width: 500px; font-weight: 400; position: relative; z-index: 2;}
         
         .btn-cta {
-            background: #1D5ED0; color: white; padding: 1.2rem 2.5rem; border-radius: 12px;
-            font-weight: 700; font-size: 1.1rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-            transition: all 0.2s; box-shadow: 0 10px 20px rgba(29, 94, 208, 0.3); position: relative; z-index: 2; font-family: 'Sora', sans-serif;
+            background: var(--pure-white); color: var(--deep-navy); padding: 1rem 2rem; border-radius: 10px;
+            font-weight: 700; font-size: 1rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+            transition: all 0.2s; position: relative; z-index: 2; font-family: 'Sora', sans-serif;
         }
         .btn-cta svg { width: 20px; height: 20px; }
-        .btn-cta:hover { transform: translateY(-3px); background: #159FE3; box-shadow: 0 15px 30px rgba(29, 94, 208, 0.4);}
+        .btn-cta:hover { transform: translateY(-2px); background: var(--light-bg); }
 
-        @media (max-width: 650px) {
-            .nav-header { padding: 1rem; }
-            .vault-container { padding: 1.5rem 1rem; margin: 1.5rem auto;}
-            .welcome-banner { padding: 2rem 1.5rem; border-radius: 20px; }
+        /* 🚀 MOBILE RESPONSIVENESS (Zoom Fixes & Layouts) */
+        @media (max-width: 1024px) {
+            html, body { font-size: 13px !important; }
+            
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.active { transform: translateX(0); }
+            .sidebar-overlay.active { display: block; opacity: 1; }
+            
+            .nav-header { 
+                margin-left: 0; padding: 0 1rem; height: 60px; justify-content: space-between; position: relative;
+            }
+            .mobile-menu-btn { display: block; }
+            .mobile-menu-btn svg { width: 24px; height: 24px; }
+            
+            /* Center Logo on mobile */
+            .mobile-header-brand { 
+                display: flex; position: absolute; left: 50%; transform: translateX(-50%);
+            }
+            .mobile-header-brand img { width: 32px; height: 32px; border-radius: 8px; }
+
+            .vault-container { 
+                margin-left: 0; padding: 1.5rem 1rem; margin-top: 0; max-width: 100vw;
+            }
+            
+            .welcome-banner { padding: 2rem 1.5rem; border-radius: 16px; }
             .welcome-text h1 { font-size: 1.6rem; }
-            .control-panel { padding: 1.5rem; flex-direction: column; align-items: stretch; gap: 15px; border-radius: 20px;}
+            .welcome-text p { font-size: 0.95rem; max-width: 100%;}
+            
+            .control-panel { padding: 1.25rem; flex-direction: column; align-items: stretch; gap: 12px; border-radius: 16px;}
             .btn-load { width: 100%; justify-content: center; }
             
-            .question-card { padding: 1.5rem; border-radius: 20px; }
-            .q-meta { flex-direction: column; align-items: flex-start; gap: 12px; padding-bottom: 0.8rem;}
-            .q-text { font-size: 1.1rem; margin-bottom: 1.2rem;}
-            .option-box { padding: 1rem; border-radius: 12px;}
-            .opt-letter { width: 30px; height: 30px; font-size: 0.9rem; margin-right: 12px;}
-            .opt-text { font-size: 0.95rem; }
+            .question-card { padding: 1.5rem; border-radius: 16px; margin-bottom: 1.25rem;}
+            .q-meta { flex-direction: column; align-items: flex-start; gap: 10px; padding-bottom: 0.8rem;}
+            .q-text { font-size: 1.05rem; margin-bottom: 1.2rem;}
             
-            .exam-cta { padding: 2.5rem 1.5rem; border-radius: 20px; }
-            .exam-cta h3 { font-size: 1.5rem; }
+            .report-bar { flex-direction: column; align-items: flex-start; padding: 12px; gap: 12px;}
+            .wa-report-btn { width: 100%; justify-content: center; }
+
+            .option-box { padding: 0.85rem 1rem; border-radius: 10px;}
+            .opt-letter { width: 30px; height: 30px; font-size: 0.85rem; margin-right: 12px;}
+            .opt-text { font-size: 0.9rem; }
+            
+            .btn-reveal { width: 100%; justify-content: center; }
+
+            .exam-cta { padding: 2rem 1.5rem; border-radius: 16px; }
+            .exam-cta h3 { font-size: 1.4rem; }
             .btn-cta { width: 100%; justify-content: center; box-sizing: border-box; }
+            .btn-back { display: none; } /* Hide back button on mobile header to save space */
         }
     </style>
 </head>
 <body>
 
-    <!-- 🚀 UPDATED SIDEBAR / NAV OVERLAY CODE WITH BRYT LOGO -->
+    <!-- 🚀 OVERLAY & SIDEBAR -->
     <div class="sidebar-overlay" id="mobile-overlay" onclick="toggleSidebar()"></div>
 
     <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header" style="display: flex; align-items: center; gap: 12px; padding: 1rem 0;">
-            <!-- 🚀 REPLACED SVG WITH BRYT PNG -->
-            <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo" style="width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(29, 94, 208, 0.3);">
-            <span style="font-weight: 800; font-size: 1.15rem; color: #0B1220; letter-spacing: -0.5px; white-space: nowrap;">BRYT CBT SIM</span>
+        <div class="sidebar-header">
+            <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo">
+            <span>BRYT CBT SIM</span>
         </div>
         
         <ul class="sidebar-nav">
-            <li><a href="../dashboard/"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg> Dashboard</a></li>
-            <li><a href="../exams/"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg> Exams</a></li>
-            <li class="active"><a href="#"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg> Question Bank</a></li>
-            <li><a href="../profile/"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg> Profile</a></li>
+            <li><a href="../dashboard/index.html"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg> Dashboard</a></li>
+            <li><a href="../exams/index.html"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg> Exams</a></li>
+            <li class="active"><a href="#"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg> Question Bank</a></li>
+            <li><a href="../profile/index.html"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg> Profile</a></li>
         </ul>
 
         <div class="sidebar-footer">
@@ -255,11 +385,14 @@
     </aside>
 
     <nav class="nav-header">
-        <div class="nav-logo">
-            <!-- 🚀 REPLACED SVG WITH BRYT PNG -->
-            <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo">
-            BRYT CBT SIM
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+        </button>
+        
+        <div class="mobile-header-brand">
+            <img src="../static/img/brytcbtsim-logo.png" alt="Logo">
         </div>
+
         <button onclick="window.location.href='../dashboard/index.html'" class="btn-back">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:16px; height:16px;"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
             Exit Vault
@@ -292,8 +425,8 @@
             </button>
         </div>
 
-        <div id="loading-state" style="text-align: center; color: #64748b; font-size: 1.1rem; font-weight: 600; padding: 3rem 0; display: none;">
-            <svg class="animate-spin" style="width: 40px; height: 40px; color: #1D5ED0; margin: 0 auto 15px auto; display: block;" fill="none" viewBox="0 0 24 24">
+        <div id="loading-state" style="text-align: center; color: var(--text-gray); font-size: 1rem; font-weight: 600; padding: 3rem 0; display: none;">
+            <svg class="animate-spin" style="width: 36px; height: 36px; color: var(--primary-blue); margin: 0 auto 12px auto; display: block;" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
@@ -322,6 +455,7 @@
 
     </div>
 
+    <!-- 🚀 SCRIPTS (UNTOUCHED FUNCTIONALITY) -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="../static/app.js"></script>
 
@@ -354,7 +488,7 @@
             const mathCommands = ['\\frac', '\\theta', '\\pi', '\\sqrt', '\\alpha', '\\beta', '\\int', '\\sum', '\\sin', '\\cos', '\\tan', '^'];
             const hasMath = mathCommands.some(cmd => c.includes(cmd));
             const hasDelimiters = c.includes('$') || c.includes('\\(') || c.includes('\\[');
-            if (hasMath && !hasDelimiters) c = '\\( ' + c + ' \\)';
+            if (hasMath && !hasDelimiters) c = '\\(' + c + '\\)';
             return c;
         }
 
@@ -427,7 +561,7 @@
                 if (error) throw error;
 
                 if (!data || data.length === 0) {
-                    loading.innerHTML = `<span style="color:#ef4444;">No questions found for ${subject.toUpperCase()} in the database.</span>`;
+                    loading.innerHTML = `<span style="color:#EF4444;">No questions found for ${subject.toUpperCase()} in the database.</span>`;
                     return;
                 }
 
@@ -511,7 +645,7 @@
 
             } catch (err) {
                 console.error("Vault Error:", err);
-                loading.innerHTML = `<span style="color: #dc2626;">Error querying database: ${err.message}</span>`;
+                loading.innerHTML = `<span style="color: #DC2626;">Error querying database: ${err.message}</span>`;
             } finally {
                 topBtn.disabled = false;
                 bottomBtn.disabled = false;

@@ -13,143 +13,194 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/main.css">
+    
     <!-- PWA Manifest & Mobile Capability -->
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#071A3A">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="BRYT CBT">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#071A3A">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BRYT CBT">
 
     <style>
-        body { background-color: #F5F8FC; color: #0B1220; font-family: 'Sora', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        /* 🚀 STRICT BRAND SYSTEM & BOX SIZING */
+        :root {
+            --primary-blue: #1D5ED0;
+            --accent-blue: #159FE3;
+            --deep-navy: #071A3A;
+            --near-black: #0B1220;
+            --pure-white: #FFFFFF;
+            --light-bg: #F5F8FC;
+            --text-gray: #64748B;
+            --border-color: #E2E8F0;
+            --gradient-primary: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
+        }
+
+        html, body { max-width: 100vw !important; overflow-x: hidden !important; margin: 0; padding: 0; }
+        *, *::before, *::after { box-sizing: border-box !important; }
+
+        body { 
+            background-color: var(--light-bg);
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--near-black); font-family: 'Sora', sans-serif; 
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
         
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: var(--light-bg); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
         #auth-loader {
-            position: fixed; inset: 0; background: #071A3A; z-index: 9999;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; color: white;
+            position: fixed; inset: 0; background: var(--pure-white); z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--near-black);
         }
 
         #admin-dashboard { display: none; }
         
+        /* 🚀 PREMIUM ADMIN NAV */
         .admin-nav {
-            height: 70px; background: #071A3A; display: flex; justify-content: space-between; align-items: center;
-            padding: 0 5%; border-bottom: 1px solid #0B1220; position: sticky; top: 0; z-index: 100;
-            color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            height: 70px; background: var(--gradient-primary); color: var(--pure-white); 
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(7, 26, 58, 0.15); width: 100%;
         }
         
-        .admin-nav-title { font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
-        .admin-nav-title img { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        .admin-nav-title { font-weight: 800; font-size: 1.15rem; display: flex; align-items: center; gap: 12px; letter-spacing: -0.5px;}
+        .admin-nav-title img { width: 36px; height: 36px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); background: white; padding: 2px;}
+
+        .btn-back-nav {
+            background: rgba(255,255,255,0.1); color: var(--pure-white); border: 1px solid rgba(255,255,255,0.2); 
+            padding: 0.6rem 1.2rem; border-radius: 10px; font-weight: 700; font-family: 'Sora', sans-serif; 
+            cursor: pointer; transition: all 0.2s; font-size: 0.9rem; backdrop-filter: blur(10px);
+        }
+        .btn-back-nav:hover { background: var(--pure-white); color: var(--near-black); }
         
-        .admin-wrapper { max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; }
+        .admin-wrapper { max-width: 1200px; margin: 2.5rem auto; padding: 0 5%; animation: fadeSlideUp 0.5s ease forwards;}
+
+        @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         .header-actions {
             display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 15px;
         }
+        .header-actions h1 { margin: 0 0 6px 0; font-size: 1.8rem; font-weight: 800; color: var(--near-black); letter-spacing: -0.5px; }
+        .header-actions p { margin: 0; color: var(--text-gray); font-weight: 500; font-size: 0.95rem; }
 
         /* 🚀 VERIFICATION TOOL STYLES */
         .verify-card {
-            background: white; padding: 2rem; border-radius: 24px; border: 1px solid #e2e8f0;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05); margin-bottom: 2.5rem; width: 100%; box-sizing: border-box;
+            background: var(--pure-white); padding: 2.5rem; border-radius: 20px; border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(7, 26, 58, 0.03); margin-bottom: 2.5rem; width: 100%; box-sizing: border-box;
         }
-        .verify-card h2 { margin: 0 0 5px 0; font-size: 1.4rem; font-weight: 800; color: #0B1220; letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px;}
-        .verify-card h2 svg { width: 22px; height: 22px; color: #1D5ED0; }
-        .verify-card p { margin: 0 0 1.5rem 0; color: #64748b; font-size: 0.9rem; font-weight: 500; }
+        .verify-card h2 { margin: 0 0 6px 0; font-size: 1.3rem; font-weight: 800; color: var(--near-black); letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px;}
+        .verify-card h2 svg { width: 22px; height: 22px; color: var(--primary-blue); }
+        .verify-card p { margin: 0 0 1.5rem 0; color: var(--text-gray); font-size: 0.9rem; font-weight: 500; }
         
-        .verify-controls { display: grid; grid-template-columns: 2fr 1.2fr auto; gap: 12px; }
+        .verify-controls { display: grid; grid-template-columns: 2fr 1.2fr auto; gap: 16px; }
         
         .modern-input { 
-            width: 100%; padding: 1rem 1.2rem; border-radius: 12px; border: 2px solid #e2e8f0; 
-            background: #F5F8FC; font-family: 'Sora', sans-serif; font-size: 0.95rem; 
-            transition: all 0.3s ease; color: #0B1220; font-weight: 600; box-sizing: border-box;
+            width: 100%; padding: 1rem 1.2rem; border-radius: 12px; border: 1px solid var(--border-color); 
+            background: var(--light-bg); font-family: 'Sora', sans-serif; font-size: 0.95rem; 
+            transition: all 0.3s ease; color: var(--near-black); font-weight: 600; box-sizing: border-box;
         }
-        .modern-input:focus { border-color: #1D5ED0; background: #ffffff; outline: none; box-shadow: 0 0 0 4px rgba(29,94,208,0.1); }
-        .modern-input::placeholder { color: #94a3b8; font-weight: 500; }
-        select.modern-input { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23475569%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 1rem top 50%; background-size: 0.65rem auto; padding-right: 2.5rem; }
+        .modern-input:focus { border-color: var(--primary-blue); background: var(--pure-white); outline: none; box-shadow: 0 0 0 4px rgba(29,94,208,0.1); }
+        .modern-input::placeholder { color: #94A3B8; font-weight: 400; }
+        
+        select.modern-input { 
+            cursor: pointer; appearance: none; 
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); 
+            background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em; padding-right: 2.5rem; 
+        }
 
         .btn-main {
-            background: #1D5ED0; color: white; border: none; padding: 1rem 2rem; border-radius: 12px;
-            font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Sora', sans-serif; font-size: 1rem;
-            box-shadow: 0 4px 10px rgba(29,94,208,0.3); white-space: nowrap; display: inline-flex; align-items: center; justify-content: center;
+            background: var(--primary-blue); color: var(--pure-white); border: none; padding: 1rem 2rem; border-radius: 12px;
+            font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Sora', sans-serif; font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(29,94,208,0.2); white-space: nowrap; display: inline-flex; align-items: center; justify-content: center;
         }
-        .btn-main:hover { background: #159FE3; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(21,159,227,0.4); }
-        .btn-main:disabled { background: #94a3b8; cursor: not-allowed; transform: none; box-shadow: none; }
+        .btn-main:hover { background: var(--deep-navy); transform: translateY(-2px); box-shadow: 0 8px 15px rgba(7,26,58,0.3); }
+        .btn-main:disabled { background: var(--text-gray); cursor: not-allowed; transform: none; box-shadow: none; }
 
         /* DATA PANEL & TABLES */
         .data-panel {
-            background: white; padding: 1.5rem; border-radius: 24px; border: 1px solid #e2e8f0;
-            box-shadow: 0 15px 35px -10px rgba(0,0,0,0.05); width: 100%; box-sizing: border-box;
+            background: var(--pure-white); padding: 2rem; border-radius: 20px; border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(7, 26, 58, 0.03); width: 100%; box-sizing: border-box;
         }
 
-        .table-container { width: 100%; overflow-x: auto; max-height: 70vh; -webkit-overflow-scrolling: touch; }
+        .table-container { width: 100%; overflow-x: auto; max-height: 70vh; -webkit-overflow-scrolling: touch; border: 1px solid var(--border-color); border-radius: 16px;}
 
-        .admin-table { width: 100%; border-collapse: collapse; text-align: left; min-width: 700px; }
+        .admin-table { width: 100%; border-collapse: collapse; text-align: left; min-width: 800px; margin: 0;}
         .admin-table th { 
-            color: #475569; font-size: 0.8rem; text-transform: uppercase; padding: 1.2rem 1rem; 
-            border-bottom: 2px solid #e2e8f0; position: sticky; top: 0; background: #F5F8FC; z-index: 10;
-            font-weight: 800; white-space: nowrap; letter-spacing: 0.5px;
+            color: var(--text-gray); font-size: 0.75rem; text-transform: uppercase; padding: 1.2rem 1.5rem; 
+            border-bottom: 2px solid var(--border-color); position: sticky; top: 0; background: var(--light-bg); z-index: 10;
+            font-weight: 700; white-space: nowrap; letter-spacing: 0.5px;
         }
-        .admin-table td { padding: 1.2rem 1rem; border-bottom: 1px solid #f1f5f9; font-weight: 500; color: #334155; font-size: 0.9rem; white-space: nowrap;}
-        .admin-table tr:hover td { background: #F5F8FC; }
+        .admin-table td { padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--border-color); font-weight: 600; color: var(--near-black); font-size: 0.9rem; white-space: nowrap; vertical-align: middle;}
+        .admin-table tr:hover td { background: var(--light-bg); }
 
         /* BUTTONS */
         .btn-action {
-            background: white; border: 1px solid #cbd5e1; padding: 0.6rem 1rem; border-radius: 8px; 
-            font-weight: 700; cursor: pointer; color: #0B1220; transition: all 0.2s; font-family: 'Sora', sans-serif; font-size: 0.85rem;
-            display: inline-flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            background: var(--pure-white); border: 1px solid var(--border-color); padding: 0.6rem 1rem; border-radius: 10px; 
+            font-weight: 600; cursor: pointer; color: var(--near-black); transition: all 0.2s; font-family: 'Sora', sans-serif; font-size: 0.85rem;
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 5px rgba(7,26,58,0.02);
             white-space: nowrap;
         }
-        .btn-action:hover { background: #f1f5f9; transform: translateY(-1px); }
-        .btn-green { background: #10b981; color: white; border: none; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3); }
-        .btn-green:hover { background: #059669; color: white; }
-        .btn-blue { background: #F5F8FC; color: #1D5ED0; border-color: #bfdbfe; }
-        .btn-blue:hover { background: #dbeafe; }
+        .btn-action svg { width: 16px; height: 16px; }
+        .btn-action:hover { background: var(--light-bg); transform: translateY(-1px); border-color: #CBD5E1;}
+        
+        .btn-green { background: #10B981; color: white; border: none; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2); }
+        .btn-green:hover { background: #059669; color: white; box-shadow: 0 6px 15px rgba(5, 150, 105, 0.3);}
+        .btn-blue { background: var(--light-bg); color: var(--primary-blue); border-color: #BFDBFE; }
+        .btn-blue:hover { background: #DBEAFE; border-color: var(--primary-blue);}
 
         /* STATUS BADGES */
-        .status-badge { padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-        .badge-pending { background: #fef9c3; color: #d97706; border: 1px solid #fde047; }
+        .status-badge { padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+        .badge-pending { background: #FEF9C3; color: #D97706; border: 1px solid #FDE047; }
         
         /* TOAST */
         #toast {
-            visibility: hidden; min-width: 250px; background-color: #1D5ED0; color: #fff; text-align: center;
-            border-radius: 8px; padding: 12px; position: fixed; z-index: 1000; left: 50%; bottom: 30px; 
-            transform: translateX(-50%); font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            visibility: hidden; min-width: 250px; background-color: var(--near-black); color: var(--pure-white); text-align: center;
+            border-radius: 12px; padding: 12px 20px; position: fixed; z-index: 1000; left: 50%; bottom: 30px; 
+            transform: translateX(-50%); font-weight: 600; font-size: 0.9rem; box-shadow: 0 10px 25px rgba(11, 18, 32, 0.3);
         }
         #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
         @keyframes fadein { from { bottom: 0; opacity: 0; } to { bottom: 30px; opacity: 1; } }
         @keyframes fadeout { from { bottom: 30px; opacity: 1; } to { bottom: 0; opacity: 0; } }
 
-        /* 🚀 MOBILE RESPONSIVENESS */
-        @media (max-width: 768px) {
-            .admin-nav { padding: 0 1rem; height: 60px; }
-            .admin-nav-title { font-size: 1rem; }
-            .admin-nav-title img { width: 28px; height: 28px; }
-            .admin-wrapper { padding: 0 1rem; margin: 1rem auto; }
+        /* 🚀 STRICT MOBILE FIXES (Zooming solved) */
+        @media (max-width: 1024px) {
+            html, body { font-size: 13px !important; }
             
-            .header-actions { flex-direction: column; align-items: flex-start; gap: 12px; }
-            .header-actions h1 { font-size: 1.5rem !important; }
+            .admin-nav { padding: 1rem 1.5rem; height: auto; flex-direction: column; gap: 12px; text-align: center; }
+            .btn-back-nav { width: 100%; justify-content: center; padding: 0.8rem; }
             
-            .verify-card { padding: 1.5rem; border-radius: 20px;}
-            .verify-controls { grid-template-columns: 1fr; }
-            .btn-main { width: 100%; }
+            .admin-wrapper { padding: 0 1rem; margin: 1.5rem auto; }
+            
+            .header-actions { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 1.5rem;}
+            .header-actions h1 { font-size: 1.6rem; }
+            .btn-action { justify-content: center; width: 100%; padding: 0.85rem; border-radius: 10px;}
+            
+            .verify-card { padding: 1.5rem; border-radius: 16px; margin-bottom: 1.5rem;}
+            .verify-controls { grid-template-columns: 1fr; gap: 12px;}
+            .modern-input { font-size: 0.9rem; padding: 0.85rem 1rem; border-radius: 10px;}
+            .btn-main { width: 100%; padding: 0.9rem; font-size: 0.95rem; border-radius: 10px;}
 
-            .data-panel { padding: 1rem; border-radius: 16px; }
-            .admin-table th { padding: 1rem 0.5rem; font-size: 0.75rem; }
-            .admin-table td { padding: 1rem 0.5rem; font-size: 0.85rem; }
+            .data-panel { padding: 1.25rem 1rem; border-radius: 16px; }
+            .admin-table th, .admin-table td { padding: 0.85rem 1rem; font-size: 0.85rem; }
             
-            td .btn-action { padding: 0.4rem 0.6rem; font-size: 0.75rem; gap: 4px;}
+            td .btn-action { padding: 0.5rem 0.75rem; font-size: 0.8rem; gap: 4px;}
         }
     </style>
 </head>
 <body>
 
     <div id="auth-loader">
-        <svg class="animate-spin" style="width: 40px; height: 40px; color: #159FE3; margin-bottom: 15px;" fill="none" viewBox="0 0 24 24">
+        <svg class="animate-spin" style="width: 40px; height: 40px; color: var(--primary-blue); margin-bottom: 12px;" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
-        <h3 style="margin:0; font-size: 1.1rem; font-family: 'Sora', sans-serif;">Verifying Clearance...</h3>
+        <h3 style="margin:0; font-size: 1.05rem; font-weight: 600;">Verifying Clearance...</h3>
     </div>
 
     <div id="toast">Copied to clipboard!</div>
@@ -157,16 +208,15 @@
     <div id="admin-dashboard">
         <nav class="admin-nav">
             <div class="admin-nav-title">
-                <!-- 🚀 REPLACED INLINE SVG WITH THE REQUESTED PNG LOGO -->
                 <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo">
                 PREMIUM GROUP ADMIN
             </div>
-            <button onclick="window.location.href='../profile/index.html'" class="btn-action" style="padding: 0.5rem 1rem; font-size: 0.85rem; background: #0B1220; color: white; border: none;">← Back to Profile</button>
+            <button onclick="window.location.href='../profile/index.html'" class="btn-back-nav">← Back to Profile</button>
         </nav>
 
         <div class="admin-wrapper">
             
-            <!-- 🚀 NEW: STUDENT VERIFICATION TOOL -->
+            <!-- 🚀 STUDENT VERIFICATION TOOL -->
             <div class="verify-card">
                 <h2>
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
@@ -180,21 +230,24 @@
                         <option value="premium">Check Premium Plan</option>
                         <option value="vip">Check VIP Group Status</option>
                     </select>
-                    <button class="btn-main" onclick="verifyStudent()" id="verify-btn">Verify</button>
+                    <button class="btn-main" onclick="verifyStudent()" id="verify-btn">Verify Status</button>
                 </div>
                 
-                <div id="verify-result-box" style="display: none; margin-top: 1.5rem; padding: 1.2rem 1.5rem; border-radius: 16px; text-align: left;">
+                <div id="verify-result-box" style="display: none; margin-top: 1.5rem; padding: 1.25rem; border-radius: 14px; text-align: left;">
                     <!-- Result dynamically injected here -->
                 </div>
             </div>
 
             <div class="header-actions">
                 <div>
-                    <h1 style="margin: 0; font-size: 1.8rem; font-weight: 800; color: #0B1220; letter-spacing: -0.5px;">Pending Approvals</h1>
-                    <p style="margin: 5px 0 0 0; color: #64748b; font-weight: 500;">Aspirants waiting to be added to the Premium WhatsApp Group.</p>
+                    <h1>Pending Approvals</h1>
+                    <p>Aspirants waiting to be added to the Premium WhatsApp Group.</p>
                 </div>
                 <div>
-                    <button onclick="fetchPendingVIPs()" class="btn-action" style="box-shadow: 0 4px 10px rgba(0,0,0,0.05);">🔄 Refresh List</button>
+                    <button onclick="fetchPendingVIPs()" class="btn-action" style="box-shadow: 0 2px 8px rgba(7, 26, 58, 0.05);">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                        Refresh List
+                    </button>
                 </div>
             </div>
 
@@ -211,7 +264,7 @@
                             </tr>
                         </thead>
                         <tbody id="vip-body">
-                            <tr><td colspan="5" style="text-align: center; color: #94a3b8; padding: 3rem;">Loading requests...</td></tr>
+                            <tr><td colspan="5" style="text-align: center; color: var(--text-gray); padding: 3rem;">Loading requests...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -253,7 +306,7 @@
             fetchPendingVIPs();
         });
 
-        // 🚀 NEW: VERIFY STUDENT LOGIC
+        // 🚀 VERIFY STUDENT LOGIC
         async function verifyStudent() {
             const emailInput = document.getElementById('verify-email').value.trim();
             const checkType = document.getElementById('verify-type').value;
@@ -283,9 +336,9 @@
 
                 // Scenario A: Email not found
                 if (!student) {
-                    resultBox.style.background = '#fef2f2';
-                    resultBox.style.border = '1px solid #fecaca';
-                    resultBox.innerHTML = `<span style="color: #ef4444; font-weight: 800; font-size: 1.1rem;">❌ Not Found</span><br><span style="color: #475569; font-weight: 500; margin-top: 5px; display: inline-block;">No user found matching the email <strong>${emailInput}</strong>.</span>`;
+                    resultBox.style.background = '#FEF2F2';
+                    resultBox.style.border = '1px solid #FECACA';
+                    resultBox.innerHTML = `<span style="color: #DC2626; font-weight: 800; font-size: 1.05rem;">❌ Not Found</span><br><span style="color: var(--near-black); font-weight: 500; margin-top: 5px; display: inline-block;">No user found matching the email <strong>${emailInput}</strong>.</span>`;
                     return;
                 }
 
@@ -294,13 +347,13 @@
                 // Scenario B: Checking Premium Status
                 if (checkType === 'premium') {
                     if (student.has_paid) {
-                        resultBox.style.background = '#ecfdf5';
-                        resultBox.style.border = '1px solid #a7f3d0';
-                        resultBox.innerHTML = `<span style="color: #10b981; font-weight: 800; font-size: 1.1rem;">✅ Premium Active</span><br><span style="color: #475569; font-weight: 500; margin-top: 5px; display: inline-block;"><strong>${name}</strong> is currently on the Premium Plan.</span>`;
+                        resultBox.style.background = '#ECFDF5';
+                        resultBox.style.border = '1px solid #A7F3D0';
+                        resultBox.innerHTML = `<span style="color: #10B981; font-weight: 800; font-size: 1.05rem;">✅ Premium Active</span><br><span style="color: var(--near-black); font-weight: 500; margin-top: 5px; display: inline-block;"><strong>${name}</strong> is currently on the Premium Plan.</span>`;
                     } else {
-                        resultBox.style.background = '#fef2f2';
-                        resultBox.style.border = '1px solid #fecaca';
-                        resultBox.innerHTML = `<span style="color: #ef4444; font-weight: 800; font-size: 1.1rem;">❌ Free Tier</span><br><span style="color: #475569; font-weight: 500; margin-top: 5px; display: inline-block;"><strong>${name}</strong> has NOT paid for Premium.</span>`;
+                        resultBox.style.background = '#FEF2F2';
+                        resultBox.style.border = '1px solid #FECACA';
+                        resultBox.innerHTML = `<span style="color: #DC2626; font-weight: 800; font-size: 1.05rem;">❌ Free Tier</span><br><span style="color: var(--near-black); font-weight: 500; margin-top: 5px; display: inline-block;"><strong>${name}</strong> has NOT paid for Premium.</span>`;
                     }
                 } 
                 // Scenario C: Checking VIP Group Status
@@ -308,24 +361,24 @@
                     const waNum = student.whatsapp_number || 'No number saved';
                     
                     if (student.vip_group_status === 'approved') {
-                        resultBox.style.background = '#ecfdf5';
-                        resultBox.style.border = '1px solid #a7f3d0';
+                        resultBox.style.background = '#ECFDF5';
+                        resultBox.style.border = '1px solid #A7F3D0';
                         resultBox.innerHTML = `
-                            <span style="color: #10b981; font-weight: 800; font-size: 1.1rem;">✅ VIP Approved</span><br>
-                            <span style="color: #475569; font-weight: 500; margin-top: 5px; display: inline-block;"><strong>${name}</strong> is verified and approved for the Premium WhatsApp Group.</span><br>
-                            <div style="margin-top: 12px; background: white; padding: 8px 15px; border-radius: 8px; border: 1px solid #e2e8f0; display: inline-block;">
-                                <span style="font-size: 0.8rem; color: #64748b; font-weight: 700; text-transform: uppercase;">WhatsApp Number:</span><br>
-                                <span style="font-size: 1.1rem; font-weight: 800; color: #0B1220; font-family: monospace;">${waNum}</span>
+                            <span style="color: #10B981; font-weight: 800; font-size: 1.05rem;">✅ VIP Approved</span><br>
+                            <span style="color: var(--near-black); font-weight: 500; margin-top: 5px; display: inline-block;"><strong>${name}</strong> is verified and approved for the Premium WhatsApp Group.</span><br>
+                            <div style="margin-top: 12px; background: white; padding: 10px 16px; border-radius: 10px; border: 1px solid var(--border-color); display: inline-block;">
+                                <span style="font-size: 0.75rem; color: var(--text-gray); font-weight: 700; text-transform: uppercase;">WhatsApp Number:</span><br>
+                                <span style="font-size: 1.1rem; font-weight: 800; color: var(--near-black); font-family: 'Sora', sans-serif;">${waNum}</span>
                             </div>
                         `;
                     } else if (student.vip_group_status === 'pending') {
-                        resultBox.style.background = '#fffbeb';
-                        resultBox.style.border = '1px solid #fde68a';
-                        resultBox.innerHTML = `<span style="color: #d97706; font-weight: 800; font-size: 1.1rem;">⏳ Pending Approval</span><br><span style="color: #475569; font-weight: 500; margin-top: 5px; display: inline-block;"><strong>${name}</strong> has paid but is waiting to be added to the group.</span>`;
+                        resultBox.style.background = '#FFFBEB';
+                        resultBox.style.border = '1px solid #FDE68A';
+                        resultBox.innerHTML = `<span style="color: #D97706; font-weight: 800; font-size: 1.05rem;">⏳ Pending Approval</span><br><span style="color: var(--near-black); font-weight: 500; margin-top: 5px; display: inline-block;"><strong>${name}</strong> has paid but is waiting to be added to the group.</span>`;
                     } else {
-                        resultBox.style.background = '#fef2f2';
-                        resultBox.style.border = '1px solid #fecaca';
-                        resultBox.innerHTML = `<span style="color: #ef4444; font-weight: 800; font-size: 1.1rem;">❌ Not In VIP Group</span><br><span style="color: #475569; font-weight: 500; margin-top: 5px; display: inline-block;"><strong>${name}</strong> has not paid for or requested access to the VIP group.</span>`;
+                        resultBox.style.background = '#FEF2F2';
+                        resultBox.style.border = '1px solid #FECACA';
+                        resultBox.innerHTML = `<span style="color: #DC2626; font-weight: 800; font-size: 1.05rem;">❌ Not In VIP Group</span><br><span style="color: var(--near-black); font-weight: 500; margin-top: 5px; display: inline-block;"><strong>${name}</strong> has not paid for or requested access to the VIP group.</span>`;
                     }
                 }
 
@@ -333,14 +386,14 @@
                 console.error("Verification Error:", err);
                 alert("An error occurred while communicating with the database.");
             } finally {
-                btn.innerHTML = 'Verify';
+                btn.innerHTML = 'Verify Status';
                 btn.disabled = false;
             }
         }
 
         async function fetchPendingVIPs() {
             const tbody = document.getElementById('vip-body');
-            tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #94a3b8; padding: 3rem;">Fetching data...</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--text-gray); padding: 3rem;">Fetching data...</td></tr>';
             
             try {
                 const { data, error } = await supabaseClient
@@ -354,9 +407,9 @@
                     tbody.innerHTML = `
                         <tr>
                             <td colspan="5" style="text-align: center; padding: 4rem 1rem;">
-                                <div style="font-size: 3rem; margin-bottom: 10px;">🎉</div>
-                                <h3 style="margin: 0 0 5px 0; color: #0B1220; font-weight: 800;">You're all caught up!</h3>
-                                <p style="margin: 0; color: #64748b;">No pending Premium Group requests at the moment.</p>
+                                <div style="font-size: 3rem; margin-bottom: 12px;">🎉</div>
+                                <h3 style="margin: 0 0 6px 0; color: var(--near-black); font-weight: 800; font-size: 1.4rem;">You're all caught up!</h3>
+                                <p style="margin: 0; color: var(--text-gray); font-size: 0.95rem;">No pending Premium Group requests at the moment.</p>
                             </td>
                         </tr>
                     `;
@@ -371,9 +424,9 @@
                     tbody.innerHTML += `
                         <tr id="row-${user.id}">
                             <td><span class="status-badge badge-pending">Pending</span></td>
-                            <td style="font-weight: 700; color: #0B1220;">${user.full_name}</td>
-                            <td style="font-family: monospace; font-size: 1rem; color: #334155; font-weight: 600;">${safeNumber}</td>
-                            <td style="color: #64748b;">${cleanCourse}</td>
+                            <td style="font-weight: 700; color: var(--near-black);">${user.full_name}</td>
+                            <td style="font-family: 'Sora', sans-serif; font-size: 1.05rem; color: var(--deep-navy); font-weight: 700;">${safeNumber}</td>
+                            <td style="color: var(--text-gray); font-size: 0.85rem;">${cleanCourse}</td>
                             <td style="text-align: right; display: flex; justify-content: flex-end; gap: 8px;">
                                 <button onclick="copyToClipboard('${safeNumber}')" class="btn-action btn-blue">
                                     📋 Copy
@@ -388,7 +441,7 @@
 
             } catch (err) {
                 console.error("Fetch Error:", err);
-                tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #ef4444; padding: 2rem;">Failed to load data. Check console.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #DC2626; padding: 2rem;">Failed to load data. Check console.</td></tr>`;
             }
         }
 

@@ -25,170 +25,365 @@
     <meta name="apple-mobile-web-app-title" content="BRYT CBT">
 
     <style>
-        html, body { max-width: 100vw !important; overflow-x: hidden !important; margin: 0; padding: 0; background-color: #F5F8FC; font-family: 'Sora', sans-serif; }
+        /* 🚀 STRICT BRAND SYSTEM & BOX SIZING */
+        :root {
+            --primary-blue: #1D5ED0;
+            --accent-blue: #159FE3;
+            --deep-navy: #071A3A;
+            --near-black: #0B1220;
+            --pure-white: #FFFFFF;
+            --light-bg: #F5F8FC;
+            --text-gray: #64748B;
+            --border-color: #E2E8F0;
+            --gradient-primary: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
+            --sidebar-width: 260px;
+        }
+
+        html, body { 
+            max-width: 100vw !important; 
+            overflow-x: hidden !important; 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--light-bg); 
+            font-family: 'Sora', sans-serif; 
+            color: var(--near-black);
+            -webkit-font-smoothing: antialiased;
+        }
         *, *::before, *::after { box-sizing: border-box !important; }
 
-        .data-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-        .data-table th, .data-table td { padding: 1.2rem 0.5rem; white-space: normal; word-wrap: break-word; overflow-wrap: break-word; vertical-align: middle; border-bottom: 1px solid #f1f5f9; }
-        .data-table th { color: #64748b; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; border-bottom: 2px solid #e2e8f0; text-align: left; }
-        .data-table td { color: #1e293b; font-size: 0.9rem; font-weight: 600; }
-        .data-table tr:hover td { background: #F5F8FC; }
+        /* 🚀 DESKTOP SIDEBAR */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--gradient-primary);
+            position: fixed;
+            top: 0; left: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--pure-white);
+            z-index: 1000;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .sidebar-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .sidebar-header img {
+            width: 36px; height: 36px;
+            border-radius: 8px;
+            background: var(--pure-white);
+            padding: 2px;
+        }
+        .sidebar-header span {
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: -0.5px;
+        }
+        .sidebar-nav {
+            list-style: none;
+            padding: 1.5rem 1rem;
+            margin: 0;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            padding: 0.9rem 1rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .sidebar-nav a svg { width: 20px; margin-right: 12px; }
+        .sidebar-nav li.active a, .sidebar-nav a:hover {
+            background: var(--primary-blue);
+            color: var(--pure-white);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .sidebar-footer { padding: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        .logout-btn-sidebar {
+            width: 100%;
+            background: transparent;
+            color: rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.8rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-family: 'Sora', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .logout-btn-sidebar:hover { background: rgba(239, 68, 68, 0.1); color: #EF4444; border-color: #EF4444; }
 
-        .history-table th:nth-child(1) { width: 25%; }
-        .history-table th:nth-child(2) { width: 55%; }
-        .history-table th:nth-child(3) { width: 20%; text-align: right; }
+        .sidebar-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(11, 18, 32, 0.6); backdrop-filter: blur(4px);
+            z-index: 999; display: none; opacity: 0; transition: opacity 0.3s;
+        }
+
+        /* 🚀 MAIN WRAPPER & HEADER */
+        .main-wrapper {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .top-header {
+            height: 70px;
+            background: var(--pure-white);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 2rem;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .mobile-header-brand { display: none; }
+        .mobile-menu-btn {
+            display: none; background: none; border: none; color: var(--near-black); cursor: pointer; padding: 0;
+        }
+        .mobile-menu-btn svg { width: 28px; height: 28px; }
+        .avatar {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: var(--pure-white);
+            display: flex; justify-content: center; align-items: center;
+            font-weight: 700; font-size: 1rem; line-height: 1; letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(29, 94, 208, 0.2);
+            text-transform: uppercase;
+        }
+
+        /* 🚀 DASHBOARD CONTENT */
+        .dashboard-content {
+            padding: 2.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+            flex-grow: 1;
+        }
 
         /* 🚀 BRYT WELCOME BANNER */
         .welcome-banner {
-            background: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
-            border-radius: 24px; padding: 2.5rem 3rem; margin-bottom: 2rem;
-            position: relative; overflow: hidden; box-shadow: 0 20px 40px -15px rgba(7, 26, 58, 0.4);
-            color: white;
+            background: var(--gradient-primary);
+            border-radius: 20px; 
+            padding: 2.5rem 3rem; 
+            margin-bottom: 2rem;
+            position: relative; 
+            overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(7, 26, 58, 0.15);
+            color: var(--pure-white);
         }
         .welcome-banner::after {
             content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px;
             background: radial-gradient(circle, rgba(21, 159, 227, 0.15) 0%, transparent 70%);
             border-radius: 50%; pointer-events: none;
         }
-        .welcome-text h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; margin: 0 0 10px 0; }
-        .welcome-text p { color: #E0E7FF; font-size: 1rem; margin: 0; font-weight: 500; }
+        .welcome-text h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; margin: 0 0 8px 0; position: relative; z-index: 2;}
+        .welcome-text p { color: #E2E8F0; font-size: 1rem; margin: 0; font-weight: 400; position: relative; z-index: 2;}
 
         /* 🚀 TWO-COLUMN ARCHITECTURE */
-        .exam-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; align-items: start; margin-bottom: 2rem; }
+        .exam-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 24px; align-items: start; margin-bottom: 2.5rem; }
 
         /* 🚀 SLEEK CARDS */
         .dash-card {
-            background: white; padding: 2rem; border-radius: 24px;
-            border: 1px solid transparent; box-shadow: 0 10px 40px -10px rgba(0,0,0,0.04);
-            transition: all 0.3s ease; width: 100%;
+            background: var(--pure-white); 
+            padding: 2rem; 
+            border-radius: 20px;
+            border: 1px solid var(--border-color); 
+            box-shadow: 0 4px 15px rgba(7, 26, 58, 0.02);
+            width: 100%;
         }
-        .dash-card:hover { box-shadow: 0 15px 40px -10px rgba(0,0,0,0.08); border-color: #e2e8f0; }
 
         .premium-launch-card {
             background: linear-gradient(135deg, #0B1220 0%, #071A3A 100%);
-            padding: 2.5rem 2rem; border-radius: 24px; color: white; text-align: center;
+            padding: 2.5rem 2rem; 
+            border-radius: 20px; 
+            color: var(--pure-white); 
+            text-align: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            box-shadow: 0 20px 40px -10px rgba(7, 26, 58, 0.5);
-            position: sticky; top: 20px; border: 1px solid #1D5ED0;
+            box-shadow: 0 10px 30px rgba(7, 26, 58, 0.2);
+            position: sticky; top: 20px; border: 1px solid var(--primary-blue);
         }
-        .premium-launch-card h2 { margin: 0 0 5px 0; font-size: 1.6rem; font-weight: 800; }
+        .premium-launch-card h2 { margin: 0 0 6px 0; font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px;}
 
         /* 🚀 GUIDELINES STYLING */
-        .rule-item { display: flex; gap: 15px; margin-bottom: 1.5rem; padding: 1rem; border-radius: 16px; background: #F5F8FC; border: 1px solid transparent; transition: all 0.2s; }
-        .rule-item:hover { background: white; border-color: #e2e8f0; box-shadow: 0 5px 15px rgba(0,0,0,0.03); transform: translateX(5px); }
+        .rule-item { 
+            display: flex; gap: 16px; margin-bottom: 1.25rem; padding: 1.25rem; 
+            border-radius: 16px; background: var(--light-bg); border: 1px solid var(--border-color);
+        }
         .rule-item:last-child { margin-bottom: 0; }
         
         .rule-icon {
-            width: 48px; height: 48px; border-radius: 14px; background: #F5F8FC; color: #1D5ED0;
+            width: 44px; height: 44px; border-radius: 12px; background: var(--pure-white); color: var(--primary-blue);
             display: flex; justify-content: center; align-items: center; flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(7, 26, 58, 0.05);
         }
-        .rule-icon svg { width: 24px; height: 24px; }
-        .rule-icon.danger { background: #fef2f2; color: #dc2626; }
-        .rule-icon.warning { background: #fff7ed; color: #ea580c; }
+        .rule-icon svg { width: 22px; height: 22px; }
+        .rule-icon.danger { background: #FEF2F2; color: #DC2626; }
+        .rule-icon.warning { background: #FFF7ED; color: #EA580C; }
         
-        .rule-text h4 { margin: 0 0 6px 0; font-size: 1rem; color: #0B1220; font-weight: 700; }
-        .rule-text p { margin: 0; color: #64748b; font-size: 0.85rem; line-height: 1.5; font-weight: 500;}
+        .rule-text h4 { margin: 0 0 6px 0; font-size: 1rem; color: var(--near-black); font-weight: 700; }
+        .rule-text p { margin: 0; color: var(--text-gray); font-size: 0.85rem; line-height: 1.5; font-weight: 500;}
 
         /* 🚀 DIGITAL READOUT BOX */
         .digital-readout {
-            background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 16px; 
+            background: rgba(255,255,255,0.05); padding: 1.25rem; border-radius: 16px; 
             margin-bottom: 1.8rem; width: 100%; border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
         }
-        .readout-label { font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 5px; }
-        .readout-value { font-size: 2.5rem; font-weight: 800; color: #159FE3; letter-spacing: -1px; line-height: 1; }
+        .readout-label { font-size: 0.75rem; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 6px; }
+        .readout-value { font-size: 2.2rem; font-weight: 800; color: var(--accent-blue); letter-spacing: -1px; line-height: 1; }
 
         /* 🚀 BUTTONS */
         .btn-action-main {
-            padding: 0.9rem 1.5rem; border-radius: 12px; font-weight: 700; border: none; 
-            cursor: pointer; font-size: 0.95rem; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; font-family: 'Sora', sans-serif;
+            padding: 0.9rem 1.5rem; border-radius: 12px; font-weight: 600; border: none; 
+            cursor: pointer; font-size: 0.95rem; transition: all 0.2s ease;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; font-family: 'Sora', sans-serif;
+            text-decoration: none;
         }
-        .btn-action-main svg { width: 20px; height: 20px; }
-        .btn-action-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -10px rgba(0,0,0,0.4); }
-        .btn-green { background: #10b981; color: white; box-shadow: 0 8px 16px -4px rgba(16, 185, 129, 0.3); }
-        .btn-blue { background: #1D5ED0; color: white; box-shadow: 0 8px 16px -4px rgba(29, 94, 208, 0.3); }
-        .btn-orange { background: #ea580c; color: white; box-shadow: 0 8px 16px -4px rgba(234, 88, 12, 0.3); }
-        .btn-outline-orange { background: transparent; color: #ea580c; border: 2px solid #ea580c; }
-        .btn-purple { background: #8b5cf6; color: white; box-shadow: 0 8px 16px -4px rgba(139, 92, 246, 0.3); }
-        .btn-outline-purple { background: transparent; color: #a78bfa; border: 2px solid #8b5cf6; }
+        .btn-action-main svg { width: 18px; height: 18px; }
+        .btn-action-main:hover { transform: translateY(-2px); }
+        
+        .btn-green { background: #10B981; color: var(--pure-white); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2); }
+        .btn-blue { background: var(--primary-blue); color: var(--pure-white); box-shadow: 0 4px 15px rgba(29, 94, 208, 0.2); }
+        .btn-orange { background: #EA580C; color: var(--pure-white); box-shadow: 0 4px 15px rgba(234, 88, 12, 0.2); }
+        .btn-outline-orange { background: transparent; color: #EA580C; border: 1px solid #EA580C; }
+        .btn-purple { background: var(--pure-white); color: #8B5CF6; border: 1px solid var(--border-color); box-shadow: 0 4px 10px rgba(0,0,0,0.02);}
+        .btn-outline-purple { background: transparent; color: #A78BFA; border: 1px solid #8B5CF6; }
 
-        .badge-green { background: #dcfce7; color: #166534; padding: 0.4rem 1rem; border-radius: 20px; font-weight: 800; font-size: 0.8rem;}
-        .badge-orange { background: #ffedd5; color: #9a3412; padding: 0.4rem 1rem; border-radius: 20px; font-weight: 800; font-size: 0.8rem;}
+        /* 🚀 DATA TABLE */
+        .table-responsive { width: 100%; overflow-x: auto; }
+        .data-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        .data-table th, .data-table td { padding: 1rem 0.5rem; vertical-align: middle; border-bottom: 1px solid var(--border-color); }
+        .data-table th { color: var(--text-gray); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; border-bottom: 2px solid var(--border-color); text-align: left; }
+        .data-table td { color: var(--near-black); font-size: 0.9rem; font-weight: 500; }
+        
+        .badge-green { background: #DCFCE7; color: #166534; padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.8rem;}
+        .badge-orange { background: #FFEDD5; color: #9A3412; padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.8rem;}
 
-        /* 🚀 COMPACT OVERLAY MODALS (Kept for Venue Modal) */
+        /* 🚀 COMPACT OVERLAY MODALS */
         .premium-modal-overlay {
-            position: fixed; inset: 0; background: rgba(11, 18, 32, 0.85); z-index: 10000; 
-            display: none; justify-content: center; align-items: center; backdrop-filter: blur(10px); padding: 1rem;
+            position: fixed; inset: 0; background: rgba(11, 18, 32, 0.7); z-index: 10000; 
+            display: none; justify-content: center; align-items: center; backdrop-filter: blur(4px); padding: 1rem;
         }
         .premium-modal {
-            background: white; border-radius: 24px; padding: 2.5rem; max-width: 400px; width: 100%; 
-            position: relative; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); text-align: center;
+            background: var(--pure-white); border-radius: 20px; padding: 2.5rem; max-width: 400px; width: 100%; 
+            position: relative; box-shadow: 0 20px 40px rgba(7, 26, 58, 0.15); text-align: center;
         }
         .close-modal-btn {
-            position: absolute; top: 15px; right: 15px; background: #f1f5f9; border: none; width: 36px; 
-            height: 36px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; 
-            align-items: center; color: #64748b; font-weight: bold; transition: 0.2s;
+            position: absolute; top: 16px; right: 16px; background: var(--light-bg); border: none; width: 32px; 
+            height: 32px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; 
+            align-items: center; color: var(--text-gray); font-weight: bold; transition: 0.2s;
         }
-        .close-modal-btn:hover { background: #e2e8f0; color: #0B1220; }
+        .close-modal-btn:hover { background: var(--border-color); color: var(--near-black); }
+        .modal-icon-header { width: 56px; height: 56px; border-radius: 16px; display: flex; justify-content: center; align-items: center; margin: 0 auto 16px auto; }
+        .modal-icon-header svg { width: 28px; height: 28px; }
 
-        .modal-icon-header { width: 60px; height: 60px; border-radius: 20px; display: flex; justify-content: center; align-items: center; margin: 0 auto 20px auto; }
-        .modal-icon-header svg { width: 30px; height: 30px; }
-
-        /* 🚀 MOBILE RESPONSIVENESS */
-        @media (max-width: 900px) {
+        /* 🚀 MOBILE RESPONSIVENESS (Zoom Fixes & Layout Cleanup) */
+        @media (max-width: 1024px) {
+            html, body { font-size: 13px !important; } /* Scales down global typography */
+            
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.active { transform: translateX(0); }
+            .sidebar-overlay.active { display: block; opacity: 1; }
+            .main-wrapper { margin-left: 0; }
+            
+            .top-header { padding: 0 1rem; justify-content: space-between; height: 60px; position: relative;}
+            .mobile-menu-btn { display: block; }
+            .mobile-menu-btn svg { width: 24px; height: 24px; }
+            
+            /* 🚀 CENTERED LOGO, NO TEXT */
+            .mobile-header-brand { 
+                display: flex; position: absolute; left: 50%; transform: translateX(-50%);
+            }
+            .mobile-header-brand img { width: 32px; height: 32px; border-radius: 8px; }
+            
+            .avatar { width: 34px; height: 34px; font-size: 0.95rem; line-height: 1; }
+            
             .dashboard-content { padding: 1rem !important; width: 100vw !important; max-width: 100vw !important; box-sizing: border-box; overflow-x: hidden !important;}
-            .welcome-banner { padding: 2rem 1.5rem !important; border-radius: 20px !important; }
-            .welcome-text h1 { font-size: 1.8rem; }
-            .exam-grid { display: flex; flex-direction: column; gap: 1.2rem; }
+            
+            .welcome-banner { padding: 1.5rem !important; border-radius: 16px !important; margin-bottom: 1.25rem; }
+            .welcome-text h1 { font-size: 1.65rem; margin-bottom: 4px; }
+            .welcome-text p { font-size: 0.95rem; }
+            
+            .exam-grid { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 1.25rem; }
             .exam-launch-col { order: 1; width: 100%; }
             .exam-rules-col { order: 2; width: 100%; }
-            .premium-launch-card { position: static; padding: 2.5rem 1.5rem !important; }
-            .dash-card { padding: 1.5rem 1rem !important; border-radius: 20px; }
-            .rule-item { padding: 0.8rem; flex-direction: row; align-items: flex-start;}
-            .data-table th, .data-table td { padding: 0.8rem 0.5rem; font-size: 0.8rem; }
-            .btn-action-main { padding: 0.9rem !important; font-size: 0.85rem !important; }
-            .table-responsive { overflow-x: auto; width: 100%; -webkit-overflow-scrolling: touch; }
+            
+            .premium-launch-card { position: static; padding: 2rem 1.5rem !important; border-radius: 16px; }
+            .premium-launch-card h2 { font-size: 1.4rem; margin-bottom: 4px; }
+            .digital-readout { padding: 1rem; margin-bottom: 1.25rem; border-radius: 12px;}
+            .readout-value { font-size: 2rem; }
+            
+            /* 🚀 SIDE BY SIDE BUTTONS */
+            #launch-container { flex-direction: row !important; gap: 8px !important; }
+            .btn-action-main { flex: 1; padding: 0.8rem 0.5rem !important; font-size: 0.8rem !important; border-radius: 10px; line-height: 1.2; text-align: center; white-space: normal;}
+            .btn-action-main svg { display: none; } /* Hide icon on mobile to save space */
+            
+            .dash-card { padding: 1.2rem !important; border-radius: 16px; }
+            .dash-card h3 { font-size: 1.05rem; margin-bottom: 1rem; }
+            
+            .rule-item { padding: 1rem; gap: 12px; border-radius: 12px; margin-bottom: 1rem; }
+            .rule-icon { width: 36px; height: 36px; border-radius: 10px; }
+            .rule-icon svg { width: 18px; height: 18px; }
+            .rule-text h4 { font-size: 0.9rem; }
+            .rule-text p { font-size: 0.8rem; }
+            
+            .data-table th, .data-table td { padding: 0.75rem 0.25rem; font-size: 0.8rem; }
+            .history-table th:nth-child(2) { width: 55%; }
+            
+            .premium-modal { padding: 2rem 1.25rem; border-radius: 16px; }
         }
     </style>
 </head>
 <body class="dashboard-body">
 
-    <!-- VENUE DETAILS MODAL (Only modal kept) -->
+    <!-- VENUE DETAILS MODAL -->
     <div class="premium-modal-overlay" id="venue-modal-overlay">
         <div class="premium-modal" style="text-align: left;">
             <button class="close-modal-btn" onclick="closeVenueModal()">
                 <svg style="width:16px;height:16px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
-            <div class="modal-icon-header" style="background: #F5F8FC; color: #1D5ED0;">
+            <div class="modal-icon-header" style="background: var(--light-bg); color: var(--primary-blue);">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
             </div>
-            <h2 id="vm-title" style="font-size: 1.4rem; font-weight: 800; color: #0B1220; margin-bottom: 5px; text-align: center;">Centre Name</h2>
-            <p id="vm-date" style="color: #1D5ED0; font-size: 0.9rem; font-weight: 700; margin-bottom: 15px; text-align: center;">Date & Time</p>
+            <h2 id="vm-title" style="font-size: 1.3rem; font-weight: 800; color: var(--near-black); margin-bottom: 4px; text-align: center;">Centre Name</h2>
+            <p id="vm-date" style="color: var(--primary-blue); font-size: 0.85rem; font-weight: 700; margin-bottom: 16px; text-align: center;">Date & Time</p>
             
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px;">
-                <span style="display: block; font-size: 0.75rem; text-transform: uppercase; color: #94a3b8; font-weight: 700; margin-bottom: 5px; letter-spacing: 1px;">Full Address</span>
-                <p id="vm-address" style="margin: 0; color: #334155; font-size: 0.95rem; line-height: 1.6; font-weight: 500;">
+            <div style="background: var(--light-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px;">
+                <span style="display: block; font-size: 0.75rem; text-transform: uppercase; color: var(--text-gray); font-weight: 700; margin-bottom: 6px; letter-spacing: 0.5px;">Full Address</span>
+                <p id="vm-address" style="margin: 0; color: var(--near-black); font-size: 0.9rem; line-height: 1.5; font-weight: 500;">
                     Loading address details...
                 </p>
             </div>
-            <button onclick="closeVenueModal()" style="width: 100%; padding: 0.9rem; border-radius: 12px; font-weight: 700; border: none; cursor: pointer; background: #f1f5f9; color: #475569; font-size: 0.95rem; margin-top: 20px; transition: 0.2s; font-family: 'Sora', sans-serif;">Close Details</button>
+            <button onclick="closeVenueModal()" style="width: 100%; padding: 0.9rem; border-radius: 10px; font-weight: 600; border: none; cursor: pointer; background: var(--border-color); color: var(--near-black); font-size: 0.95rem; margin-top: 16px; transition: 0.2s; font-family: 'Sora', sans-serif;">Close Details</button>
         </div>
     </div>
 
+    <!-- 🚀 OVERLAY & SIDEBAR -->
     <div class="sidebar-overlay" id="mobile-overlay" onclick="toggleSidebar()"></div>
 
     <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header" style="display: flex; align-items: center; gap: 12px; padding: 1rem 0;">
-            <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo" style="width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(29, 94, 208, 0.3);">
-            <span style="font-weight: 800; font-size: 1.15rem; color: #0B1220; letter-spacing: -0.5px; white-space: nowrap;">BRYT CBT SIM</span>
+        <div class="sidebar-header">
+            <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo">
+            <span>BRYT CBT SIM</span>
         </div>
         
         <ul class="sidebar-nav">
-            <li><a href="../dashboard/index.html"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg> Dashboard</a></li>
-            <li class="active"><a href="#"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg> Available Exams</a></li>
-            <li><a href="../view-results/index.html"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg> My Results</a></li>
-            <li><a href="../profile/index.html"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /></svg> Profile</a></li>
+            <li><a href="../dashboard/index.html"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg> Dashboard</a></li>
+            <li class="active"><a href="#"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg> Available Exams</a></li>
+            <li><a href="../view-results/index.html"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg> My Results</a></li>
+            <li><a href="../profile/index.html"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /></svg> Profile</a></li>
         </ul>
 
         <div class="sidebar-footer">
@@ -203,6 +398,11 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
             </button>
+            
+            <div class="mobile-header-brand">
+                <img src="../static/img/brytcbtsim-logo.png" alt="Logo">
+            </div>
+
             <div class="avatar" id="user-avatar">?</div>
         </header>
 
@@ -217,10 +417,11 @@
 
             <div class="exam-grid">
                 
+                <!-- 🚀 EXAM RULES COLUMN -->
                 <div class="exam-rules-col">
                     <div class="dash-card">
-                        <h3 style="margin-top: 0; margin-bottom: 1.5rem; font-size: 1.2rem; color: #0B1220; display: flex; align-items: center; gap: 8px;">
-                            <svg style="width: 22px; color: #1D5ED0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        <h3 style="margin-top: 0; margin-bottom: 1.5rem; font-size: 1.1rem; color: var(--near-black); display: flex; align-items: center; gap: 8px;">
+                            <svg style="width: 22px; color: var(--primary-blue);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                             Exam Guidelines
                         </h3>
                         
@@ -250,10 +451,11 @@
                     </div>
                 </div>
 
+                <!-- 🚀 ACTION COLUMN -->
                 <div class="exam-launch-col">
                     <div class="premium-launch-card">
                         <h2>Ready, Aspirant?</h2>
-                        <p id="plan-status" style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 1.5rem;">Loading status...</p>
+                        <p id="plan-status" style="color: #94A3B8; font-size: 0.85rem; margin-bottom: 1.5rem;">Loading status...</p>
                         
                         <div class="digital-readout">
                             <div class="readout-label">Registered JAMB Score</div>
@@ -261,30 +463,31 @@
                         </div>
 
                         <div id="launch-container" style="width: 100%; display: flex; flex-direction: column; gap: 12px;">
-                            <button class="btn-action-main" id="start-exam-btn" style="background: #334155; color: #94a3b8; cursor: not-allowed;">Loading Environment...</button>
+                            <button class="btn-action-main" id="start-exam-btn" style="background: var(--light-bg); color: var(--text-gray); cursor: not-allowed;">Loading Environment...</button>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- 🚀 RECENT TEST HISTORY -->
             <div class="dash-card">
                 <h3 style="margin-top: 0; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;">
-                    <svg style="width: 22px; color: #ea580c;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <svg style="width: 20px; color: #EA580C;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     Recent Test History (Last 5)
                 </h3>
                 
                 <div class="table-responsive">
-                    <table class="data-table">
+                    <table class="data-table history-table">
                         <thead>
                             <tr>
                                 <th>Date & Time</th>
-                                <th>Subject Breakdown</th>
+                                <th>Subjects</th>
                                 <th>Post-UTME</th>
                                 <th style="text-align: right;">Aggregate</th>
                             </tr>
                         </thead>
                         <tbody id="history-body">
-                            <tr><td colspan="4" style="text-align: center; color: #94a3b8; padding: 2.5rem;">Connecting to records...</td></tr>
+                            <tr><td colspan="4" style="text-align: center; color: var(--text-gray); padding: 2.5rem;">Connecting to records...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -293,6 +496,7 @@
         </main>
     </div>
 
+    <!-- 🚀 SCRIPTS (UNTOUCHED FUNCTIONALITY) -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="../static/app.js"></script>
 
@@ -307,7 +511,6 @@
         }
 
         function openVenueModal(locId) { 
-            // Optional venue logic fallback if needed
             document.getElementById('venue-modal-overlay').style.display = 'flex'; 
         }
         function closeVenueModal() { 
@@ -344,31 +547,31 @@
             // 🚀 DEPENDENCY ENFORCEMENT ENGINE - ROUTED TO DASHBOARD
             if (profile.has_paid) {
                 planStatus.innerText = "Premium Plan Active";
-                planStatus.style.color = "#38bdf8";
+                planStatus.style.color = "#38BDF8";
                 
                 if (profile.has_qbank_access) {
                     launchContainer.innerHTML = `
-                        <button class="btn-action-main btn-green" onclick="window.location.href='../exam-room/index.html'">Start Premium Exam <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></button>
-                        <button class="btn-action-main btn-purple" onclick="window.location.href='../question-bank/index.html'"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg> Open Question Bank</button>
+                        <a href="../exam-room/index.html" class="btn-action-main btn-green">Start Premium Exam <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></a>
+                        <a href="../question-bank/index.html" class="btn-action-main btn-purple">Open Vault <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg></a>
                     `;
                 } else {
                     launchContainer.innerHTML = `
-                        <button class="btn-action-main btn-green" onclick="window.location.href='../exam-room/index.html'">Start Premium Exam <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></button>
-                        <button class="btn-action-main btn-outline-purple" onclick="window.location.href='../dashboard/index.html'" style="color: white; border-color: #8b5cf6;"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg> Unlock Question Bank</button>
+                        <a href="../exam-room/index.html" class="btn-action-main btn-green">Start Premium Exam <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></a>
+                        <a href="../dashboard/index.html" class="btn-action-main btn-outline-purple">Unlock Vault <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg></a>
                     `;
                 }
             } else {
                 if (actualTestsTaken >= 1) {
                     planStatus.innerText = "Free Limit Reached (1/1)";
-                    planStatus.style.color = "#f87171";
+                    planStatus.style.color = "#F87171";
                     launchContainer.innerHTML = `
-                        <button class="btn-action-main btn-orange" onclick="window.location.href='../dashboard/index.html'"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.898 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg> Unlock Full Access (₦1,050)</button>
+                        <a href="../dashboard/index.html" class="btn-action-main btn-orange">Unlock Full Access <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.898 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg></a>
                     `;
                 } else {
                     planStatus.innerText = `Free Tier: ${1 - actualTestsTaken} Tests Remaining`;
                     launchContainer.innerHTML = `
-                        <button class="btn-action-main btn-blue" onclick="window.location.href='../exam-room/index.html'">Start Free Test <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></button>
-                        <button class="btn-action-main btn-outline-orange" style="color: white; border-color: #ea580c;" onclick="window.location.href='../dashboard/index.html'"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.898 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg> Upgrade Now</button>
+                        <a href="../exam-room/index.html" class="btn-action-main btn-blue">Start Free Test <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></a>
+                        <a href="../dashboard/index.html" class="btn-action-main btn-outline-orange">Upgrade Now <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.898 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg></a>
                     `;
                 }
             }
@@ -383,7 +586,7 @@
             const tbody = document.getElementById('history-body');
             
             if (error || !data || data.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #94a3b8; padding: 2.5rem;">No exams taken yet. Start your first test above!</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: var(--text-gray); padding: 2.5rem;">No exams taken yet. Start your first test above!</td></tr>';
                 return;
             }
 
@@ -398,6 +601,7 @@
                     const badgeClass = row.total_score >= 25 ? 'badge-green' : 'badge-orange';
                     const finalAggregate = (jambWeight + row.total_score).toFixed(1);
 
+                    // 🚀 STRICT SUBJECT FILTERING: ONLY SHOWS SUBJECTS WRITTEN
                     const allScores = [
                         { name: 'ENG', val: row.english_score }, { name: 'GNS', val: row.gns_score },
                         { name: 'MTH', val: row.math_score }, { name: 'PHY', val: row.physics_score },
@@ -406,16 +610,19 @@
                         { name: 'COM', val: row.commerce_score }
                     ].filter(s => s.val !== undefined && s.val !== null && s.val > 0);
 
-                    if (allScores.length === 0) allScores.push({ name: 'ENG', val: 0 }); 
-
-                    let breakdownHtml = allScores.map(s => `${s.name}:<strong>${s.val}</strong>`).join(' | ');
+                    let breakdownHtml = 'Did not score';
+                    if (allScores.length > 0) {
+                        breakdownHtml = allScores.map(s => `${s.name}: <strong>${s.val}</strong>`).join(', ');
+                    } else if (row.total_score === 0) {
+                        breakdownHtml = 'Score: 0';
+                    }
 
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                        <td><strong>${formattedDate}</strong></td>
-                        <td style="font-size: 0.8rem; color: #475569; line-height: 1.8;">${breakdownHtml}</td>
-                        <td><span class="score-badge ${badgeClass}">${row.total_score || 0} / 50</span></td>
-                        <td style="text-align: right;"><strong style="color: #0B1220;">${finalAggregate}%</strong></td>
+                        <td><strong style="color: var(--near-black);">${formattedDate}</strong></td>
+                        <td style="font-size: 0.8rem; color: var(--text-gray); line-height: 1.6;">${breakdownHtml}</td>
+                        <td><span class="${badgeClass}">${row.total_score || 0} / 50</span></td>
+                        <td style="text-align: right;"><strong style="color: var(--near-black);">${finalAggregate}%</strong></td>
                     `;
                     tbody.appendChild(tr);
                 }

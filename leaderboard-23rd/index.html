@@ -18,55 +18,67 @@
     
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-
     <!-- PWA Manifest & Mobile Capability -->
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#071A3A">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="BRYT CBT">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#071A3A">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BRYT CBT">
 
     <style>
-        /* 🚀 STRICT BOX SIZING & BACKGROUND */
+        /* 🚀 STRICT BRAND SYSTEM & BOX SIZING */
+        :root {
+            --primary-blue: #1D5ED0;
+            --accent-blue: #159FE3;
+            --deep-navy: #071A3A;
+            --near-black: #0B1220;
+            --pure-white: #FFFFFF;
+            --light-bg: #F5F8FC;
+            --text-gray: #64748B;
+            --border-color: #E2E8F0;
+            --gradient-primary: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
+        }
+
         html, body { max-width: 100vw !important; overflow-x: hidden !important; margin: 0; padding: 0; }
         *, *::before, *::after { box-sizing: border-box !important; }
 
         body { 
-            background-color: #F5F8FC;
-            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
-            background-size: 30px 30px;
-            color: #0B1220; font-family: 'Sora', sans-serif; 
+            background-color: var(--light-bg);
+            color: var(--near-black); font-family: 'Sora', sans-serif; 
             min-height: 100vh;
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 30px 30px;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* 🚀 GLASSMORPHISM NAV */
+        /* 🚀 NAV HEADER */
         .nav-header {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 1.2rem 5%; background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(15px); border-bottom: 1px solid #e2e8f0;
-            position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            padding: 1rem 5%; background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color);
+            position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(7, 26, 58, 0.02);
         }
 
-        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.1rem; color: #071A3A; letter-spacing: -0.5px;}
-        .nav-logo img { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 4px 10px rgba(29, 94, 208, 0.2);}
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.1rem; color: var(--deep-navy); letter-spacing: -0.5px;}
+        .nav-logo img { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 4px 10px rgba(29, 94, 208, 0.15);}
 
         .btn-back {
-            background: white; color: #475569; border: 1px solid #e2e8f0;
-            padding: 0.6rem 1.2rem; border-radius: 10px; font-weight: 700; cursor: pointer;
-            transition: all 0.2s; font-family: 'Sora', sans-serif; font-size: 0.9rem;
-            display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            background: var(--pure-white); color: var(--text-gray); border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; cursor: pointer;
+            transition: all 0.2s; font-family: 'Sora', sans-serif; font-size: 0.85rem;
+            display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 4px rgba(7, 26, 58, 0.02);
         }
-        .btn-back:hover { background: #f1f5f9; color: #0B1220; transform: translateY(-2px); }
+        .btn-back:hover { background: var(--light-bg); color: var(--near-black); transform: translateY(-1px); }
         .btn-back svg { width: 16px; height: 16px; }
 
         .leaderboard-container { max-width: 1000px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem 1.5rem; text-align: center; }
 
         /* 🚀 CINEMATIC HERO HEADER */
         .leaderboard-hero {
-            background: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
-            border-radius: 24px; padding: 3rem 2rem; margin-bottom: 3.5rem; color: white;
-            position: relative; overflow: hidden; box-shadow: 0 20px 40px -15px rgba(7, 26, 58, 0.4);
+            background: var(--gradient-primary);
+            border-radius: 20px; padding: 3.5rem 2rem; margin-bottom: 3.5rem; color: var(--pure-white);
+            position: relative; overflow: hidden; box-shadow: 0 15px 35px rgba(7, 26, 58, 0.15);
             animation: fadeSlideUp 0.5s ease forwards;
         }
         .leaderboard-hero::after {
@@ -76,15 +88,15 @@
 
         /* 🚀 EVENT BADGE */
         .bryt-badge { 
-            display: inline-flex; align-items: center; gap: 8px; background: rgba(21, 159, 227, 0.1); 
-            border: 1px solid rgba(21, 159, 227, 0.3); color: #159FE3; padding: 0.5rem 1.2rem; 
-            border-radius: 50px; font-weight: 800; font-size: 0.85rem; margin-bottom: 1.5rem; 
+            display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.1); 
+            border: 1px solid rgba(255, 255, 255, 0.2); color: var(--accent-blue); padding: 0.5rem 1.2rem; 
+            border-radius: 50px; font-weight: 700; font-size: 0.8rem; margin-bottom: 1.5rem; 
             text-transform: uppercase; letter-spacing: 0.5px; position: relative; z-index: 2;
         }
-        .bryt-badge svg { width: 16px; height: 16px; }
+        .bryt-badge svg { width: 14px; height: 14px; }
 
-        .hero-title { font-size: 2.5rem; font-weight: 800; margin: 0 0 10px 0; letter-spacing: -0.5px; position: relative; z-index: 2; }
-        .hero-subtitle { color: #E0E7FF; font-size: 1.05rem; font-weight: 500; margin: 0; position: relative; z-index: 2;}
+        .hero-title { font-size: 2.5rem; font-weight: 800; margin: 0 0 10px 0; letter-spacing: -1px; position: relative; z-index: 2; }
+        .hero-subtitle { color: #E2E8F0; font-size: 1rem; font-weight: 400; margin: 0; position: relative; z-index: 2;}
 
         /* 🚀 PLUSH PODIUM */
         .podium-wrapper { 
@@ -94,82 +106,88 @@
         }
         
         .podium-step {
-            background: white; color: #0B1220; border-radius: 20px 20px 16px 16px;
+            background: var(--pure-white); color: var(--near-black); border-radius: 20px 20px 16px 16px;
             width: 200px; padding: 2rem 1.2rem 1.5rem 1.2rem; position: relative;
-            box-shadow: 0 15px 35px -10px rgba(0,0,0,0.1); border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 30px rgba(7, 26, 58, 0.05); border: 1px solid var(--border-color);
             display: flex; flex-direction: column; justify-content: flex-start;
             transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .podium-step:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15); border-color: #cbd5e1;}
+        .podium-step:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(7, 26, 58, 0.08); border-color: #CBD5E1;}
         
-        .step-1 { height: 260px; z-index: 3; order: 2; border-top: 6px solid #fbbf24; }
-        .step-2 { height: 220px; z-index: 2; order: 1; border-top: 6px solid #94a3b8; }
-        .step-3 { height: 190px; z-index: 1; order: 3; border-top: 6px solid #d97706; }
+        .step-1 { height: 260px; z-index: 3; order: 2; border-top: 6px solid #F59E0B; }
+        .step-2 { height: 220px; z-index: 2; order: 1; border-top: 6px solid #94A3B8; }
+        .step-3 { height: 190px; z-index: 1; order: 3; border-top: 6px solid #D97706; }
 
         .p-rank {
             position: absolute; top: -24px; left: 50%; transform: translateX(-50%);
             width: 48px; height: 48px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            font-weight: 900; font-size: 1.2rem; color: white; box-shadow: 0 8px 16px rgba(0,0,0,0.15); border: 2px solid white;
+            font-weight: 800; font-size: 1.1rem; color: var(--pure-white); box-shadow: 0 8px 16px rgba(0,0,0,0.1); border: 2px solid var(--pure-white);
         }
-        .step-1 .p-rank { background: linear-gradient(135deg, #fcd34d 0%, #d97706 100%); width: 56px; height: 56px; top: -28px; font-size: 1.5rem;}
-        .step-2 .p-rank { background: linear-gradient(135deg, #e2e8f0 0%, #64748b 100%); }
-        .step-3 .p-rank { background: linear-gradient(135deg, #fdba74 0%, #b45309 100%); }
+        .step-1 .p-rank { background: linear-gradient(135deg, #FCD34D 0%, #D97706 100%); width: 56px; height: 56px; top: -28px; font-size: 1.4rem;}
+        .step-2 .p-rank { background: linear-gradient(135deg, #E2E8F0 0%, #64748B 100%); }
+        .step-3 .p-rank { background: linear-gradient(135deg, #FDBA74 0%, #B45309 100%); }
 
-        .p-name { font-weight: 800; font-size: 1.1rem; margin-top: 24px; line-height: 1.2; word-break: break-word; color: #0B1220; letter-spacing: -0.5px;}
-        .step-1 .p-name { font-size: 1.25rem; margin-top: 30px; }
-        .p-course { font-size: 0.75rem; color: #64748b; font-weight: 700; margin-top: 6px; text-transform: uppercase; line-height: 1.3; }
-        .p-score { font-size: 1.8rem; font-weight: 900; color: #1D5ED0; margin-top: auto; padding-top: 10px; line-height: 1;}
-        .p-putme { font-size: 0.75rem; color: #64748b; font-weight: 700; margin-top: 4px; }
+        .p-name { font-weight: 800; font-size: 1.05rem; margin-top: 20px; line-height: 1.3; word-break: break-word; color: var(--near-black); letter-spacing: -0.5px;}
+        .step-1 .p-name { font-size: 1.2rem; margin-top: 24px; }
+        .p-course { font-size: 0.75rem; color: var(--text-gray); font-weight: 600; margin-top: 4px; text-transform: uppercase; line-height: 1.4; }
+        .p-score { font-size: 1.8rem; font-weight: 800; color: var(--primary-blue); margin-top: auto; padding-top: 10px; line-height: 1;}
+        .p-putme { font-size: 0.75rem; color: var(--text-gray); font-weight: 600; margin-top: 6px; }
 
         /* 🚀 DATA TABLE CARD */
         .table-card {
-            background: white; border-radius: 24px; overflow: hidden;
-            box-shadow: 0 15px 40px -10px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;
+            background: var(--pure-white); border-radius: 20px; overflow: hidden;
+            box-shadow: 0 4px 20px rgba(7, 26, 58, 0.02); border: 1px solid var(--border-color);
             animation: fadeSlideUp 0.6s ease forwards; animation-delay: 0.2s; opacity: 0;
         }
 
         .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-        .rank-table { width: 100%; border-collapse: collapse; text-align: left; min-width: 450px; margin: 0;}
+        .rank-table { width: 100%; border-collapse: collapse; text-align: left; min-width: 500px; margin: 0;}
         .rank-table th { 
-            background: #F5F8FC; color: #475569; font-weight: 800; text-transform: uppercase; 
-            font-size: 0.8rem; padding: 1.2rem 1.5rem; border-bottom: 2px solid #e2e8f0; white-space: nowrap; letter-spacing: 0.5px;
+            background: var(--light-bg); color: var(--text-gray); font-weight: 700; text-transform: uppercase; 
+            font-size: 0.75rem; padding: 1.25rem 1.5rem; border-bottom: 2px solid var(--border-color); white-space: nowrap; letter-spacing: 0.5px;
         }
-        .rank-table td { padding: 1.2rem 1.5rem; border-bottom: 1px solid #f1f5f9; color: #0B1220; font-size: 0.95rem; font-weight: 600; vertical-align: middle; white-space: nowrap; }
-        .rank-table tr:hover td { background: #F5F8FC; }
+        .rank-table td { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-color); color: var(--near-black); font-size: 0.95rem; font-weight: 600; vertical-align: middle; white-space: nowrap; }
+        .rank-table tr:hover td { background: var(--light-bg); }
         
-        .rank-badge { background: #f1f5f9; color: #64748b; padding: 6px 12px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; display: inline-block; border: 1px solid #e2e8f0;}
-        .score-highlight { color: #1D5ED0; font-weight: 900; font-size: 1.15rem; background: #F5F8FC; padding: 6px 12px; border-radius: 8px;}
+        .rank-badge { background: var(--light-bg); color: var(--text-gray); padding: 4px 10px; border-radius: 8px; font-weight: 700; font-size: 0.8rem; display: inline-block; border: 1px solid var(--border-color);}
+        .score-highlight { color: var(--primary-blue); font-weight: 800; font-size: 1.1rem; background: var(--light-bg); padding: 6px 12px; border-radius: 8px;}
 
-        .empty-state { padding: 4rem 1.5rem; text-align: center; color: #64748b; }
-        #loading-spinner { display: flex; flex-direction: column; align-items: center; padding: 4rem 0; color: #0B1220; }
+        .empty-state { padding: 4rem 1.5rem; text-align: center; color: var(--text-gray); }
+        #loading-spinner { display: flex; flex-direction: column; align-items: center; padding: 4rem 0; color: var(--near-black); }
 
         @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* 🚀 MOBILE RESPONSIVENESS */
-        @media (max-width: 650px) {
+        /* 🚀 STRICT MOBILE FIXES (Zooming solved) */
+        @media (max-width: 1024px) {
+            html, body { font-size: 13px !important; }
+            
             .nav-header { padding: 1rem; }
-            .leaderboard-hero { padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; border-radius: 20px;}
-            .hero-title { font-size: 1.8rem; }
+            .nav-logo { font-size: 1rem; }
+            .nav-logo img { width: 26px; height: 26px; }
+            .btn-back { padding: 0.4rem 0.8rem; font-size: 0.85rem; border-radius: 8px;}
+            
+            .leaderboard-hero { padding: 2.5rem 1.5rem; margin-bottom: 2rem; border-radius: 16px;}
+            .hero-title { font-size: 1.75rem; margin-bottom: 6px; }
             .hero-subtitle { font-size: 0.9rem; }
             .leaderboard-container { padding: 1.5rem 1rem 3rem 1rem; }
 
-            .podium-wrapper { flex-direction: column; align-items: center; gap: 15px; min-height: auto; margin-bottom: 2.5rem; width: 100%; }
+            .podium-wrapper { flex-direction: column; align-items: center; gap: 12px; min-height: auto; margin-bottom: 2rem; width: 100%; }
             .podium-step { 
-                width: 100%; max-width: 100%; height: auto !important; padding: 1.2rem 1.5rem; 
-                border-top: none; border-left: 8px solid; border-radius: 16px; 
+                width: 100%; max-width: 100%; height: auto !important; padding: 1.2rem; 
+                border-top: none; border-left: 6px solid; border-radius: 14px; 
                 flex-direction: row; align-items: center; text-align: left; order: initial !important; 
             }
-            .step-1 { border-left-color: #fbbf24; }
-            .step-2 { border-left-color: #94a3b8; }
-            .step-3 { border-left-color: #d97706; }
+            .step-1 { border-left-color: #F59E0B; }
+            .step-2 { border-left-color: #94A3B8; }
+            .step-3 { border-left-color: #D97706; }
 
-            .p-rank { position: static; transform: none; width: 40px !important; height: 40px !important; font-size: 1rem !important; margin-right: 15px; flex-shrink: 0; box-shadow: none; border: none;}
+            .p-rank { position: static; transform: none; width: 40px !important; height: 40px !important; font-size: 1rem !important; margin-right: 12px; flex-shrink: 0; box-shadow: none; border: none;}
             .podium-step-info { flex-grow: 1; min-width: 0; }
             .p-name { margin-top: 0 !important; font-size: 1.05rem !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-            .p-course { margin-top: 4px; font-size: 0.7rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            .p-course { margin-top: 4px; font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
             .p-score-box { text-align: right; flex-shrink: 0; margin-left: 10px; }
             .p-score { margin-top: 0; font-size: 1.4rem; padding-top: 0; }
-            .p-putme { font-size: 0.7rem; margin-top: 2px;}
+            .p-putme { font-size: 0.75rem; margin-top: 2px;}
 
             .table-card { border-radius: 16px; }
             .rank-table th { padding: 1rem; font-size: 0.75rem; }
@@ -203,11 +221,11 @@
         </div>
 
         <div id="loading-spinner">
-            <svg class="animate-spin" style="width: 45px; height: 45px; color: #1D5ED0; margin-bottom: 15px;" fill="none" viewBox="0 0 24 24">
+            <svg class="animate-spin" style="width: 40px; height: 40px; color: var(--primary-blue); margin-bottom: 12px;" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            <h3 style="font-weight: 700; margin: 0; color: #0B1220;">Compiling Live Rankings...</h3>
+            <h3 style="font-weight: 600; margin: 0; font-size: 0.95rem; color: var(--text-gray);">Compiling Live Rankings...</h3>
         </div>
 
         <div id="leaderboard-content" style="display: none;">
@@ -251,8 +269,8 @@
                 if (!data || data.length === 0) {
                     document.getElementById('loading-spinner').innerHTML = `
                         <div class="empty-state">
-                            <h2 style="color: #0B1220; margin: 0 0 10px 0; font-weight: 800;">Waiting for submissions...</h2>
-                            <p style="color: #64748b; margin: 0; font-weight: 500;">No aspirants have submitted the mock exam yet.</p>
+                            <h2 style="color: var(--near-black); font-size: 1.4rem; margin: 0 0 6px 0; font-weight: 800;">Waiting for submissions...</h2>
+                            <p style="color: var(--text-gray); font-size: 0.9rem; margin: 0; font-weight: 500;">No aspirants have submitted the mock exam yet.</p>
                         </div>
                     `;
                     return;
@@ -270,10 +288,10 @@
             } catch (err) {
                 console.error("Leaderboard Error:", err);
                 document.getElementById('loading-spinner').innerHTML = `
-                    <div class="empty-state" style="color: #ef4444;">
-                        <svg style="width: 40px; height: 40px; margin-bottom: 15px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                        <h2 style="margin: 0 0 10px 0;">Error loading rankings.</h2>
-                        <p style="margin: 0; color: #991b1b;">Please check your connection and refresh.</p>
+                    <div class="empty-state">
+                        <svg style="width: 36px; height: 36px; margin-bottom: 12px; color: #EF4444;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        <h2 style="margin: 0 0 6px 0; font-size: 1.4rem; color: #991B1B;">Error loading rankings.</h2>
+                        <p style="margin: 0; color: #DC2626; font-size: 0.9rem;">Please check your connection and refresh.</p>
                     </div>
                 `;
             }
@@ -297,13 +315,13 @@
 
             if (top3.length > 0) {
                 setTimeout(() => {
-                    confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, colors: ['#fbbf24', '#cbd5e1', '#d97706', '#1D5ED0'] });
+                    confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, colors: ['#F59E0B', '#CBD5E1', '#D97706', '#1D5ED0'] });
                 }, 600);
             }
 
             const tbody = document.getElementById('table-body');
             if (rest.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#64748b; padding:3rem 1rem; font-weight: 500;">All participating aspirants are currently shown on the podium above.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:var(--text-gray); padding:3rem 1rem; font-weight: 500;">All participating aspirants are currently shown on the podium above.</td></tr>`;
             } else {
                 let tableHtml = "";
                 rest.forEach((user, index) => {
@@ -317,9 +335,9 @@
                     tableHtml += `
                         <tr>
                             <td style="text-align: center;"><span class="rank-badge">#${rank}</span></td>
-                            <td style="font-weight: 800; color: #0B1220;">${name}</td>
-                            <td class="hide-mobile" style="color: #64748b; font-size: 0.8rem; text-transform: uppercase;">${cleanCourse}</td>
-                            <td style="text-align: center; color: #64748b;">${putme}</td>
+                            <td style="font-weight: 700; color: var(--near-black);">${name}</td>
+                            <td class="hide-mobile" style="color: var(--text-gray); font-size: 0.8rem; text-transform: uppercase;">${cleanCourse}</td>
+                            <td style="text-align: center; color: var(--text-gray);">${putme}</td>
                             <td style="text-align: right;"><span class="score-highlight">${aggregate}</span></td>
                         </tr>
                     `;

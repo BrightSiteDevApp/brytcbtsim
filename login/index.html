@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Login | BRYT CBT SIM</title>
     
     <!-- BRAND ICONS -->
@@ -17,154 +17,257 @@
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="../static/main.css">
+    
     <!-- PWA Manifest & Mobile Capability -->
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#071A3A">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="BRYT CBT">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#071A3A">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BRYT CBT">
 
     <style>
-        /* 🚀 ELITE UI OVERRIDES */
+        /* 🚀 ELITE UI OVERRIDES & BRAND SYSTEM */
+        :root {
+            --primary-blue: #1D5ED0;
+            --accent-blue: #159FE3;
+            --deep-navy: #071A3A;
+            --near-black: #0B1220;
+            --pure-white: #FFFFFF;
+            --light-bg: #F5F8FC;
+            --text-gray: #64748B;
+            --border-color: #E2E8F0;
+            --gradient-primary: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
+        }
+
         html, body { max-width: 100vw !important; overflow-x: hidden !important; margin: 0; padding: 0; }
         *, *::before, *::after { box-sizing: border-box !important; }
 
         body.auth-page { 
             font-family: 'Sora', sans-serif; 
-            background-color: #F5F8FC;
-            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
-            background-size: 30px 30px;
-            overflow: hidden; height: 100vh;
+            background-color: var(--light-bg);
+            height: 100vh;
+            overflow: hidden;
+            color: var(--near-black);
+            font-size: 14px; /* Scaled down base font to fix 'zoomed' look */
         }
 
         .auth-split-layout {
-            display: grid; grid-template-columns: 1.2fr 1fr; height: 100vh; width: 100vw;
+            display: flex; 
+            height: 100vh; 
+            width: 100vw;
         }
 
-        /* 🚀 LEFT BANNER - PREMIUM BRANDING */
+        /* 🚀 LEFT BANNER - DESKTOP */
         .auth-banner {
-            background: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
-            position: relative; display: flex; flex-direction: column; justify-content: center;
-            padding: 4rem; color: white; overflow: hidden;
+            flex: 1.1;
+            background: var(--gradient-primary);
+            position: relative; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+            padding: 2rem; 
+            color: var(--pure-white); 
+            overflow: hidden;
+            text-align: center;
         }
         
-        /* Floating glowing orbs for modern background effect */
+        /* Subtle Glow Effects */
         .auth-banner::before {
-            content: ''; position: absolute; top: -10%; left: -10%; width: 50%; height: 50%;
-            background: radial-gradient(circle, rgba(21,159,227,0.2) 0%, transparent 70%); border-radius: 50%;
-        }
-        .auth-banner::after {
-            content: ''; position: absolute; bottom: -10%; right: -10%; width: 60%; height: 60%;
-            background: radial-gradient(circle, rgba(21,159,227,0.2) 0%, transparent 70%); border-radius: 50%;
+            content: ''; position: absolute; top: -20%; left: -10%; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(21,159,227,0.15) 0%, transparent 70%); border-radius: 50%;
         }
 
-        .banner-content { position: relative; z-index: 2; max-width: 600px; }
-        .banner-content h2 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1px; }
-        .banner-content p { font-size: 1.1rem; color: #E0E7FF; line-height: 1.6; margin-bottom: 3rem; font-weight: 500;}
+        .banner-content { 
+            position: relative; 
+            z-index: 2; 
+            max-width: 440px; 
+            width: 100%; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        
+        .brand-header { margin-bottom: 2rem; display: flex; flex-direction: column; align-items: center;}
+        .brand-logo-container { display: flex; align-items: center; justify-content: center; margin-bottom: 10px;}
+        .brand-logo-container img { width: 54px; height: 54px; border-radius: 12px; box-shadow: 0 8px 20px rgba(7, 26, 58, 0.4);}
+        .brand-name { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 2px; }
+        .brand-tagline { font-size: 0.85rem; font-weight: 500; color: #E2E8F0; letter-spacing: 0.5px;}
 
-        /* Social Proof Badge */
-        .social-proof { display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.2); width: fit-content; backdrop-filter: blur(10px);}
-        .avatars { display: flex; }
-        .avatars div { width: 35px; height: 35px; border-radius: 50%; background: #1D5ED0; border: 2px solid #071A3A; margin-left: -12px; display: flex; justify-content: center; align-items: center; font-size: 0.7rem; font-weight: bold;}
-        .avatars div:first-child { margin-left: 0; background: #10b981; }
-        .avatars div:nth-child(2) { background: #f59e0b; }
-        .avatars div:nth-child(3) { background: #8b5cf6; }
-        .proof-text { font-size: 0.9rem; font-weight: 600; color: #f8fafc; }
+        .banner-content h1 { font-size: 2rem; font-weight: 800; line-height: 1.2; margin: 0 0 1rem 0; letter-spacing: -1px; }
+        .banner-content h1 span { color: var(--accent-blue); }
+        .banner-content p { font-size: 0.95rem; color: #E2E8F0; line-height: 1.5; margin: 0 0 1.5rem 0; font-weight: 400;}
+
+        .illustration-container { margin-bottom: 1.5rem; width: 100%; max-width: 220px; position: relative; z-index: 2;}
+        .illustration-container img { width: 100%; height: auto; display: block; }
+        
+        .brand-footer { margin-top: auto; font-size: 0.75rem; color: rgba(255, 255, 255, 0.6); font-weight: 500; }
+
+        /* Mobile Action Buttons (Hidden on desktop) */
+        #mobile-action-buttons { width: 100%; display: none; flex-direction: column; gap: 10px; margin-top: 1rem; z-index: 10;}
+        .btn-mockup-primary { background: var(--pure-white); color: var(--primary-blue); padding: 0.85rem; border-radius: 10px; font-weight: 700; font-size: 0.9rem; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: transform 0.2s;}
+        .btn-mockup-secondary { background: rgba(255, 255, 255, 0.1); color: var(--pure-white); padding: 0.85rem; border-radius: 10px; font-weight: 600; font-size: 0.9rem; border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s;}
 
         /* 🚀 RIGHT SIDE - FORM CONTAINER */
-        .auth-form-container {
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            padding: 2rem; position: relative; z-index: 2;
+        .auth-form-side {
+            flex: 1; 
+            background: var(--pure-white);
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;
+            padding: 2rem; 
+            position: relative; 
+            z-index: 2;
         }
+        
         .auth-form-wrapper {
-            width: 100%; max-width: 440px; background: white; padding: 3.5rem 3rem; 
-            border-radius: 24px; box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
-            border: 1px solid #e2e8f0; text-align: center;
+            width: 100%; 
+            max-width: 380px; /* Scaled down for normal desktop look */
+            background: var(--pure-white); 
+            padding: 2.5rem; 
+            border-radius: 20px; 
+            text-align: center;
         }
 
-        .auth-title { font-size: 2rem; font-weight: 800; color: #0B1220; margin: 0 0 8px 0; letter-spacing: -0.5px;}
-        .auth-subtitle { color: #64748b; font-size: 0.95rem; margin: 0 0 2.5rem 0; line-height: 1.6; font-weight: 500;}
+        /* Desktop specific shadow */
+        @media (min-width: 901px) {
+            .auth-form-wrapper {
+                box-shadow: 0 10px 30px rgba(7, 26, 58, 0.05);
+                border: 1px solid var(--border-color);
+            }
+        }
+
+        .auth-title { font-size: 1.5rem; font-weight: 800; color: var(--near-black); margin: 0 0 6px 0; letter-spacing: -0.5px;}
+        .auth-subtitle { color: var(--text-gray); font-size: 0.85rem; margin: 0 0 2rem 0; line-height: 1.5; font-weight: 400;}
 
         /* 🚀 MODERN INPUT FIELDS */
-        .input-group { margin-bottom: 1.5rem; text-align: left; }
-        .input-group label { display: block; font-size: 0.8rem; font-weight: 700; color: #475569; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;}
+        .input-group { margin-bottom: 1.25rem; text-align: left; }
+        .input-group label { display: block; font-size: 0.75rem; font-weight: 700; color: var(--text-gray); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;}
         .modern-input {
-            width: 100%; padding: 1.1rem 1.2rem; border-radius: 12px; border: 1px solid #cbd5e1; 
-            background: #F5F8FC; font-family: 'Sora', sans-serif; font-size: 1rem; 
-            transition: all 0.2s ease; box-sizing: border-box; color: #0B1220; font-weight: 600;
+            width: 100%; padding: 0.85rem 1rem; border-radius: 10px; border: 1px solid var(--border-color); 
+            background: var(--light-bg); font-family: 'Sora', sans-serif; font-size: 0.9rem; 
+            transition: all 0.2s ease; box-sizing: border-box; color: var(--near-black); font-weight: 500;
         }
-        .modern-input:focus { border-color: #1D5ED0; background: white; outline: none; box-shadow: 0 0 0 4px rgba(29, 94, 208, 0.1); }
-        .modern-input::placeholder { color: #94a3b8; font-weight: 500; }
+        .modern-input:focus { border-color: var(--primary-blue); background: var(--pure-white); outline: none; box-shadow: 0 0 0 4px rgba(29, 94, 208, 0.1); }
+        .modern-input::placeholder { color: #94A3B8; font-weight: 400; }
 
         /* OTP Specific Styling */
-        #secure-otp { letter-spacing: 12px; font-size: 1.8rem; text-align: center; font-weight: 800; color: #1D5ED0; background: #F5F8FC;}
+        #secure-otp { letter-spacing: 10px; font-size: 1.4rem; text-align: center; font-weight: 800; color: var(--primary-blue); background: var(--light-bg);}
 
         /* 🚀 MODERN BUTTONS */
         .auth-btn {
-            width: 100%; padding: 1.1rem; border-radius: 12px; background: #1D5ED0; color: white;
-            font-weight: 700; font-size: 1.05rem; border: none; cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 8px 20px -5px rgba(29, 94, 208, 0.4);
-            font-family: 'Sora', sans-serif; display: flex; align-items: center; justify-content: center; gap: 10px;
+            width: 100%; padding: 0.9rem; border-radius: 10px; background: var(--primary-blue); color: var(--pure-white);
+            font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer;
+            transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(29, 94, 208, 0.25);
+            font-family: 'Sora', sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
-        .auth-btn svg { width: 20px; height: 20px; }
-        .auth-btn:hover { background: #159FE3; transform: translateY(-2px); box-shadow: 0 12px 25px -5px rgba(21, 159, 227, 0.5); }
-        .auth-btn:disabled { background: #94a3b8; transform: none; box-shadow: none; cursor: not-allowed; }
+        .auth-btn svg { width: 16px; height: 16px; }
+        .auth-btn:hover { background: var(--deep-navy); transform: translateY(-1px); box-shadow: 0 6px 15px rgba(7, 26, 58, 0.25); }
+        .auth-btn:disabled { background: #94A3B8; transform: none; box-shadow: none; cursor: not-allowed; }
 
         /* 🚀 SECONDARY ACTIONS */
         .secondary-actions {
             display: flex; justify-content: space-between; align-items: center;
-            margin-top: 15px; font-size: 0.85rem; font-weight: 700;
+            margin-top: 12px; font-size: 0.8rem; font-weight: 600;
         }
         .text-link {
-            color: #1D5ED0; cursor: pointer; background: none; border: none; padding: 0; 
-            font-family: 'Sora', sans-serif; font-weight: 700; text-decoration: none; transition: color 0.2s;
+            color: var(--primary-blue); cursor: pointer; background: none; border: none; padding: 0; 
+            font-family: 'Sora', sans-serif; font-weight: 600; text-decoration: none; transition: color 0.2s;
             display: inline-flex; align-items: center; gap: 4px;
         }
-        .text-link svg { width: 14px; height: 14px; }
-        .text-link:hover { color: #071A3A; }
-        .text-link:disabled { color: #94a3b8; cursor: not-allowed; }
+        .text-link svg { width: 12px; height: 12px; }
+        .text-link:hover { color: var(--deep-navy); }
+        .text-link:disabled { color: #94A3B8; cursor: not-allowed; }
 
         .hidden { display: none !important; }
 
-        /* Form Animation */
-        form { animation: slideIn 0.4s ease forwards; }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-
         /* 🚀 COUNTDOWN WIDGET */
-        .countdown-container { display: flex; justify-content: center; gap: 12px; margin: 2rem 0; }
-        .countdown-box { background: #F5F8FC; border: 1px solid #e2e8f0; padding: 12px 15px; border-radius: 14px; min-width: 75px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02); }
-        .countdown-value { display: block; font-size: 2rem; font-weight: 800; color: #1D5ED0; line-height: 1; margin-bottom: 5px; }
-        .countdown-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #64748b; font-weight: 700; }
+        .countdown-container { display: flex; justify-content: center; gap: 8px; margin: 1.5rem 0; }
+        .countdown-box { background: var(--light-bg); border: 1px solid var(--border-color); padding: 10px; border-radius: 12px; min-width: 60px; text-align: center; }
+        .countdown-value { display: block; font-size: 1.4rem; font-weight: 800; color: var(--primary-blue); line-height: 1; margin-bottom: 4px; }
+        .countdown-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-gray); font-weight: 700; }
 
         /* 🚀 WHATSAPP SUPPORT BUTTON */
         .whatsapp-support-btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px; 
-            background-color: white; color: #16a34a; padding: 0.8rem 1.5rem; border-radius: 10px; 
-            font-weight: 700; text-decoration: none; font-size: 0.9rem; border: 1px solid #bbf7d0;
-            transition: all 0.2s; box-shadow: 0 4px 10px rgba(22, 163, 74, 0.1); margin-top: 10px;
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px; 
+            background-color: var(--pure-white); color: #10B981; padding: 0.65rem 1.2rem; border-radius: 8px; 
+            font-weight: 600; text-decoration: none; font-size: 0.8rem; border: 1px solid #A7F3D0;
+            transition: all 0.2s; box-shadow: 0 4px 8px rgba(16, 185, 129, 0.05); margin-top: 8px;
         }
-        .whatsapp-support-btn svg { width: 18px; height: 18px; }
-        .whatsapp-support-btn:hover { background-color: #ecfdf5; transform: translateY(-1px); border-color: #86efac; box-shadow: 0 6px 15px rgba(22, 163, 74, 0.15);}
+        .whatsapp-support-btn svg { width: 14px; height: 14px; }
+        .whatsapp-support-btn:hover { background-color: #ECFDF5; border-color: #6EE7B7; }
 
-        /* 🚀 MOBILE RESPONSIVENESS */
+        /* 🚀 RESPONSIVE LOGIC */
+        @media (min-width: 901px) {
+            #actual-form-container { display: flex !important; }
+        }
+
+        /* 🚀 MOBILE FIX - PREVENTING OVERFLOW & SCROLLING */
         @media (max-width: 900px) {
-            body.auth-page { overflow-y: auto; height: auto; }
-            .auth-split-layout { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
+            body.auth-page { overflow: hidden; height: 100dvh; } /* 100dvh ensures it fits strictly in the screen without scrolling */
             
-            .auth-banner { padding: 3rem 1.5rem; text-align: center; align-items: center;}
-            .banner-content h2 { font-size: 2.2rem; }
-            .banner-content p { font-size: 1rem; margin-bottom: 2rem;}
-            .social-proof { margin: 0 auto; }
+            .auth-split-layout { 
+                flex-direction: column; 
+                height: 100%; 
+                position: relative;
+            }
             
-            .auth-form-container { padding: 1.5rem 1rem; align-items: center;}
-            .auth-form-wrapper { padding: 2.5rem 1.5rem; border-radius: 20px;}
+            .auth-banner { 
+                height: 100dvh; 
+                padding: 1.5rem; 
+                justify-content: space-between; /* Spreads content nicely vertically */
+            }
+
+            .banner-content {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly; /* Replaces margins with flexible spacing */
+                align-items: center;
+            }
             
-            .countdown-container { gap: 8px; }
-            .countdown-box { padding: 10px; min-width: 65px; border-radius: 12px;}
-            .countdown-value { font-size: 1.6rem; }
-            .countdown-label { font-size: 0.65rem; }
-            .auth-title { font-size: 1.8rem; }
+            .brand-header, .banner-content h1, .banner-content p, .illustration-container {
+                margin-bottom: 0; /* Clear static margins to let flexbox work */
+            }
+
+            .brand-logo-container img { width: 44px; height: 44px; }
+            .brand-name { font-size: 1.2rem; }
+            .banner-content h1 { font-size: 1.6rem; line-height: 1.15; }
+            .banner-content p { font-size: 0.85rem; max-width: 90%; }
+            .illustration-container { max-width: 170px; } /* Smaller image on mobile */
+            
+            #mobile-action-buttons { display: flex; width: 100%; }
+            
+            /* Hidden initially on mobile, slides up when buttons clicked */
+            .auth-form-side { 
+                display: none; 
+                position: absolute; 
+                top: 0; left: 0; 
+                width: 100%; height: 100dvh; 
+                background: var(--light-bg); 
+                padding: 1rem;
+                z-index: 20;
+            }
+            .auth-form-side.mobile-visible {
+                display: flex;
+                animation: slideUpFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            }
+            .auth-form-wrapper { padding: 2rem 1.5rem; max-width: 100%; }
+            .brand-footer { display: none; } /* Hide the tiny footer on mobile to save space */
+        }
+
+        /* Tiny screens (e.g. iPhone SE) */
+        @media (max-width: 375px) {
+            .banner-content h1 { font-size: 1.4rem; }
+            .illustration-container { max-width: 140px; }
+            .btn-mockup-primary, .btn-mockup-secondary { padding: 0.75rem; font-size: 0.85rem; }
+        }
+
+        @keyframes slideUpFade { 
+            from { opacity: 0; transform: translateY(40px); } 
+            to { opacity: 1; transform: translateY(0); } 
         }
     </style>
 </head>
@@ -179,29 +282,82 @@
 
     <div class="auth-split-layout">
         
+        <!-- 🚀 LEFT BANNER (Hero & Brand) -->
         <div class="auth-banner">
             <div class="banner-content">
-                <h2>Your Journey to Success Starts Here.</h2>
-                <p>Join hundreds of aspirants preparing smarter, faster, and better. Master your subjects with our premium CBT engine.</p>
                 
-                <div class="social-proof">
-                    <div class="avatars">
-                        <div>JD</div><div>SA</div><div>EO</div>
+                <div class="brand-header">
+                    <div class="brand-logo-container">
+                        <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo">
                     </div>
-                    <span class="proof-text">Join 2,000+ Aspirants</span>
+                    <div class="brand-name">BRYT CBT SIM</div>
+                    <div class="brand-tagline">Practice • Improve • Excel</div>
+                </div>
+
+                <h1>Your Post-UTME <br><span>Success Starts Here.</span></h1>
+                <p>Realistic questions. Detailed analysis.<br>Track your progress. Get ahead.</p>
+                
+                <!-- Education Illustration -->
+                <div class="illustration-container">
+                    <!-- Physical Image Call -->
+                    <img src="../static/img/education-illustration.png" alt="Graduation Cap and Books Illustration" 
+                         onerror="this.style.display='none'; document.getElementById('svg-fallback').style.display='block';">
+                    
+                    <!-- Highly Polished SVG Fallback -->
+                    <svg id="svg-fallback" style="display:none; width: 100%; height: auto; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.2));" viewBox="0 0 300 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="book1" x1="50" y1="180" x2="250" y2="180" gradientUnits="userSpaceOnUse"><stop stop-color="#159FE3"/><stop offset="1" stop-color="#1D5ED0"/></linearGradient>
+                            <linearGradient id="book2" x1="60" y1="150" x2="240" y2="150" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#E2E8F0"/></linearGradient>
+                            <linearGradient id="book3" x1="70" y1="120" x2="230" y2="120" gradientUnits="userSpaceOnUse"><stop stop-color="#071A3A"/><stop offset="1" stop-color="#1D5ED0"/></linearGradient>
+                        </defs>
+                        <!-- Glow -->
+                        <ellipse cx="150" cy="110" rx="100" ry="60" fill="#159FE3" opacity="0.3" filter="blur(30px)"/>
+                        <!-- Book 1 (Bottom) -->
+                        <path d="M50 170 C50 165, 55 160, 65 160 L235 160 C245 160, 250 165, 250 170 L250 190 C250 195, 245 200, 235 200 L65 200 C55 200, 50 195, 50 190 Z" fill="url(#book1)"/>
+                        <rect x="50" y="170" width="200" height="8" fill="#FFFFFF" opacity="0.9"/>
+                        <!-- Book 2 (Middle) -->
+                        <path d="M60 140 C60 135, 65 130, 75 130 L225 130 C235 130, 240 135, 240 140 L240 160 C240 165, 235 170, 225 170 L75 170 C65 170, 60 165, 60 160 Z" fill="url(#book2)"/>
+                        <rect x="60" y="140" width="180" height="8" fill="#F8FAFC" opacity="0.9"/>
+                        <!-- Book 3 (Top) -->
+                        <path d="M70 110 C70 105, 75 100, 85 100 L215 100 C225 100, 230 105, 230 110 L230 130 C230 135, 225 140, 215 140 L85 140 C75 140, 70 135, 70 130 Z" fill="url(#book3)"/>
+                        <rect x="70" y="110" width="160" height="8" fill="#FFFFFF" opacity="0.9"/>
+                        <!-- Graduation Cap -->
+                        <path d="M150 20 L220 50 L150 80 L80 50 Z" fill="#0B1220"/>
+                        <path d="M100 65 L100 95 C100 105, 120 115, 150 115 C180 115, 200 105, 200 95 L200 65" fill="#071A3A"/>
+                        <circle cx="150" cy="50" r="5" fill="#159FE3"/>
+                        <path d="M210 45 L210 90" stroke="#159FE3" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M205 90 L215 90 L212 105 L208 105 Z" fill="#159FE3"/>
+                    </svg>
+                </div>
+
+                <!-- 🚀 MOBILE ONLY ACTION BUTTONS -->
+                <div id="mobile-action-buttons">
+                    <button class="btn-mockup-primary" onclick="showMobileForm()">
+                        Login to your account
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:16px; height:16px;"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                    <button class="btn-mockup-secondary" onclick="showMobileForm()">
+                        Create a new account
+                    </button>
+                </div>
+                
+                <div class="brand-footer">
+                    A product of BRYT Technologies.
                 </div>
             </div>
         </div>
 
-        <div class="auth-form-container">
+        <!-- 🚀 RIGHT FORM SIDE -->
+        <div class="auth-form-side" id="actual-form-container">
+            <!-- Mobile Close Button (Hidden on Desktop) -->
+            <button onclick="hideMobileForm()" style="position: absolute; top: 1.5rem; left: 1.5rem; background: none; border: none; color: var(--text-gray); display: none; align-items: center; gap: 4px; font-weight: 600; font-family: 'Sora';" id="mobile-back-btn">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:18px; height:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Back
+            </button>
+
             <div class="auth-form-wrapper">
                 
-                <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 2.5rem;">
-                    <!-- 🚀 REPLACED SVG LOGO WITH BRYT PNG -->
-                    <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo" style="width: 48px; height: 48px; border-radius: 14px; box-shadow: 0 4px 12px rgba(29, 94, 208, 0.3); flex-shrink: 0;">
-                    <span style="font-weight: 800; color: #0B1220; margin-left: 12px; font-size: 1.5rem; letter-spacing: -0.5px;">BRYT CBT SIM</span>
-                </div>
-                
+                <!-- 🚀 COUNTDOWN LOGIC BLOCK -->
                 <div id="coming-soon-block" style="display: none;">
                     <h2 class="auth-title">Launching Soon</h2>
                     <p class="auth-subtitle">The ultimate CBT Simulator goes live in:</p>
@@ -213,6 +369,7 @@
                     </div>
                 </div>
 
+                <!-- 🚀 OTP LOGIN BLOCK -->
                 <div id="secret-login-block" style="display: none;">
                     <h2 class="auth-title">Welcome Back</h2>
                     <p class="auth-subtitle">Enter your email to receive a secure, passwordless login code.</p>
@@ -228,11 +385,11 @@
                         </button>
                     </form>
 
-                    <!-- 🚀 UPDATED OTP FORM -->
+                    <!-- 🚀 OTP VERIFICATION FORM -->
                     <form id="secure-otp-form" class="hidden" onsubmit="handleOtpSubmit(event)">
-                        <div style="background: #F5F8FC; border: 1px solid #bfdbfe; padding: 12px; border-radius: 12px; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; text-align: left;">
-                            <svg style="width: 24px; height: 24px; color: #1D5ED0; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            <p style="margin: 0; font-size: 0.85rem; color: #071A3A; font-weight: 500; line-height: 1.4;">Code sent to <br><strong id="display-email" style="font-weight: 800;"></strong></p>
+                        <div style="background: var(--light-bg); border: 1px solid var(--border-color); padding: 10px; border-radius: 10px; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 8px; text-align: left;">
+                            <svg style="width: 20px; height: 20px; color: var(--primary-blue); flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <p style="margin: 0; font-size: 0.8rem; color: var(--deep-navy); font-weight: 500; line-height: 1.3;">Code sent to <br><strong id="display-email" style="font-weight: 800;"></strong></p>
                         </div>
 
                         <div class="input-group">
@@ -256,8 +413,8 @@
                         </div>
                     </form>
 
-                    <div style="margin-top: 2.5rem; border-top: 2px solid #f1f5f9; padding-top: 1.5rem; text-align: center;">
-                        <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 5px; font-weight: 600;">Having issues logging in?</p>
+                    <div style="margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 1.25rem; text-align: center;">
+                        <p style="color: var(--text-gray); font-size: 0.8rem; margin-bottom: 6px; font-weight: 500;">Having issues logging in?</p>
                         <a href="https://wa.me/2349153375488?text=Hello%20Admin,%20I%20am%20having%20issues%20logging%20into%20my%20BRYT%20CBT%20SIM%20account..." target="_blank" class="whatsapp-support-btn">
                             <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
                             Contact Support
@@ -267,18 +424,45 @@
 
                 <div id="auth-message"></div>
                 
-                <div style="text-align: center; margin-top: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 6px;">
-                    <svg fill="none" stroke="#94a3b8" viewBox="0 0 24 24" stroke-width="2" style="width: 14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                    <p style="color: #94a3b8; font-size: 0.8rem; font-weight: 500; margin: 0;">Secured by <strong>Supabase</strong> Enterprise Auth</p>
+                <div style="text-align: center; margin-top: 1.25rem; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                    <svg fill="none" stroke="#94A3B8" viewBox="0 0 24 24" stroke-width="2" style="width: 12px;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    <p style="color: var(--text-gray); font-size: 0.7rem; font-weight: 500; margin: 0;">Secured by <strong>Supabase</strong> Enterprise Auth</p>
                 </div>
 
             </div>
         </div>
     </div>
 
+    <!-- 🚀 SCRIPTS (UNTOUCHED FUNCTIONALITY) -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="../static/app.js"></script>
     <script>
+        // --- UI TRANSITION LOGIC FOR MOBILE ---
+        function showMobileForm() {
+            const formContainer = document.getElementById('actual-form-container');
+            const backBtn = document.getElementById('mobile-back-btn');
+            
+            formContainer.classList.add('mobile-visible');
+            if(window.innerWidth <= 900) {
+                backBtn.style.display = 'flex';
+            }
+        }
+
+        function hideMobileForm() {
+            const formContainer = document.getElementById('actual-form-container');
+            const backBtn = document.getElementById('mobile-back-btn');
+            
+            formContainer.classList.remove('mobile-visible');
+            backBtn.style.display = 'none';
+        }
+
+        window.addEventListener('resize', () => {
+            if(window.innerWidth > 900) {
+                document.getElementById('mobile-back-btn').style.display = 'none';
+            }
+        });
+
+        // --- CORE FUNCTIONALITY ---
         const launchDate = new Date("2026-06-26T18:00:00+01:00").getTime();
         const isAdminBypass = window.location.search.toLowerCase().includes('admin');
 
@@ -291,7 +475,7 @@
             resendInterval = setInterval(() => {
                 const now = Date.now();
                 const diff = now - timestamp;
-                const timeLeft = Math.ceil((30000 - diff) / 1000); // 30 second delay
+                const timeLeft = Math.ceil((30000 - diff) / 1000); 
                 
                 if (timeLeft <= 0) {
                     clearInterval(resendInterval);
@@ -321,7 +505,7 @@
                         document.getElementById('secure-otp-form').classList.remove('hidden');
                         startResendTimer(cached.timestamp);
                     } else {
-                        localStorage.removeItem('afit_otp_request'); // Expired
+                        localStorage.removeItem('afit_otp_request'); 
                     }
                 } catch (e) {
                     localStorage.removeItem('afit_otp_request');
@@ -359,7 +543,7 @@
             e.preventDefault();
             const btn = document.getElementById('secure-request-btn');
             const originalHTML = btn.innerHTML;
-            btn.innerHTML = `<svg class="animate-spin" style="width:20px;height:20px;" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Sending Code...`;
+            btn.innerHTML = `<svg class="animate-spin" style="width:18px;height:18px;" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Sending Code...`;
             btn.disabled = true;
 
             const emailInput = document.getElementById('secure-email').value.toLowerCase().trim();
@@ -377,7 +561,6 @@
 
                 if (otpError) throw otpError;
 
-                // SAVE REQUEST TO LOCAL STORAGE MEMORY
                 const timestamp = Date.now();
                 localStorage.setItem('afit_otp_request', JSON.stringify({ email: emailInput, timestamp: timestamp }));
 
@@ -386,9 +569,9 @@
                 document.getElementById('secure-otp-form').classList.remove('hidden');
                 
                 messageDiv.innerHTML = `
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 12px; border-radius: 12px; margin-top: 15px;">
-                        <svg style="width: 20px; height: 20px; color: #10b981;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-                        <span style="color: #065f46; font-weight: 700; font-size: 0.9rem;">Verification code sent to your email!</span>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 6px; background: #ECFDF5; border: 1px solid #A7F3D0; padding: 10px; border-radius: 10px; margin-top: 12px;">
+                        <svg style="width: 18px; height: 18px; color: #10B981;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                        <span style="color: #065F46; font-weight: 600; font-size: 0.8rem;">Verification code sent to your email!</span>
                     </div>`;
                 
                 startResendTimer(timestamp);
@@ -397,12 +580,11 @@
                 console.error("Auth Error:", error);
                 const errMsg = error.message || "An unexpected network error occurred.";
                 messageDiv.innerHTML = `
-                    <div style="background: #fef2f2; border: 1px solid #fecaca; padding: 15px; border-radius: 16px; margin-top: 15px; text-align: left; display: flex; gap: 12px; align-items: flex-start;">
-                        <svg style="width: 24px; height: 24px; color: #ef4444; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    <div style="background: #FEF2F2; border: 1px solid #FECACA; padding: 10px; border-radius: 10px; margin-top: 12px; text-align: left; display: flex; gap: 8px; align-items: flex-start;">
+                        <svg style="width: 18px; height: 18px; color: #EF4444; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                         <div>
-                            <p style="color: #991b1b; font-weight: 800; margin: 0 0 5px 0;">Connection Error</p>
-                            <p style="color: #dc2626; font-size: 0.85rem; margin: 0 0 5px 0; font-weight: 500; line-height: 1.5;">${errMsg}</p>
-                            <span style="font-size: 0.8rem; color: #7f1d1d; font-weight: 600;">(Tip: Try using Firefox if this persists)</span>
+                            <p style="color: #991B1B; font-weight: 700; font-size: 0.8rem; margin: 0 0 2px 0;">Connection Error</p>
+                            <p style="color: #DC2626; font-size: 0.75rem; margin: 0; font-weight: 500; line-height: 1.4;">${errMsg}</p>
                         </div>
                     </div>`;
                 btn.innerHTML = originalHTML;
@@ -428,7 +610,7 @@
         window.resendCode = async function() {
             const btn = document.getElementById('resend-code-btn');
             btn.disabled = true;
-            btn.innerHTML = `<svg class="animate-spin" style="width:14px; height:14px;" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Sending...`;
+            btn.innerHTML = `<svg class="animate-spin" style="width:12px; height:12px;" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Sending...`;
             
             const email = document.getElementById('secure-email').value.toLowerCase().trim();
             const messageDiv = document.getElementById('auth-message');
@@ -446,16 +628,16 @@
                 startResendTimer(newTimestamp);
                 
                 messageDiv.innerHTML = `
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 12px; border-radius: 12px; margin-top: 15px;">
-                        <svg style="width: 20px; height: 20px; color: #10b981;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-                        <span style="color: #065f46; font-weight: 700; font-size: 0.9rem;">New code sent successfully!</span>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 6px; background: #ECFDF5; border: 1px solid #A7F3D0; padding: 10px; border-radius: 10px; margin-top: 12px;">
+                        <svg style="width: 18px; height: 18px; color: #10B981;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                        <span style="color: #065F46; font-weight: 600; font-size: 0.8rem;">New code sent successfully!</span>
                     </div>`;
             } catch (error) {
                 console.error(error);
                 messageDiv.innerHTML = `
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #fef2f2; border: 1px solid #fecaca; padding: 12px; border-radius: 12px; margin-top: 15px;">
-                        <svg style="width: 20px; height: 20px; color: #ef4444;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
-                        <span style="color: #991b1b; font-weight: 700; font-size: 0.9rem;">${error.message || "Failed to resend code."}</span>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 6px; background: #FEF2F2; border: 1px solid #FECACA; padding: 10px; border-radius: 10px; margin-top: 12px;">
+                        <svg style="width: 18px; height: 18px; color: #EF4444;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        <span style="color: #991B1B; font-weight: 600; font-size: 0.8rem;">${error.message || "Failed to resend code."}</span>
                     </div>`;
                 btn.disabled = false;
                 btn.innerHTML = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg> Resend Code`;
@@ -466,7 +648,7 @@
             e.preventDefault();
             const btn = document.getElementById('secure-verify-btn');
             const originalHTML = btn.innerHTML;
-            btn.innerHTML = `<svg class="animate-spin" style="width:20px;height:20px;" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Verifying Identity...`;
+            btn.innerHTML = `<svg class="animate-spin" style="width:18px;height:18px;" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Verifying...`;
             btn.disabled = true;
 
             const email = document.getElementById('secure-email').value.toLowerCase().trim();
@@ -498,7 +680,7 @@
                 // Clears memory so next time they log out, they start fresh
                 localStorage.removeItem('afit_otp_request');
 
-                btn.innerHTML = `<svg style="width:20px;height:20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg> Routing...`;
+                btn.innerHTML = `<svg style="width:18px;height:18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg> Routing...`;
 
                 const { data: profile } = await supabaseClient
                     .from('profiles')
@@ -516,11 +698,11 @@
                 console.error("Verification Error:", error);
                 const errMsg = error.message || error.error_description || "An unexpected network error occurred.";
                 messageDiv.innerHTML = `
-                    <div style="background: #fef2f2; border: 1px solid #fecaca; padding: 15px; border-radius: 12px; margin-top: 15px; text-align: left; display: flex; gap: 12px; align-items: flex-start;">
-                        <svg style="width: 24px; height: 24px; color: #ef4444; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    <div style="background: #FEF2F2; border: 1px solid #FECACA; padding: 10px; border-radius: 10px; margin-top: 12px; text-align: left; display: flex; gap: 8px; align-items: flex-start;">
+                        <svg style="width: 18px; height: 18px; color: #EF4444; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                         <div>
-                            <p style="color: #991b1b; font-weight: 800; margin: 0 0 5px 0;">Verification Failed</p>
-                            <p style="color: #dc2626; font-size: 0.85rem; margin: 0; font-weight: 500; line-height: 1.5;">${errMsg}</p>
+                            <p style="color: #991B1B; font-weight: 700; font-size: 0.8rem; margin: 0 0 2px 0;">Verification Failed</p>
+                            <p style="color: #DC2626; font-size: 0.75rem; margin: 0; font-weight: 500; line-height: 1.4;">${errMsg}</p>
                         </div>
                     </div>`;
                 btn.innerHTML = originalHTML;

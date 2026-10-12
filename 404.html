@@ -16,26 +16,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
+        /* 🚀 STRICT BRAND SYSTEM & BOX SIZING */
+        :root {
+            --primary-blue: #1D5ED0;
+            --accent-blue: #159FE3;
+            --deep-navy: #071A3A;
+            --near-black: #0B1220;
+            --pure-white: #FFFFFF;
+            --light-bg: #F5F8FC;
+            --text-gray: #64748B;
+            --border-color: #E2E8F0;
+            --gradient-primary: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
+        }
+
+        html, body { max-width: 100vw !important; overflow-x: hidden !important; margin: 0; padding: 0; }
+        *, *::before, *::after { box-sizing: border-box !important; }
+
         body {
-            background-color: #F5F8FC;
-            color: #0B1220;
+            background-color: var(--light-bg);
+            color: var(--near-black);
             font-family: 'Sora', sans-serif;
-            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             text-align: center;
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 30px 30px;
+            -webkit-font-smoothing: antialiased;
         }
         
         .error-container {
-            background: white;
+            background: var(--pure-white);
             padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(7, 26, 58, 0.05);
             max-width: 500px;
             width: 90%;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border-color);
+            animation: fadeSlideUp 0.5s ease forwards;
         }
         
         .logo {
@@ -46,48 +65,52 @@
         }
         
         .logo img {
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(29, 94, 208, 0.4);
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(29, 94, 208, 0.2);
         }
 
         h1 {
             font-size: 6rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
             line-height: 1;
+            letter-spacing: -2px;
         }
 
         h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-top: 10px;
-            color: #0B1220;
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin: 10px 0 8px 0;
+            color: var(--near-black);
             letter-spacing: -0.5px;
         }
 
         p {
-            color: #64748b;
+            color: var(--text-gray);
             font-size: 1rem;
-            margin-bottom: 2rem;
+            margin: 0 0 2rem 0;
             line-height: 1.6;
             font-weight: 500;
         }
 
         .countdown-badge {
-            display: inline-block;
-            background: #F5F8FC;
-            color: #1D5ED0;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light-bg);
+            color: var(--primary-blue);
+            padding: 0.6rem 1.25rem;
+            border-radius: 10px;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             margin-bottom: 2rem;
-            border: 1px solid #bfdbfe;
+            border: 1px solid #BFDBFE;
+            gap: 6px;
         }
 
         .btn {
@@ -95,8 +118,8 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            background-color: #1D5ED0;
-            color: white;
+            background-color: var(--primary-blue);
+            color: var(--pure-white);
             padding: 1rem 2rem;
             border-radius: 12px;
             font-weight: 700;
@@ -106,14 +129,31 @@
             cursor: pointer;
             width: 100%;
             font-size: 1rem;
-            box-shadow: 0 4px 10px rgba(29, 94, 208, 0.2);
+            box-shadow: 0 4px 15px rgba(29, 94, 208, 0.2);
             font-family: 'Sora', sans-serif;
         }
 
+        .btn svg { width: 18px; height: 18px; }
+
         .btn:hover {
             transform: translateY(-2px);
-            background-color: #159FE3;
-            box-shadow: 0 10px 20px rgba(29, 94, 208, 0.3);
+            background-color: var(--deep-navy);
+            box-shadow: 0 8px 20px rgba(7, 26, 58, 0.3);
+        }
+
+        @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* 🚀 STRICT MOBILE FIXES (Zooming solved) */
+        @media (max-width: 1024px) {
+            html, body { font-size: 13px !important; }
+            .error-container { padding: 2.5rem 1.5rem; border-radius: 20px;}
+            .logo { margin-bottom: 1.5rem; }
+            .logo img { width: 36px; height: 36px; border-radius: 8px;}
+            h1 { font-size: 5rem; }
+            h2 { font-size: 1.4rem; }
+            p { font-size: 0.95rem; }
+            .countdown-badge { padding: 0.5rem 1rem; font-size: 0.85rem; border-radius: 8px;}
+            .btn { padding: 0.9rem 1rem; font-size: 0.95rem; border-radius: 10px;}
         }
     </style>
 </head>
@@ -121,9 +161,8 @@
 
     <div class="error-container">
         <div class="logo">
-            <!-- 🚀 REPLACED SVG WITH BRYT PNG -->
             <img src="/static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo">
-            <span style="font-weight: 800; color: #0B1220; margin-left: 12px; font-size: 1.2rem; letter-spacing: -0.5px;">BRYT CBT SIM</span>
+            <span style="font-weight: 800; color: var(--near-black); margin-left: 12px; font-size: 1.25rem; letter-spacing: -0.5px;">BRYT CBT SIM</span>
         </div>
         
         <h1>404</h1>
@@ -131,11 +170,12 @@
         <p>The page you are looking for does not exist, has been moved, or you entered an incorrect URL.</p>
         
         <div class="countdown-badge">
+            <svg class="animate-spin" style="width: 16px; height: 16px;" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
             Redirecting to Dashboard in <span id="timer">5</span>s...
         </div>
 
         <button onclick="routeToDashboard()" class="btn">
-            <svg style="width: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
             Go to Dashboard Now
         </button>
     </div>

@@ -25,102 +25,185 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <!-- PWA Manifest & Mobile Capability -->
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#071A3A">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="BRYT CBT">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#071A3A">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BRYT CBT">
 
     <style>
-        /* 🚀 CLEAN & SIMPLE RESPONSIVENESS */
-        *, *::before, *::after { box-sizing: border-box; }
+        /* 🚀 STRICT BRAND SYSTEM & BOX SIZING */
+        :root {
+            --primary-blue: #1D5ED0;
+            --accent-blue: #159FE3;
+            --deep-navy: #071A3A;
+            --near-black: #0B1220;
+            --pure-white: #FFFFFF;
+            --light-bg: #F5F8FC;
+            --text-gray: #64748B;
+            --border-color: #E2E8F0;
+            --gradient-primary: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
+        }
+
+        html, body { max-width: 100vw !important; overflow-x: hidden !important; margin: 0; padding: 0; }
+        *, *::before, *::after { box-sizing: border-box !important; }
+
         body { 
-            background-color: #F5F8FC; color: #0B1220; 
+            background-color: var(--light-bg); color: var(--near-black); 
             font-family: 'Sora', sans-serif; margin: 0; padding: 0; 
-            overflow-x: hidden; width: 100%; min-height: 100vh;
+            width: 100%; min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
         
+        /* 🚀 PREMIUM ADMIN NAV */
         .admin-nav {
-            height: 70px; background: #071A3A; color: white; display: flex; justify-content: space-between; align-items: center;
-            padding: 0 5%; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 100%;
+            height: 70px; background: var(--gradient-primary); color: var(--pure-white); 
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(7, 26, 58, 0.15); width: 100%;
         }
         
-        .admin-nav-title { font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
-        .admin-nav-title img { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        .admin-nav-title { font-weight: 800; font-size: 1.15rem; display: flex; align-items: center; gap: 12px; letter-spacing: -0.5px;}
+        .admin-nav-title img { width: 36px; height: 36px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); background: white; padding: 2px;}
         
+        .btn-back-nav {
+            background: rgba(255,255,255,0.1); color: var(--pure-white); border: 1px solid rgba(255,255,255,0.2); 
+            padding: 0.6rem 1.2rem; border-radius: 10px; font-weight: 700; font-family: 'Sora', sans-serif; 
+            cursor: pointer; transition: all 0.2s; font-size: 0.9rem; backdrop-filter: blur(10px);
+        }
+        .btn-back-nav:hover { background: var(--pure-white); color: var(--near-black); }
+
         /* 🚀 GLOBAL STATS BAR */
         .global-stats-bar {
-            display: flex; gap: 15px; overflow-x: auto; padding: 1.5rem 5%; background: white; 
-            border-bottom: 1px solid #e2e8f0; width: 100%;
-            -ms-overflow-style: none; scrollbar-width: none;
+            display: flex; gap: 16px; overflow-x: auto; padding: 1.5rem 5%; background: var(--pure-white); 
+            border-bottom: 1px solid var(--border-color); width: 100%;
+            -ms-overflow-style: none; scrollbar-width: none; box-shadow: 0 4px 15px rgba(7, 26, 58, 0.02);
         }
         .global-stats-bar::-webkit-scrollbar { display: none; }
+        
         .stat-box {
-            background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 24px; 
-            text-align: center; min-width: 120px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); flex-shrink: 0;
+            background: var(--light-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 16px 24px; 
+            text-align: left; min-width: 160px; box-shadow: 0 2px 5px rgba(7, 26, 58, 0.02); flex-shrink: 0;
+            display: flex; flex-direction: column; gap: 4px; transition: transform 0.2s;
         }
-        .stat-box span { display: block; font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 1px; }
-        .stat-box strong { font-size: 1.6rem; color: #0B1220; }
+        .stat-box:hover { transform: translateY(-2px); border-color: #CBD5E1; }
+        .stat-box span { font-size: 0.75rem; font-weight: 700; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-box strong { font-size: 1.8rem; font-weight: 800; color: var(--deep-navy); line-height: 1;}
 
         /* 🚀 TABS */
-        .tab-wrapper { padding: 1.5rem 5% 0 5%; display: flex; gap: 10px; flex-wrap: wrap; width: 100%; }
+        .tab-wrapper { padding: 2rem 5% 0 5%; display: flex; gap: 12px; flex-wrap: wrap; width: 100%; max-width: 1400px; margin: 0 auto;}
         .tab-btn {
             padding: 1rem 2rem; border-radius: 12px; font-weight: 700; border: none; cursor: pointer; 
-            background: white; color: #64748b; transition: all 0.2s; flex-grow: 1; text-align: center; font-size: 1rem;
-            border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); font-family: 'Sora', sans-serif;
+            background: var(--pure-white); color: var(--text-gray); transition: all 0.2s; flex-grow: 1; text-align: center; font-size: 0.95rem;
+            border: 1px solid var(--border-color); box-shadow: 0 4px 10px rgba(7, 26, 58, 0.02); font-family: 'Sora', sans-serif;
         }
-        .tab-btn:hover { background: #f1f5f9; color: #0B1220; }
-        .tab-btn.active { background: #1D5ED0; color: white; border-color: #1D5ED0; box-shadow: 0 4px 12px rgba(29, 94, 208, 0.2); }
+        .tab-btn:hover { background: var(--light-bg); color: var(--near-black); }
+        .tab-btn.active { background: var(--primary-blue); color: var(--pure-white); border-color: var(--primary-blue); box-shadow: 0 6px 15px rgba(29, 94, 208, 0.2); }
 
         /* 🚀 LAYOUT CONTAINERS */
-        .staging-layout { display: grid; grid-template-columns: 350px 1fr; max-width: 1400px; margin: 1.5rem auto; gap: 1.5rem; padding: 0 5%; width: 100%; align-items: start; }
-        .editor-layout { max-width: 900px; margin: 1.5rem auto; padding: 0 5%; width: 100%; display: none; }
+        .staging-layout { display: grid; grid-template-columns: 350px 1fr; max-width: 1400px; margin: 1.5rem auto 3rem auto; gap: 24px; padding: 0 5%; width: 100%; align-items: start; }
+        .editor-layout { max-width: 900px; margin: 1.5rem auto 3rem auto; padding: 0 5%; width: 100%; display: none; }
         
-        .panel-card { background: white; padding: 2rem; border-radius: 20px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05); width: 100%; overflow: hidden; }
+        .panel-card { background: var(--pure-white); padding: 2.5rem; border-radius: 20px; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(7, 26, 58, 0.03); width: 100%; overflow: hidden; }
         
-        /* INPUTS & BUTTONS */
-        .input-group label { display: block; font-size: 0.85rem; font-weight: 700; color: #64748b; margin-bottom: 8px; text-transform: uppercase; }
-        .input-group select, .input-group input { width: 100%; padding: 0.8rem 1rem; border-radius: 10px; border: 2px solid #e2e8f0; font-family: 'Sora', sans-serif; margin-bottom: 1rem; font-size: 1rem; box-sizing: border-box; outline: none; transition: border-color 0.2s; color: #0B1220;}
-        .input-group select:focus, .input-group input:focus { border-color: #1D5ED0; }
+        .panel-card h3 { margin: 0 0 8px 0; color: var(--near-black); font-size: 1.25rem; font-weight: 800; letter-spacing: -0.5px;}
+        .panel-card p { color: var(--text-gray); font-size: 0.9rem; margin: 0 0 1.5rem 0; font-weight: 500;}
+
+        /* 🚀 INPUTS & BUTTONS */
+        .input-group { margin-bottom: 1.5rem; }
+        .input-group label { display: block; font-size: 0.75rem; font-weight: 700; color: var(--text-gray); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;}
         
-        .search-flex { display: flex; gap: 10px; width: 100%; align-items: stretch; margin-bottom: 1.5rem; flex-wrap: wrap; }
-        .search-flex input { margin-bottom: 0; flex-grow: 1; min-width: 0; }
+        .input-group input, .input-group select { 
+            width: 100%; padding: 1rem 1.2rem; border-radius: 12px; border: 1px solid var(--border-color); 
+            font-family: 'Sora', sans-serif; font-size: 0.95rem; box-sizing: border-box; outline: none; transition: all 0.2s; 
+            color: var(--near-black); background: var(--light-bg); font-weight: 600;
+        }
+        .input-group input:focus, .input-group select:focus { border-color: var(--primary-blue); background: var(--pure-white); box-shadow: 0 0 0 4px rgba(29, 94, 208, 0.1);}
+        
+        .input-group select {
+            appearance: none; -webkit-appearance: none; -moz-appearance: none; cursor: pointer;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat; background-position: right 1.2rem center; background-size: 1em;
+        }
+
+        .search-flex { display: flex; gap: 12px; width: 100%; align-items: stretch; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .search-flex input { margin-bottom: 0; flex-grow: 1; min-width: 0; padding: 1rem 1.2rem; border-radius: 12px; border: 1px solid var(--border-color); font-family: 'Sora', sans-serif; font-size: 0.95rem; background: var(--light-bg); color: var(--near-black); font-weight: 600; transition: all 0.2s; outline: none;}
+        .search-flex input:focus { border-color: var(--primary-blue); background: var(--pure-white); box-shadow: 0 0 0 4px rgba(29, 94, 208, 0.1); }
         .search-flex button { flex-shrink: 0; margin-bottom: 0; white-space: nowrap; }
 
-        .btn { width: 100%; padding: 1rem; border-radius: 10px; font-weight: 700; border: none; cursor: pointer; font-size: 1rem; transition: all 0.2s; display: flex; justify-content: center; align-items: center; gap: 8px; font-family: 'Sora', sans-serif;}
+        .btn { 
+            width: 100%; padding: 1rem 1.5rem; border-radius: 12px; font-weight: 700; border: none; cursor: pointer; 
+            font-size: 0.95rem; transition: all 0.2s; display: flex; justify-content: center; align-items: center; gap: 8px; font-family: 'Sora', sans-serif;
+        }
         .btn:hover { transform: translateY(-2px); }
-        .btn-blue { background: #1D5ED0; color: white; }
-        .btn-blue:hover { background: #159FE3; }
-        .btn-green { background: #10b981; color: white; }
-        .btn-green:hover { background: #059669; }
-        .btn-red { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
-        .btn-red:hover { background: #fee2e2; }
-        .btn-orange { background: #ea580c; color: white; }
-        .btn-orange:hover { background: #c2410c; }
+        .btn-blue { background: var(--primary-blue); color: white; box-shadow: 0 4px 12px rgba(29, 94, 208, 0.2);}
+        .btn-blue:hover { background: var(--deep-navy); box-shadow: 0 6px 15px rgba(7, 26, 58, 0.3);}
+        .btn-green { background: #10B981; color: white; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);}
+        .btn-green:hover { background: #059669; box-shadow: 0 6px 15px rgba(5, 150, 105, 0.3);}
+        .btn-red { background: #FEF2F2; color: #DC2626; border: 1px solid #FECACA; }
+        .btn-red:hover { background: #FEE2E2; border-color: #EF4444;}
+        .btn-orange { background: #EA580C; color: white; box-shadow: 0 4px 12px rgba(234, 88, 12, 0.2);}
+        .btn-orange:hover { background: #C2410C; box-shadow: 0 6px 15px rgba(194, 65, 12, 0.3);}
         
-        /* QUESTION PREVIEW */
-        .question-card { border: 2px solid #e2e8f0; border-radius: 16px; padding: 1.5rem; background: #F5F8FC; width: 100%; overflow-x: auto; }
-        .q-meta { display: flex; justify-content: space-between; font-weight: 700; color: #64748b; border-bottom: 2px solid #e2e8f0; padding-bottom: 1rem; margin-bottom: 1.5rem; text-transform: uppercase; flex-wrap: wrap; gap: 10px; font-size: 0.85rem;}
-        .q-text { font-size: 1.15rem; font-weight: 500; margin-bottom: 2rem; line-height: 1.6; word-wrap: break-word; overflow-wrap: break-word; color: #0B1220;}
+        /* 🚀 QUESTION PREVIEW CARD */
+        .question-card { border: 1px solid var(--border-color); border-radius: 20px; padding: 2rem; background: var(--pure-white); width: 100%; overflow-x: auto; box-shadow: 0 4px 15px rgba(7, 26, 58, 0.02);}
         
-        .option-box { display: flex; align-items: center; padding: 1rem 1.2rem; background: white; border: 2px solid #e2e8f0; border-radius: 12px; margin-bottom: 1rem; word-wrap: break-word; }
-        .option-box.correct-ans { background: #dcfce7; border-color: #16a34a; }
-        .opt-letter { width: 30px; height: 30px; border-radius: 50%; background: #e2e8f0; display: flex; justify-content: center; align-items: center; font-weight: 800; margin-right: 15px; color: #475569; flex-shrink: 0;}
-        .option-box.correct-ans .opt-letter { background: #16a34a; color: white; }
+        .q-meta { 
+            display: flex; justify-content: space-between; align-items: center; font-weight: 800; color: var(--text-gray); 
+            border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1.5rem; text-transform: uppercase; 
+            flex-wrap: wrap; gap: 10px; font-size: 0.8rem; letter-spacing: 0.5px;
+        }
+        .q-meta span:first-child { color: var(--primary-blue); }
 
-        .instruction-box { background: #F5F8FC; padding: 1rem 1.5rem; border-radius: 12px; border-left: 4px solid #1D5ED0; margin-bottom: 1.5rem; color: #071A3A; }
+        .q-text { font-size: 1.15rem; font-weight: 500; margin-bottom: 2rem; line-height: 1.7; word-wrap: break-word; overflow-wrap: break-word; color: var(--near-black);}
+        
+        .option-box { display: flex; align-items: center; padding: 1rem 1.25rem; background: var(--light-bg); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 12px; word-wrap: break-word; transition: all 0.2s;}
+        
+        .option-box.correct-ans { background: #ECFDF5; border-color: #10B981; }
+        .opt-letter { width: 32px; height: 32px; border-radius: 8px; background: var(--pure-white); border: 1px solid var(--border-color); display: flex; justify-content: center; align-items: center; font-weight: 800; margin-right: 15px; color: var(--text-gray); flex-shrink: 0; font-size: 0.9rem;}
+        
+        .option-box.correct-ans .opt-letter { background: #10B981; color: white; border-color: #10B981; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);}
+        .option-box.correct-ans .opt-text { color: #065F46; font-weight: 600;}
 
-        @media (max-width: 900px) {
-            .admin-nav { flex-direction: column; height: auto; padding: 1rem; gap: 10px; text-align: center; }
-            .staging-layout { grid-template-columns: 1fr; padding: 0 1rem; gap: 1rem; }
-            .editor-layout { padding: 0 1rem; }
-            .panel-card { padding: 1.2rem; }
-            .tab-wrapper { padding: 1rem 1rem 0 1rem; }
-            .search-flex { flex-direction: column; }
+        .opt-text { font-size: 0.95rem; color: var(--near-black); font-weight: 500;}
+
+        .instruction-box { background: var(--light-bg); padding: 1.25rem 1.5rem; border-radius: 12px; border-left: 4px solid var(--primary-blue); margin-bottom: 1.5rem; color: var(--near-black); border-top: 1px solid var(--border-color); border-right: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);}
+
+        /* 🚀 STRICT MOBILE FIXES (Zooming solved) */
+        @media (max-width: 1024px) {
+            html, body { font-size: 13px !important; }
+            
+            .admin-nav { flex-direction: column; height: auto; padding: 1rem 1.5rem; gap: 12px; text-align: center; }
+            .btn-back-nav { width: 100%; justify-content: center; }
+            
+            .global-stats-bar { padding: 1.5rem 1rem; gap: 12px; }
+            .stat-box { padding: 12px 16px; min-width: 130px; border-radius: 12px;}
+            .stat-box strong { font-size: 1.5rem; }
+            
+            .tab-wrapper { padding: 1.5rem 1rem 0 1rem; gap: 10px; }
+            .tab-btn { padding: 0.85rem 1rem; font-size: 0.85rem; border-radius: 10px;}
+            
+            .staging-layout { grid-template-columns: 1fr; padding: 0 1rem; gap: 1.25rem; margin-bottom: 2rem;}
+            .editor-layout { padding: 0 1rem; margin-bottom: 2rem;}
+            
+            .panel-card { padding: 1.5rem 1.25rem; border-radius: 16px; }
+            .panel-card h3 { font-size: 1.15rem; margin-bottom: 4px;}
+            
+            .modern-input, .input-group select, .search-flex input { padding: 0.85rem 1rem; font-size: 0.9rem; border-radius: 10px;}
+            .btn { padding: 0.85rem; font-size: 0.9rem; border-radius: 10px;}
+            
+            .search-flex { flex-direction: column; gap: 10px;}
             .search-flex button { width: 100%; }
-            #edit-actions, #staging-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem; }
+            
+            #edit-actions, #staging-actions { display: flex !important; flex-direction: column; gap: 10px; margin-top: 1.5rem; }
             #edit-actions button, #staging-actions button { width: 100%; }
+            
+            .question-card { padding: 1.5rem 1.25rem; border-radius: 16px;}
+            .q-meta { font-size: 0.75rem; flex-direction: column; align-items: flex-start; gap: 10px; padding-bottom: 0.8rem;}
+            .q-text { font-size: 1.05rem; margin-bottom: 1.2rem;}
+            .option-box { padding: 0.85rem 1rem; border-radius: 10px;}
+            .opt-letter { width: 28px; height: 28px; font-size: 0.8rem; margin-right: 10px;}
+            .opt-text { font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -129,9 +212,9 @@
     <nav class="admin-nav">
         <div class="admin-nav-title">
             <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo">
-            BRYT Admin | Question Bank Manager
+            BRYT Admin | Question Bank
         </div>
-        <button onclick="window.location.href='../profile/index.html'" style="background: #0B1220; color: white; border: 1px solid #1e293b; padding: 0.6rem 1.2rem; border-radius: 8px; font-weight: bold; font-family: 'Sora', sans-serif; cursor: pointer; transition: 0.2s;">Back to Profile</button>
+        <button onclick="window.location.href='../profile/index.html'" class="btn-back-nav">Back to Profile</button>
     </nav>
 
     <div class="global-stats-bar" id="stats-bar">
@@ -145,13 +228,14 @@
 
     <div class="staging-layout" id="section-staging">
         
+        <!-- Left Panel: Fetch Controls -->
         <div class="panel-card">
-            <h3 style="margin-top:0; color: #0B1220; font-size: 1.3rem;">1. Pull from ALOC</h3>
-            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem;">Fetch 40 new questions to the holding queue.</p>
+            <h3>1. Pull from ALOC</h3>
+            <p>Fetch 40 new questions to the holding queue.</p>
             
             <div class="input-group">
                 <label>ALOC API Key</label>
-                <input type="text" id="aloc-key" placeholder="Paste Token here...">
+                <input type="text" id="aloc-key" placeholder="Paste Token here..." class="modern-input">
             </div>
             
             <div class="input-group">
@@ -175,24 +259,31 @@
             <div id="fetch-status" style="font-size: 0.85rem; text-align: center; font-weight: 700; margin-top: 15px;"></div>
         </div>
 
+        <!-- Right Panel: Review & Approve -->
         <div class="panel-card">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 10px;">
-                <h3 style="margin:0; color: #0B1220; font-size: 1.3rem;">2. Review & Approve</h3>
-                <div style="background: #F5F8FC; color: #1D5ED0; padding: 5px 12px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; border: 1px solid #bfdbfe;">
+                <h3 style="margin:0;">2. Review & Approve</h3>
+                <div style="background: var(--light-bg); color: var(--primary-blue); padding: 6px 14px; border-radius: 10px; font-weight: 700; font-size: 0.85rem; border: 1px solid var(--border-color);">
                     <span id="staging-count">0</span> In Queue
                 </div>
             </div>
 
-            <div id="empty-state" style="text-align: center; color: #94a3b8; padding: 3rem 0;">
-                <svg style="width: 50px; opacity: 0.5; margin-bottom: 10px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
-                <p>Holding queue is empty. Pull questions to begin.</p>
+            <div id="empty-state" style="text-align: center; color: var(--text-gray); padding: 4rem 0;">
+                <svg style="width: 48px; opacity: 0.5; margin-bottom: 12px; color: var(--text-gray);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+                <p style="margin:0; font-weight: 500;">Holding queue is empty. Pull questions to begin.</p>
             </div>
 
             <div id="review-canvas" style="display: none;">
                 <div class="question-card" id="q-card"></div>
-                <div id="staging-actions" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 1.5rem;">
-                    <button class="btn btn-red" onclick="deleteStagingQuestion()" id="del-btn">🗑️ Delete (Trash)</button>
-                    <button class="btn btn-green" onclick="approveAndMove()" id="app-btn">✅ Approve & Move to Main</button>
+                <div id="staging-actions" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 1.5rem;">
+                    <button class="btn btn-red" onclick="deleteStagingQuestion()" id="del-btn">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        Delete (Trash)
+                    </button>
+                    <button class="btn btn-green" onclick="approveAndMove()" id="app-btn">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                        Approve & Move to Main
+                    </button>
                 </div>
             </div>
         </div>
@@ -200,17 +291,20 @@
 
     <div class="editor-layout" id="section-editor">
         <div class="panel-card">
-            <h3 style="margin-top:0; color: #0B1220; font-size: 1.3rem;">Search & Edit Main Question Bank</h3>
-            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem;">Enter the 4-character ID (e.g. X8B2) to find and modify a live question.</p>
+            <h3>Search & Edit Main Question Bank</h3>
+            <p>Enter the 4-character ID (e.g. X8B2) to find and modify a live question.</p>
             
             <div class="search-flex">
-                <input type="text" id="search-id" placeholder="Enter Short ID..." maxlength="5" style="text-transform: uppercase;" class="modern-input">
-                <button class="btn btn-blue" onclick="searchMainDatabase()" id="search-btn" style="width: auto;">🔍 Search Bank</button>
+                <input type="text" id="search-id" placeholder="Enter Short ID..." maxlength="5" style="text-transform: uppercase;">
+                <button class="btn btn-blue" onclick="searchMainDatabase()" id="search-btn" style="width: auto;">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    Search Bank
+                </button>
             </div>
             
-            <div id="search-status" style="font-size: 0.9rem; font-weight: 600; margin-bottom: 1rem; text-align: center;"></div>
+            <div id="search-status" style="font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; text-align: center;"></div>
 
-            <div id="editor-canvas" style="display: none; border-top: 2px solid #f1f5f9; padding-top: 1.5rem;">
+            <div id="editor-canvas" style="display: none; border-top: 2px solid var(--border-color); padding-top: 2rem;">
                 <div class="question-card" id="editor-q-card" style="margin-bottom: 1.5rem;"></div>
                 
                 <div class="input-group">
@@ -223,14 +317,21 @@
                     </select>
                 </div>
 
-                <div id="edit-actions" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <button class="btn btn-red" onclick="deleteMainQuestion()" id="edit-del-btn">🗑️ Delete Permanently</button>
-                    <button class="btn btn-orange" onclick="updateMainAnswer()" id="edit-update-btn">💾 Save New Answer</button>
+                <div id="edit-actions" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <button class="btn btn-red" onclick="deleteMainQuestion()" id="edit-del-btn">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        Delete Permanently
+                    </button>
+                    <button class="btn btn-orange" onclick="updateMainAnswer()" id="edit-update-btn">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
+                        Save New Answer
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- 🚀 SCRIPTS (UNTOUCHED FUNCTIONALITY) -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="../static/app.js"></script>
 
@@ -334,7 +435,7 @@
             localStorage.setItem('aloc_key', apiKey); 
 
             btn.innerText = "Connecting..."; btn.disabled = true;
-            status.style.color = "#1D5ED0"; status.innerText = "Scanning database for existing questions...";
+            status.style.color = "var(--primary-blue)"; status.innerText = "Scanning database for existing questions...";
 
             try {
                 // 🚀 Changed dbSubject assignment to strictly use 'GNS' (uppercase)
@@ -379,15 +480,15 @@
                     if ((dbSubject === 'english' || dbSubject === 'literature') && q.section) {
                         finalQuestionText = `
                             <div class="instruction-box">
-                                <strong style="color: #071A3A; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">Instruction / Passage</strong><br>
-                                <em style="font-size: 1.05rem;">${q.section}</em>
+                                <strong style="color: var(--deep-navy); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px;">Instruction / Passage</strong><br>
+                                <em style="font-size: 1rem; color: var(--near-black);">${q.section}</em>
                             </div>
                             ${finalQuestionText}
                         `;
                     }
 
                     if (!finalQuestionText.trim()) {
-                         finalQuestionText = `<em style="color: #dc2626;">[Data Error: ALOC provided no text body for this question. Delete this.]</em>`;
+                         finalQuestionText = `<em style="color: #DC2626;">[Data Error: ALOC provided no text body for this question. Delete this.]</em>`;
                     }
 
                     const qTextLower = finalQuestionText.trim().toLowerCase();
@@ -414,13 +515,13 @@
                 const { error } = await supabaseClient.from('staging_questions').insert(newQuestions);
                 if (error) throw error;
 
-                status.style.color = "#16a34a";
+                status.style.color = "#10B981";
                 status.innerText = `Success! Added ${newQuestions.length} new questions. (${json.data.length - newQuestions.length} duplicates skipped).`;
                 setTimeout(() => loadStagingQueue(), 500);
 
             } catch (err) {
                 console.error(err);
-                status.style.color = "#dc2626"; status.innerText = "Error: " + err.message;
+                status.style.color = "#DC2626"; status.innerText = "Error: " + err.message;
             } finally {
                 btn.innerText = "Pull Questions"; btn.disabled = false;
             }
@@ -449,8 +550,8 @@
             const isCorrect = (opt) => q.correct_answer === opt ? 'correct-ans' : '';
             const html = `
                 <div class="q-meta">
-                    <span>${q.subject.toUpperCase()} • Year: ${q.year}</span>
-                    <span style="background: #e2e8f0; padding: 4px 12px; border-radius: 6px;">ID: ${q.short_id}</span>
+                    <span style="color: var(--primary-blue);">${q.subject.toUpperCase()} • Year: ${q.year}</span>
+                    <span style="background: var(--light-bg); color: var(--text-gray); border: 1px solid var(--border-color); padding: 4px 10px; border-radius: 6px;">ID: ${q.short_id}</span>
                 </div>
                 <div class="q-text">${prepText(q.question_text)}</div>
                 <div class="option-box ${isCorrect('A')}"><div class="opt-letter">A</div> <span class="opt-text">${prepText(q.option_a)}</span></div>
@@ -465,7 +566,8 @@
         async function approveAndMove() {
             const q = stagingQueue[currentIndex];
             const btn = document.getElementById('app-btn');
-            btn.innerText = "Checking..."; btn.disabled = true;
+            btn.innerHTML = `<svg class="animate-spin" style="width: 18px;" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Checking...`; 
+            btn.disabled = true;
 
             try {
                 const { data: dupCheck } = await supabaseClient.from('questions').select('id').eq('question_text', q.question_text).maybeSingle();
@@ -476,7 +578,7 @@
                     return updateUI();
                 }
 
-                btn.innerText = "Moving...";
+                btn.innerHTML = `<svg class="animate-spin" style="width: 18px;" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Moving...`;
                 const { error: insErr } = await supabaseClient.from('questions').insert([{
                     subject: q.subject, question_text: q.question_text,
                     option_a: q.option_a, option_b: q.option_b, option_c: q.option_c, option_d: q.option_d,
@@ -491,20 +593,21 @@
                 updateUI();
                 loadGlobalStats(); 
             } catch (err) { alert("Move Error: " + err.message); } 
-            finally { btn.innerHTML = "✅ Approve & Move to Main"; btn.disabled = false; }
+            finally { btn.innerHTML = `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg> Approve & Move to Main`; btn.disabled = false; }
         }
 
         async function deleteStagingQuestion() {
             const q = stagingQueue[currentIndex];
             const btn = document.getElementById('del-btn');
-            btn.innerText = "Deleting..."; btn.disabled = true;
+            btn.innerHTML = `<svg class="animate-spin" style="width: 18px;" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Deleting...`; 
+            btn.disabled = true;
             try {
                 const { error } = await supabaseClient.from('staging_questions').delete().eq('id', q.id);
                 if (error) throw error;
                 stagingQueue.splice(currentIndex, 1);
                 updateUI();
             } catch (err) { alert("Delete Error: " + err.message); } 
-            finally { btn.innerHTML = "🗑️ Delete (Trash)"; btn.disabled = false; }
+            finally { btn.innerHTML = `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg> Delete (Trash)`; btn.disabled = false; }
         }
 
         function updateUI() {
@@ -523,31 +626,33 @@
             const btn = document.getElementById('search-btn');
             const status = document.getElementById('search-status');
             
-            if (!shortId || shortId.length < 4) { status.style.color = "#dc2626"; status.innerText = "Enter a valid 4-char ID."; return; }
+            if (!shortId || shortId.length < 4) { status.style.color = "#DC2626"; status.innerText = "Enter a valid 4-char ID."; return; }
 
-            btn.innerText = "Searching..."; btn.disabled = true; status.innerText = "";
+            btn.innerHTML = `<svg class="animate-spin" style="width: 18px;" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Searching...`; 
+            btn.disabled = true; status.innerText = "";
 
             try {
                 const { data, error } = await supabaseClient.from('questions').select('*').eq('short_id', shortId).maybeSingle();
                 
                 if (error) throw error;
                 if (!data) {
-                    status.style.color = "#dc2626"; status.innerText = `No question found with ID: ${shortId}`;
+                    status.style.color = "#DC2626"; status.innerText = `No question found with ID: ${shortId}`;
                     document.getElementById('editor-canvas').style.display = 'none';
                     return;
                 }
 
                 activeEditorQuestion = data;
-                status.style.color = "#16a34a"; status.innerText = "Question loaded successfully!";
+                status.style.color = "#10B981"; status.innerText = "Question loaded successfully!";
                 document.getElementById('editor-canvas').style.display = 'block';
                 document.getElementById('edit-correct-option').value = data.correct_answer;
                 
                 renderEditorCard();
 
             } catch (err) {
-                status.style.color = "#dc2626"; status.innerText = "Error: " + err.message;
+                status.style.color = "#DC2626"; status.innerText = "Error: " + err.message;
             } finally {
-                btn.innerHTML = "🔍 Search Bank"; btn.disabled = false;
+                btn.innerHTML = `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg> Search Bank`; 
+                btn.disabled = false;
             }
         }
 
@@ -556,8 +661,8 @@
             const isCorrect = (opt) => q.correct_answer === opt ? 'correct-ans' : '';
             const html = `
                 <div class="q-meta">
-                    <span>${q.subject.toUpperCase()} • Year: ${q.year}</span>
-                    <span style="background: #e2e8f0; padding: 4px 12px; border-radius: 6px;">ID: ${q.short_id}</span>
+                    <span style="color: var(--primary-blue);">${q.subject.toUpperCase()} • Year: ${q.year}</span>
+                    <span style="background: var(--light-bg); color: var(--text-gray); border: 1px solid var(--border-color); padding: 4px 10px; border-radius: 6px;">ID: ${q.short_id}</span>
                 </div>
                 <div class="q-text">${prepText(q.question_text)}</div>
                 <div class="option-box ${isCorrect('A')}"><div class="opt-letter">A</div> <span class="opt-text">${prepText(q.option_a)}</span></div>
@@ -574,7 +679,8 @@
             const newAns = document.getElementById('edit-correct-option').value;
             const btn = document.getElementById('edit-update-btn');
             
-            btn.innerText = "Saving..."; btn.disabled = true;
+            btn.innerHTML = `<svg class="animate-spin" style="width: 18px;" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Saving...`; 
+            btn.disabled = true;
 
             try {
                 const { data, error } = await supabaseClient.from('questions')
@@ -591,7 +697,7 @@
                 activeEditorQuestion.correct_answer = newAns;
                 renderEditorCard(); 
             } catch (err) { alert("Update Error: " + err.message); } 
-            finally { btn.innerHTML = "💾 Save New Answer"; btn.disabled = false; }
+            finally { btn.innerHTML = `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg> Save New Answer`; btn.disabled = false; }
         }
 
         async function deleteMainQuestion() {
@@ -599,7 +705,8 @@
             if(!confirm("⚠️ DANGER: Are you sure you want to permanently delete this question from the Main Bank? This cannot be undone.")) return;
             
             const btn = document.getElementById('edit-del-btn');
-            btn.innerText = "Deleting..."; btn.disabled = true;
+            btn.innerHTML = `<svg class="animate-spin" style="width: 18px;" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Deleting...`; 
+            btn.disabled = true;
 
             try {
                 const { data, error } = await supabaseClient.from('questions')
@@ -619,7 +726,7 @@
                 activeEditorQuestion = null;
                 loadGlobalStats(); 
             } catch (err) { alert("Delete Error: " + err.message); } 
-            finally { btn.innerHTML = "🗑️ Delete Permanently"; btn.disabled = false; }
+            finally { btn.innerHTML = `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg> Delete Permanently`; btn.disabled = false; }
         }
     </script>
 </body>

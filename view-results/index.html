@@ -13,33 +13,184 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/main.css">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <!-- PWA Manifest & Mobile Capability -->
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#071A3A">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="BRYT CBT">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#071A3A">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BRYT CBT">
 
     <style>
-        /* 🚀 STRICT BOX SIZING & BACKGROUND */
-        html, body { max-width: 100vw !important; overflow-x: hidden !important; margin: 0; padding: 0; background-color: #F5F8FC; font-family: 'Sora', sans-serif; }
+        /* 🚀 STRICT BRAND SYSTEM & BOX SIZING */
+        :root {
+            --primary-blue: #1D5ED0;
+            --accent-blue: #159FE3;
+            --deep-navy: #071A3A;
+            --near-black: #0B1220;
+            --pure-white: #FFFFFF;
+            --light-bg: #F5F8FC;
+            --text-gray: #64748B;
+            --border-color: #E2E8F0;
+            --gradient-primary: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
+            --sidebar-width: 260px;
+        }
+
+        html, body { 
+            max-width: 100vw !important; 
+            overflow-x: hidden !important; 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--light-bg); 
+            font-family: 'Sora', sans-serif; 
+            color: var(--near-black);
+            -webkit-font-smoothing: antialiased;
+        }
         *, *::before, *::after { box-sizing: border-box !important; }
 
         .results-wrapper { animation: fadeIn 0.5s ease; width: 100%; max-width: 1200px; margin: 0 auto;}
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* 🚀 DESKTOP SIDEBAR */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--gradient-primary);
+            position: fixed;
+            top: 0; left: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--pure-white);
+            z-index: 1000;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .sidebar-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .sidebar-header img {
+            width: 36px; height: 36px;
+            border-radius: 8px;
+            background: var(--pure-white);
+            padding: 2px;
+        }
+        .sidebar-header span {
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: -0.5px;
+        }
+        .sidebar-nav {
+            list-style: none;
+            padding: 1.5rem 1rem;
+            margin: 0;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            padding: 0.9rem 1rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .sidebar-nav a svg { width: 20px; margin-right: 12px; }
+        .sidebar-nav li.active a, .sidebar-nav a:hover {
+            background: var(--primary-blue);
+            color: var(--pure-white);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .sidebar-footer { padding: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        .logout-btn-sidebar {
+            width: 100%;
+            background: transparent;
+            color: rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.8rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-family: 'Sora', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .logout-btn-sidebar:hover { background: rgba(239, 68, 68, 0.1); color: #EF4444; border-color: #EF4444; }
+
+        .sidebar-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(11, 18, 32, 0.6); backdrop-filter: blur(4px);
+            z-index: 999; display: none; opacity: 0; transition: opacity 0.3s;
+        }
+
+        /* 🚀 MAIN WRAPPER & HEADER */
+        .main-wrapper {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .top-header {
+            height: 70px;
+            background: var(--pure-white);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 2rem;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .mobile-header-brand { display: none; }
+        .mobile-menu-btn {
+            display: none; background: none; border: none; color: var(--near-black); cursor: pointer; padding: 0;
+        }
+        .mobile-menu-btn svg { width: 28px; height: 28px; }
+        .avatar {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: var(--pure-white);
+            display: flex; justify-content: center; align-items: center;
+            font-weight: 700; font-size: 1rem; line-height: 1; letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(29, 94, 208, 0.2);
+            text-transform: uppercase;
+        }
+
+        /* 🚀 DASHBOARD CONTENT */
+        .dashboard-content {
+            padding: 2.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+            flex-grow: 1;
+        }
+
         /* 🚀 BRYT WELCOME BANNER */
         .welcome-banner {
-            background: linear-gradient(135deg, #071A3A 0%, #1D5ED0 100%);
-            border-radius: 24px; padding: 2.5rem 3rem; margin-bottom: 2rem;
-            position: relative; overflow: hidden; box-shadow: 0 20px 40px -15px rgba(7, 26, 58, 0.4);
-            display: flex; justify-content: space-between; align-items: center; color: white;
+            background: var(--gradient-primary);
+            border-radius: 20px; 
+            padding: 2.5rem 3rem; 
+            margin-bottom: 2rem;
+            position: relative; 
+            overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(7, 26, 58, 0.15);
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            color: var(--pure-white);
         }
         .welcome-banner::after {
             content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px;
@@ -47,98 +198,128 @@
             border-radius: 50%; pointer-events: none;
         }
         .welcome-text { position: relative; z-index: 2; max-width: 65%; }
-        .welcome-text h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; margin: 0 0 10px 0; }
-        .welcome-text p { color: #E0E7FF; font-size: 1rem; margin: 0; font-weight: 500; line-height: 1.6;}
+        .welcome-text h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; margin: 0 0 8px 0; }
+        .welcome-text p { color: #E2E8F0; font-size: 1rem; margin: 0; font-weight: 400; line-height: 1.6;}
 
         .btn-new-exam {
-            position: relative; z-index: 2; background: white; color: #1D5ED0; border: none; 
-            padding: 1rem 1.8rem; border-radius: 12px; font-weight: 700; cursor: pointer; 
+            position: relative; z-index: 2; background: var(--pure-white); color: var(--primary-blue); border: none; 
+            padding: 0.9rem 1.8rem; border-radius: 12px; font-weight: 700; cursor: pointer; 
             box-shadow: 0 10px 25px rgba(0,0,0,0.2); transition: all 0.2s; white-space: nowrap;
             display: inline-flex; align-items: center; gap: 8px; font-family: 'Sora', sans-serif;
+            text-decoration: none;
         }
         .btn-new-exam svg { width: 18px; height: 18px; }
-        .btn-new-exam:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.3); background: #F5F8FC; }
+        .btn-new-exam:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(0,0,0,0.3); background: var(--light-bg); }
 
         /* 🚀 SLEEK ANALYTICS CARDS */
-        .analytics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 2rem; width: 100%; }
+        .analytics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 2.5rem; width: 100%; }
         .stat-card {
-            background: white; border-radius: 24px; padding: 1.8rem; display: flex; align-items: center; gap: 18px;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; transition: transform 0.2s;
+            background: var(--pure-white); border-radius: 16px; padding: 1.5rem; display: flex; align-items: center; gap: 16px;
+            box-shadow: 0 4px 15px rgba(7, 26, 58, 0.02); border: 1px solid var(--border-color); transition: transform 0.2s;
         }
-        .stat-card:hover { transform: translateY(-3px); border-color: #cbd5e1; box-shadow: 0 15px 35px -10px rgba(0,0,0,0.08); }
+        .stat-card:hover { transform: translateY(-2px); border-color: #CBD5E1; box-shadow: 0 8px 20px rgba(7, 26, 58, 0.05); }
         
-        .stat-icon { width: 60px; height: 60px; border-radius: 16px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
-        .stat-icon svg { width: 28px; height: 28px; }
-        .stat-icon.blue { background: #F5F8FC; color: #1D5ED0; }
-        .stat-icon.green { background: #ecfdf5; color: #10b981; }
-        .stat-icon.purple { background: #f5f3ff; color: #8b5cf6; }
+        .stat-icon { width: 46px; height: 46px; border-radius: 12px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
+        .stat-icon svg { width: 24px; height: 24px; }
+        .stat-icon.blue { background: var(--light-bg); color: var(--primary-blue); }
+        .stat-icon.green { background: #ECFDF5; color: #10B981; }
+        .stat-icon.purple { background: #F5F3FF; color: #8B5CF6; }
 
-        .stat-info h4 { margin: 0 0 5px 0; font-size: 0.85rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-        .stat-val { font-size: 2rem; font-weight: 800; color: #0B1220; line-height: 1; }
-        .stat-val span { font-size: 1.2rem; color: #94a3b8; font-weight: 600; margin-left: 2px;}
+        .stat-info { display: flex; flex-direction: column; gap: 2px;}
+        .stat-info h4 { margin: 0; font-size: 0.8rem; color: var(--text-gray); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-val { font-size: 1.5rem; font-weight: 800; color: var(--near-black); line-height: 1; }
+        .stat-val span { font-size: 1rem; color: var(--text-gray); font-weight: 600; margin-left: 2px;}
 
         /* 🚀 HISTORY TABLE */
         .full-history-section {
-            background: white; padding: 2.5rem; border-radius: 24px;
-            border: 1px solid #e2e8f0; box-shadow: 0 10px 40px -10px rgba(0,0,0,0.04);
-            width: 100%; max-width: 100%; margin-bottom: 2rem;
+            background: var(--pure-white); padding: 2rem; border-radius: 20px;
+            border: 1px solid var(--border-color); box-shadow: 0 4px 15px rgba(7, 26, 58, 0.02);
+            width: 100%; margin-bottom: 2rem;
         }
-        .section-title { margin: 0 0 1.5rem 0; font-size: 1.4rem; font-weight: 800; color: #0B1220; display: flex; align-items: center; gap: 10px;}
-        .section-title svg { color: #1D5ED0; width: 24px; height: 24px; }
+        .section-title { margin: 0 0 1.5rem 0; font-size: 1.25rem; font-weight: 800; color: var(--near-black); display: flex; align-items: center; gap: 10px;}
+        .section-title svg { color: var(--primary-blue); width: 24px; height: 24px; }
 
         .table-responsive { 
             width: 100%; max-height: 650px; overflow-y: auto; overflow-x: auto; 
-            -webkit-overflow-scrolling: touch; border: 1px solid #e2e8f0; border-radius: 16px;
+            -webkit-overflow-scrolling: touch; border-radius: 12px;
         }
         
-        .data-table { width: 100%; border-collapse: collapse; white-space: nowrap; margin: 0; }
+        .data-table { width: 100%; border-collapse: collapse; white-space: nowrap; margin: 0; min-width: 700px; }
         .data-table th { 
-            background: #f8fafc; color: #475569; font-weight: 800; text-transform: uppercase; 
-            font-size: 0.8rem; padding: 1.2rem 1.5rem; text-align: left;
-            position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.02); letter-spacing: 0.5px;
+            background: var(--light-bg); color: var(--text-gray); font-weight: 700; text-transform: uppercase; 
+            font-size: 0.75rem; padding: 1rem 1.2rem; text-align: left;
+            position: sticky; top: 0; z-index: 10; border-bottom: 2px solid var(--border-color); letter-spacing: 0.5px;
         }
-        .data-table td { padding: 1.2rem 1.5rem; border-bottom: 1px solid #f1f5f9; color: #1e293b; vertical-align: middle; }
-        .data-table tr:hover td { background-color: #f8fafc; }
+        .data-table td { padding: 1rem 1.2rem; border-bottom: 1px solid var(--border-color); color: var(--near-black); vertical-align: middle; font-size: 0.9rem;}
+        .data-table tr:hover td { background-color: #F8FAFC; }
         
-        .badge-green { background: #dcfce7; color: #166534; padding: 0.4rem 1rem; border-radius: 20px; font-weight: 800; font-size: 0.85rem;}
-        .badge-orange { background: #ffedd5; color: #9a3412; padding: 0.4rem 1rem; border-radius: 20px; font-weight: 800; font-size: 0.85rem;}
+        .badge-green { background: #DCFCE7; color: #166534; padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.8rem;}
+        .badge-orange { background: #FFEDD5; color: #9A3412; padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.8rem;}
 
         /* 🚀 SLEEK DOWNLOAD BUTTON */
         .dl-row-btn {
-            background: white; color: #1D5ED0; border: 1px solid #bfdbfe;
-            padding: 0.6rem 1.2rem; border-radius: 10px; font-weight: 700; cursor: pointer;
-            transition: all 0.2s; font-family: 'Sora', sans-serif; font-size: 0.85rem; 
+            background: var(--pure-white); color: var(--primary-blue); border: 1px solid var(--primary-blue);
+            padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; cursor: pointer;
+            transition: all 0.2s; font-family: 'Sora', sans-serif; font-size: 0.8rem; 
             display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 4px rgba(29, 94, 208, 0.05);
         }
-        .dl-row-btn svg { width: 16px; height: 16px; }
-        .dl-row-btn:hover { background: #F5F8FC; box-shadow: 0 4px 10px rgba(29, 94, 208, 0.15); transform: translateY(-1px); border-color: #159FE3;}
+        .dl-row-btn svg { width: 14px; height: 14px; }
+        .dl-row-btn:hover { background: var(--light-bg); transform: translateY(-1px); }
         .dl-row-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
 
         /* Subject Pills */
         .subj-pill {
-            background: #f1f5f9; border: 1px solid #e2e8f0; padding: 4px 10px; 
-            border-radius: 8px; font-size: 0.75rem; color: #64748b; font-weight: 600;
+            background: var(--light-bg); border: 1px solid var(--border-color); padding: 4px 8px; 
+            border-radius: 6px; font-size: 0.75rem; color: var(--text-gray); font-weight: 500;
         }
-        .subj-pill strong { color: #0B1220; font-weight: 800; margin-left: 2px;}
+        .subj-pill strong { color: var(--near-black); font-weight: 700; margin-left: 2px;}
 
         /* HIDDEN CAPTURE CARD */
         #capture-area { position: absolute; left: -9999px; top: 0; width: 700px; background: linear-gradient(135deg, #0B1220 0%, #071A3A 100%); color: white; padding: 50px; border-radius: 24px; font-family: 'Sora', sans-serif; box-sizing: border-box; z-index: -100; }
 
-        /* 🚀 MOBILE RESPONSIVENESS */
-        @media (max-width: 900px) {
-            .dashboard-content { padding: 1rem !important; width: 100vw !important; max-width: 100vw !important; }
-            .welcome-banner { padding: 2rem 1.5rem !important; border-radius: 20px !important; flex-direction: column !important; align-items: flex-start !important; gap: 1.5rem; }
-            .welcome-text { max-width: 100% !important; }
-            .welcome-text h1 { font-size: 1.8rem; }
-            .btn-new-exam { width: 100%; justify-content: center; }
-
-            .analytics-grid { grid-template-columns: 1fr; gap: 15px; }
-            .stat-card { padding: 1.5rem !important; border-radius: 20px;}
+        /* 🚀 MOBILE RESPONSIVENESS (Zoom Fixes) */
+        @media (max-width: 1024px) {
+            html, body { font-size: 13px !important; } /* Scales down global typography */
             
-            .full-history-section { padding: 1.5rem 1rem !important; border-radius: 20px;}
-            .data-table th, .data-table td { padding: 1rem 0.8rem; font-size: 0.8rem; }
-            .dl-row-btn { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
-            .subj-pill { padding: 3px 6px; font-size: 0.7rem; }
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.active { transform: translateX(0); }
+            .sidebar-overlay.active { display: block; opacity: 1; }
+            .main-wrapper { margin-left: 0; }
+            
+            .top-header { padding: 0 1rem; justify-content: space-between; height: 60px; position: relative;}
+            .mobile-menu-btn { display: block; }
+            .mobile-menu-btn svg { width: 24px; height: 24px; }
+            
+            /* CENTERED LOGO, NO TEXT */
+            .mobile-header-brand { 
+                display: flex; position: absolute; left: 50%; transform: translateX(-50%);
+            }
+            .mobile-header-brand img { width: 32px; height: 32px; border-radius: 8px; }
+            
+            .avatar { width: 34px; height: 34px; font-size: 0.95rem; line-height: 1; }
+            
+            .dashboard-content { padding: 1rem !important; width: 100vw !important; max-width: 100vw !important; overflow-x: hidden !important;}
+            
+            .welcome-banner { padding: 1.5rem !important; border-radius: 16px !important; flex-direction: column !important; align-items: flex-start !important; gap: 1.25rem; margin-bottom: 1.25rem;}
+            .welcome-text { max-width: 100% !important; }
+            .welcome-text h1 { font-size: 1.65rem; margin-bottom: 4px; }
+            .welcome-text p { font-size: 0.95rem; }
+            .btn-new-exam { width: 100%; justify-content: center; padding: 0.9rem !important; font-size: 0.9rem !important; border-radius: 10px; }
+
+            .analytics-grid { grid-template-columns: 1fr; gap: 12px; margin-bottom: 1.25rem; }
+            .stat-card { padding: 1rem 1.25rem !important; border-radius: 14px; gap: 12px;}
+            .stat-icon { width: 40px; height: 40px; border-radius: 10px; font-size: 1.2rem;}
+            .stat-icon svg { width: 20px; height: 20px;}
+            .stat-val { font-size: 1.4rem; margin-top: 2px;}
+            
+            .full-history-section { padding: 1.25rem 1rem !important; border-radius: 16px;}
+            .section-title { font-size: 1.1rem; margin-bottom: 1rem; }
+            
+            .table-responsive { border: 1px solid var(--border-color); }
+            .data-table th, .data-table td { padding: 0.75rem 0.5rem; font-size: 0.8rem; }
+            
+            .dl-row-btn { padding: 0.4rem 0.75rem; font-size: 0.75rem; border-radius: 6px;}
+            .subj-pill { padding: 3px 6px; font-size: 0.7rem; border-radius: 4px;}
         }
     </style>
 </head>
@@ -181,26 +362,27 @@
         </div>
     </div>
 
+    <!-- 🚀 OVERLAY & SIDEBAR -->
     <div class="sidebar-overlay" id="mobile-overlay" onclick="toggleSidebar()"></div>
 
     <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header" style="display: flex; align-items: center; gap: 12px; padding: 1rem 0;">
-            <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo" style="width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(29, 94, 208, 0.3);">
-            <span style="font-weight: 800; font-size: 1.15rem; color: #0B1220; letter-spacing: -0.5px; white-space: nowrap;">BRYT CBT SIM</span>
+        <div class="sidebar-header">
+            <img src="../static/img/brytcbtsim-logo.png" alt="BRYT CBT SIM Logo">
+            <span>BRYT CBT SIM</span>
         </div>
         
         <ul class="sidebar-nav">
             <li>
-                <a href="../dashboard/"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg> Dashboard</a>
+                <a href="../dashboard/index.html"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg> Dashboard</a>
             </li>
             <li>
-                <a href="../exams/"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg> Exams</a>
+                <a href="../exams/index.html"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg> Exams</a>
             </li>
             <li class="active">
-                <a href="#"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg> My Results</a>
+                <a href="#"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg> My Results</a>
             </li>
             <li>
-                <a href="../profile/"><svg style="width: 20px; margin-right: 12px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg> Profile</a>
+                <a href="../profile/index.html"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg> Profile</a>
             </li>
         </ul>
 
@@ -211,12 +393,16 @@
 
     <div class="main-wrapper">
         
+        <!-- 🚀 TOP HEADER -->
         <header class="top-header">
             <button class="mobile-menu-btn" onclick="toggleSidebar()">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
             </button>
+            <div class="mobile-header-brand">
+                <img src="../static/img/brytcbtsim-logo.png" alt="Logo">
+            </div>
             <div class="avatar" id="user-avatar">?</div>
         </header>
 
@@ -228,10 +414,10 @@
                     <p>Review your complete examination history and track your aggregate progress over time.</p>
                 </div>
                 
-                <button class="btn-new-exam" onclick="window.location.href='../exams/index.html'">
+                <a href="../exams/index.html" class="btn-new-exam">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                     Take New Exam
-                </button>
+                </a>
             </div>
 
             <div class="results-wrapper">
@@ -286,7 +472,7 @@
                                 </tr>
                             </thead>
                             <tbody id="full-history-body">
-                                <tr><td colspan="5" style="text-align: center; color: #94a3b8; padding: 3rem; font-weight: 500;">Loading your academic records...</td></tr>
+                                <tr><td colspan="5" style="text-align: center; color: var(--text-gray); padding: 3rem; font-weight: 500;">Loading your academic records...</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -296,6 +482,7 @@
         </main>
     </div>
 
+    <!-- 🚀 SCRIPTS (UNTOUCHED FUNCTIONALITY) -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="../static/app.js"></script>
 
@@ -336,7 +523,7 @@
             const tbody = document.getElementById('full-history-body');
             
             if (error || !data || data.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #64748b; padding: 4rem; font-weight: 500;">No examination records found. Complete a test to generate data.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--text-gray); padding: 4rem; font-weight: 500;">No examination records found. Complete a test to generate data.</td></tr>';
                 return;
             }
 
@@ -359,6 +546,7 @@
                 if (finalAggregate > highestAggregate) highestAggregate = finalAggregate;
                 totalAggregateSum += finalAggregate;
 
+                // 🚀 STRICT SUBJECT FILTERING: ONLY SHOWS SUBJECTS WRITTEN
                 const allScores = [
                     { name: 'ENG', val: row.english_score }, { name: 'GNS', val: row.gns_score },
                     { name: 'MTH', val: row.math_score }, { name: 'PHY', val: row.physics_score },
@@ -367,24 +555,26 @@
                     { name: 'COM', val: row.commerce_score }
                 ].filter(s => s.val !== undefined && s.val !== null && s.val > 0);
 
-                if (allScores.length === 0) allScores.push({ name: 'ENG', val: 0 }); // Fallback
-
-                // 🚀 NEW: Render subjects as sleek pills
+                // 🚀 Render subjects as sleek pills
                 let breakdownHtml = `<div style="display: flex; flex-wrap: wrap; gap: 6px;">`;
-                allScores.forEach(s => {
-                    breakdownHtml += `<span class="subj-pill">${s.name}: <strong>${s.val}</strong></span>`;
-                });
+                if (allScores.length > 0) {
+                    allScores.forEach(s => {
+                        breakdownHtml += `<span class="subj-pill">${s.name}: <strong>${s.val}</strong></span>`;
+                    });
+                } else {
+                    breakdownHtml += `<span class="subj-pill" style="color:var(--text-gray);">Score: <strong>0</strong></span>`;
+                }
                 breakdownHtml += `</div>`;
 
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>
-                        <strong style="color: #0B1220; font-size: 0.95rem;">${formattedDate}</strong><br>
-                        <span style="font-size: 0.8rem; color: #64748b; font-weight: 500;">${formattedTime}</span>
+                        <strong style="color: var(--near-black); font-size: 0.95rem;">${formattedDate}</strong><br>
+                        <span style="font-size: 0.8rem; color: var(--text-gray); font-weight: 500;">${formattedTime}</span>
                     </td>
                     <td>${breakdownHtml}</td>
-                    <td style="text-align: center;"><span class="score-badge ${badgeClass}">${row.total_score} / 50</span></td>
-                    <td style="text-align: center;"><strong style="font-size: 1.15rem; color: #0B1220;">${finalAggregate}%</strong></td>
+                    <td style="text-align: center;"><span class="${badgeClass}">${row.total_score} / 50</span></td>
+                    <td style="text-align: center;"><strong style="font-size: 1.15rem; color: var(--near-black);">${finalAggregate}%</strong></td>
                     <td style="text-align: right;">
                         <button class="dl-row-btn" onclick="downloadHistoryResult('${formattedDate}', '${row.total_score}', '${finalAggregate}', this)" title="Download Image">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
@@ -405,10 +595,10 @@
         // 🚀 DYNAMIC DOWNLOAD ENGINE FOR HISTORY ROWS
         function downloadHistoryResult(dateString, putmeScore, aggregate, btnElement) {
             const originalHtml = btnElement.innerHTML;
-            btnElement.innerHTML = '<svg class="animate-spin" style="width:16px; height:16px; margin-right:4px;" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Generating...';
+            btnElement.innerHTML = '<svg class="animate-spin" style="width:14px; height:14px; margin-right:4px;" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Generating...';
             btnElement.disabled = true;
 
-            // 1. Populate the hidden card with THIS row's specific data
+            // Populate the hidden card with THIS row's specific data
             document.getElementById('card-date').innerText = dateString;
             document.getElementById('card-name').innerText = userProfile.full_name || 'Aspirant';
             document.getElementById('card-course').innerText = userProfile.course_applied || 'General Assessment';
@@ -417,10 +607,10 @@
 
             const captureArea = document.getElementById('capture-area');
             
-            // 2. Bring the card into view instantly (behind the scenes)
+            // Bring the card into view instantly (behind the scenes)
             captureArea.style.left = '0';
             
-            // 3. Take the screenshot
+            // Take the screenshot
             html2canvas(captureArea, { scale: 2, backgroundColor: null }).then(canvas => {
                 const link = document.createElement('a');
                 link.download = `BRYT_Mock_Result_${dateString.replace(/ /g, '_')}.png`;
